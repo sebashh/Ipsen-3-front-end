@@ -14,6 +14,12 @@ import { ClientComponent } from './client/client.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentComponent } from './student/student.component';
+import { ModelComponent } from './model/model.component';
+import { ControllerComponent } from './controller/controller.component';
+import { ViewComponent } from './view/view.component';
+import { ServicesComponent } from './services/services.component';
+import { TemplateComponent } from './template/template.component';
+import { TemplatesComponent } from './templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,13 @@ import { StudentComponent } from './student/student.component';
     ClientComponent,
     TeacherComponent,
     AdminComponent,
-    StudentComponent
+    StudentComponent,
+    ModelComponent,
+    ControllerComponent,
+    ViewComponent,
+    ServicesComponent,
+    TemplateComponent,
+    TemplatesComponent
   ],
   imports: [
     BrowserModule
