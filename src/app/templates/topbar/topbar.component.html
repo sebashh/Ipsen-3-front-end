@@ -1,1 +1,14 @@
-<p>topbar works!</p>
+<link rel="stylesheet" href="/path/to/material-icons/iconfont/material-icons.css">
+<nav>
+  <div class="logo">
+    <a>
+      <img src="../../../assets/plnt.png">
+    </a>
+  </div>
+  <ul class="nav-links" [ngClass]="navOpen ? 'open' : ''">
+    <li><span class="material-icons">notification_important</span></li>
+      <li><span class="material-icons">account_circle</span></li>  
+    <li><a >Login</a></li>
+  </ul>
+</nav>
+

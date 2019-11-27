@@ -7,6 +7,8 @@ import { ControllerComponent } from './controller/controller.component';
 import { ViewComponent } from './view/view.component';
 import { ServicesComponent } from './services/services.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { TopbarComponent } from './templates/topbar/topbar.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { TemplatesComponent } from './templates/templates.component';
     ControllerComponent,
     ViewComponent,
     ServicesComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule
