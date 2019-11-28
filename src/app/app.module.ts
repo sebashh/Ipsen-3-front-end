@@ -8,6 +8,7 @@ import { ViewComponent } from './view/view.component';
 import { ServicesComponent } from './services/services.component';
 import { TemplatesComponent } from './templates/templates.component';
 import {FooterComponent} from './templates/footer/footer.component';
+import { ServiceComponent } from './service/service.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {FooterComponent} from './templates/footer/footer.component';
     ViewComponent,
     ServicesComponent,
     TemplatesComponent,
-    FooterComponent
+    FooterComponent,
+    ServiceComponent
   ],
   imports: [
     BrowserModule
