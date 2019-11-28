@@ -8,23 +8,23 @@
   height: 250px;
 }
 
- p {
-   color: white;
- }
+p {
+  color: white;
+}
 
- li {
-   color: white;
- }
+li {
+  color: white;
+}
 
- button {
-   background-color: rgb(203, 159, 114);
-   color: white;
- }
+button {
+  background-color: rgb(203, 159, 114);
+  color: white;
+}
 
- .icon {
-   width: 40px;
-   height: 40px;
- }
+.icon {
+  width: 40px;
+  height: 40px;
+}
 
 #google-maps {
   width: 240px;

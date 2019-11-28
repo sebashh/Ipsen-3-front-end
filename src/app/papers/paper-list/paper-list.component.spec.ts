@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplatesComponent } from './templates.component';
+import { PaperListComponent } from './paper-list.component';
 
-describe('TemplatesComponent', () => {
-  let component: TemplatesComponent;
-  let fixture: ComponentFixture<TemplatesComponent>;
+describe('PaperListComponent', () => {
+  let component: PaperListComponent;
+  let fixture: ComponentFixture<PaperListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TemplatesComponent ]
+      declarations: [ PaperListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TemplatesComponent);
+    fixture = TestBed.createComponent(PaperListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
