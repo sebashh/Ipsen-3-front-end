@@ -1,0 +1,39 @@
+#logo {
+  width: 50px;
+  height: 50px;
+}
+
+#footer {
+  background-color: black;
+  height: 250px;
+}
+
+p {
+  color: white;
+}
+
+li {
+  color: white;
+}
+
+button {
+  background-color: rgb(203, 159, 114);
+  color: white;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+#google-maps {
+  width: 240px;
+  height: 250px;
+  background: rgba(255,255,255,0.5);
+  background: url(../../../assets/googlemaps.png);
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
