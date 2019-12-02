@@ -8,12 +8,14 @@ import { StudentComponent } from './user-page/student/student.component';
 import { TeacherComponent } from './user-page/teacher/teacher.component';
 import { GuestComponent } from './user-page/guest/guest.component';
 import { AdminComponent } from './user-page/admin/admin.component';
-import { LoginComponent } from './shared/login/login.component';
-import { RegisterComponent } from './shared/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
+import {LoginService} from './shared/login-service';
+import {RegisterService} from './shared/register-service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
