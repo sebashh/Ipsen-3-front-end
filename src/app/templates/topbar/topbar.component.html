@@ -4,12 +4,17 @@
       <img src="../../../assets/plnt.png">
     </a>
   </div>
-  <ul class="nav-links" [ngClass]="navOpen ? 'open' : ''">
-    <li><input matInput placeholder="E-mail"></li>
+  <ul class="nav-links" *ngIf="isUserLoggedIn; else elseBlock">
+    <li><a>LOGGED IN</a></li>
+  </ul>
+  <ng-template #elseBlock>
+    <ul class="nav-links" >
+      <li><input matInput placeholder="E-mail"></li>
     <li><input type="password" matInput placeholder="Wachtwoord"></li>
     <li><a>Login</a></li>
     <li><a>Register</a></li>
-  </ul>
+    </ul>
+  </ng-template>
   <ul class="nav-links" [ngClass]="navOpen ? 'open' : ''">
     <li><span class="material-icons">notification_important</span></li>
     <li><span class="material-icons">account_circle</span></li>  

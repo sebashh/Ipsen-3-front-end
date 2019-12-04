@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
+  isUserLoggedIn = true;
   constructor() { }
 
   ngOnInit() {
