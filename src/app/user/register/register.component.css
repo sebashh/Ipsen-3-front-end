@@ -45,7 +45,9 @@ button {
 }
 
 .register {
-  width: 100%;
+  width: 80%;
+  position: relative;
+  left: 165px;
 }
 
 .register_icon {
@@ -57,5 +59,24 @@ button {
   margin: 0 auto;
   display: table;
 }
+
+.register_input h1 {
+  text-align: left;
+}
+
+.register_input .input {
+  height: 40px;
+  width: 275px;
+}
+
+.register_interests {
+  float: right;
+}
+
+.register_input {
+  margin-top: 100px;
+}
+
+
 
 
