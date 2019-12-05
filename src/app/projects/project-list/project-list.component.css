@@ -1,0 +1,13 @@
+mat-accordion {
+  position: sticky;
+  min-width: 250px;
+  min-height: 500px;
+  border-left: 3px solid #ddd;
+  border-right: 3px solid #ddd;
+  border-bottom: 3px solid #ddd;
+}
+
+mat-checkbox {
+  display: flex;
+  align-items: center;
+}

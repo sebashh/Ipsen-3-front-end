@@ -5,7 +5,10 @@
 
 #footer {
   background-color: black;
-  height: 250px;
+  height: 170px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 p {
@@ -28,7 +31,7 @@ button {
 
 #google-maps {
   width: 240px;
-  height: 250px;
+  height: 170px;
   background: rgba(255,255,255,0.5);
   background: url(../../../assets/googlemaps.png);
   background-size: cover;
@@ -37,3 +40,5 @@ button {
   right: 0;
   top: 0;
 }
+
+

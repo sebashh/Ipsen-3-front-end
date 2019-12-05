@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
@@ -16,6 +15,9 @@ import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
 import {LoginService} from './shared/login-service';
 import {RegisterService} from './shared/register-service';
+import {FormsModule} from '@angular/forms';
+import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,12 @@ import {RegisterService} from './shared/register-service';
     PaperItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    MatExpansionModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
