@@ -33,7 +33,4 @@ button {
   background: url(../../../assets/googlemaps.png);
   background-size: cover;
   background-position: center center;
-  position: absolute;
-  right: 0;
-  top: 0;
 }
