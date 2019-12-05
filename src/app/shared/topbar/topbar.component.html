@@ -1,1 +1,26 @@
-<p>topbar works!</p>
+<nav>
+    <div class="logo">
+      <a>
+        <img src="../../../assets/plnt.png">
+      </a>
+    </div>
+    <ul class="nav-links"> 
+      <li><input matInput placeholder="E-mail"></li>
+      <li><input type="password" matInput placeholder="Wachtwoord"></li>
+      <li><a>Login</a></li>
+      <li><a>Register</a></li>
+      </ul>
+    <ul class="nav-links" [ngClass]="navOpen ? 'open' : ''">
+      <li><span class="material-icons">notification_important</span></li>
+      <li><span class="material-icons">account_circle</span></li>  
+    </ul>
+    <div class="nav-home">
+      <li><a>HOME</a></li>
+    </div>
+    <ul class="nav-bottom-right">
+      <li><a>PROJECTS</a></li>
+      <li><a>ARCHIVE</a></li>
+      <li><a>ABOUT</a></li>
+    </ul>
+  </nav>
+  
