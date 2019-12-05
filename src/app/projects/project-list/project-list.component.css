@@ -1,5 +1,5 @@
 mat-accordion {
-  position: sticky;
+  position: absolute;
   min-width: 250px;
   min-height: 500px;
   border-left: 3px solid #ddd;
