@@ -13,8 +13,8 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
-import {LoginService} from './shared/login-service';
-import {RegisterService} from './shared/register-service';
+import {LoginService} from './user/login/login-service';
+import {RegisterService} from './user/register/register-service';
 import {FormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
