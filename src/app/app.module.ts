@@ -16,6 +16,7 @@ import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
 import {LoginService} from './shared/login-service';
 import {RegisterService} from './shared/register-service';
+import { MatIconModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import {RegisterService} from './shared/register-service';
     PaperItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatButtonModule,
+    MatIconModule 
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
