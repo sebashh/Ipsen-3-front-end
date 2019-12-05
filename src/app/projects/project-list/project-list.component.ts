@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectListComponent implements OnInit {
 
+  searchValue = 'zoek';
   constructor() { }
 
   ngOnInit() {
   }
 
+  // onUpdateSearch(event: Event) {
+  //   this.searchValue = (<HTMLInputElement>event.target).value;
+  // }
 }
