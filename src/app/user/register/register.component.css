@@ -8,74 +8,132 @@ hr {
   border: none;
   height: 2px;
   width: 150px;
-  /* Set the hr color */
   color: rgb(109, 190, 179);
   background-color: rgb(109, 190, 179);
 }
 
-button {
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-.register_icon img {
-  width: 200px;
-  height: 200px;
-}
-
-.register_icon div {
-  float: left;
-  margin-left: 70px;
-  margin-right: 70px;
-}
-
-.button {
-  background-color: rgb(109, 190, 179); /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
+.register-form form.custom-form {
+  padding: 55px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  font: bold 14px sans-serif;
   text-align: center;
-  text-decoration: none;
+  margin: 50px;
+  color: #333;
+}
+
+@media (max-width:400px) {
+  .register-form form.custom-form {
+    padding: 55px 10px;
+  }
+}
+
+.register-form .custom-form h1 {
   display: inline-block;
-  font-size: 16px;
-  border-radius: 15px;
+  color: rgb(109, 190, 179);
+  font-size: 24px;
   font-weight: bold;
+  padding: 0 10px 15px;
+  margin-bottom: 60px;
+  border-bottom: 2px solid rgb(109, 190, 179);
 }
 
-.register {
-  width: 80%;
-  position: relative;
-  left: 165px;
+.register-form .custom-form .form-group {
+  margin-bottom: 25px;
 }
 
-.register_icon {
-  margin: 0 auto;
-  display: table;
+.register-form .custom-form .label-column {
+  text-align: right;
+  color: #5F5F5F;
 }
 
-.register_button {
-  margin: 0 auto;
-  display: table;
+@media (max-width:768px) {
+  .register-form .custom-form .label-column {
+    text-align: left;
+  }
 }
 
-.register_input h1 {
+.register-form .custom-form .input-column {
+  color: #5f5f5f;
   text-align: left;
 }
 
-.register_input .input {
-  height: 40px;
-  width: 275px;
+.register-form .custom-form .input-column input {
+  color: #5f5f5f;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+  padding: 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 2px;
+  height: 42px;
 }
 
-.register_interests {
-  float: right;
+.register-form .custom-form .dropdown .dropdown-toggle {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+  color: #333;
+  outline: none;
 }
 
-.register_input {
-  margin-top: 100px;
+.register-form .custom-form .dropdown ul {
+  background: #fff;
 }
+
+.register-form .custom-form .dropdown ul li a {
+  background: #fff;
+  color: #333;
+  opacity: 0.8;
+}
+
+.register-form .custom-form .dropdown ul li a:hover {
+  opacity: 1;
+}
+
+.register-form .custom-form .submit-button {
+  border-radius: 2px;
+  background: rgb(109, 190, 179);
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+  padding: 14px 22px;
+  border: 0;
+  margin: 30px;
+  outline: none;
+}
+
+.btn.btn-primary.d-xl-flex.center {
+  margin: auto;
+  background-color: rgb(109, 190, 179);
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+  position: relative;
+  left: 130px;
+}
+
+img {
+  width: 200px;
+  margin: auto;
+  display: block;
+}
+
+.form-control {
+  width: 200px;
+}
+
+.custom-form {
+  width: 500px;
+  position: relative;
+  left: -200px;
+}
+
+.form-row {
+  padding: 15px;
+}
+
 
 
 
