@@ -5,15 +5,22 @@
     <img src="../../../assets/plnt.png">
   </a>
 </div>
+<div class="topnav" *ngIf="isUserLoggedIn; else NotLoggedIn">
+  <a (click) = "logOut()">Log out</a>  
+  <a><mat-icon>face</mat-icon></a>
+  <a><mat-icon>notification_important</mat-icon></a>  
+</div>
+<ng-template #NotLoggedIn>
 <div class="topnav" id="myTopnav">
   <a>Register</a>
-  <a>Login</a>
+  <a (click) = "logIn()">Login</a>
   <a><input matInput placeholder="Wachtwoord"></a>
   <a><input type="password" matInput placeholder="E-mail"></a>
   <a class="icon" (click)="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
+</ng-template>
 <div class="topnav" id="myTopnav">
   <a class="home">Home</a>
   <a>About</a>
