@@ -18,6 +18,9 @@ import {RegisterService} from './user/register/register-service';
 import {FormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
+import { RegisterClientComponent } from './user/register/register-client/register-client.component';
+import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ProjectListComponent,
     ProjectItemComponent,
     PaperListComponent,
-    PaperItemComponent
+    PaperItemComponent,
+    RegisterStudentComponent,
+    RegisterClientComponent,
+    RegisterTeacherComponent
   ],
   imports: [
     BrowserModule,
