@@ -1,10 +1,10 @@
-<nav>
+<!-- <nav>
     <div class="logo">
       <a>
         <img src="../../../assets/plnt.png">
       </a>
     </div>
-    <ul class="nav-links" *ngIf="isUserLoggedIn; else NotLoggedIn">
+    <ul class="flex-container" *ngIf="isUserLoggedIn; else NotLoggedIn">
       <li><mat-icon>face</mat-icon></li>   
       <li><mat-icon>notification_important</mat-icon></li>
       <li><a (click) = "logOut()">Log out</a></li> 
@@ -26,4 +26,61 @@
       <li><a>ABOUT</a></li>
     </ul>
   </nav>
-  
+   -->    
+<!-- <nav>
+   <div class="logo">
+    <a>
+      <img src="../../../assets/plnt.png">
+    </a>
+  </div>
+<ul class="navigation">
+  <li><input matInput placeholder="E-mail" ></li>
+  <li><input type="password" matInput placeholder="Wachtwoord"></li>
+ <li><a href="#">Login</a></li>
+ <li><a href="#">Register</a></li>
+</ul>
+<ul class="navigation">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">About</a></li>
+  <li><a href="#">Products</a></li>
+  <li><a href="#">Contact</a></li>
+ </ul>
+ <div class="navigation" id="myTopnav">
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+ </div>
+</nav> -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<nav>
+<div class="logo" id="myLogo">
+  <a>
+    <img src="../../../assets/plnt.png">
+  </a>
+</div>
+<div class="topnav" id="myTopnav">
+  <a>Register</a>
+  <a>Login</a>
+  <a><input matInput placeholder="E-mail"></a>
+  <a><input type="password" matInput placeholder="Wachtwoord"></a>
+  <a class="icon" (click)="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<div class="topnav" id="myTopnav">
+  <a class="home">Home</a>
+  <a>About</a>
+  <a>Projects</a>
+  <a>Archive</a>
+</div>
+</nav>
+<!-- <div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a  class="icon" (click)="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div> -->
