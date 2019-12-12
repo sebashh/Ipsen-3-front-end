@@ -23,6 +23,10 @@ import { RouterModule, Routes } from '@angular/router';
 export const routes: Routes = [
   { path: 'home', component: PaperListComponent},
   { path: 'projects', component: ProjectListComponent},
+  { path: 'about', component: PaperListComponent },
+  { path: 'archive', component: ProjectListComponent },
+  { path: 'register', component: PaperItemComponent },
+  
 ]
 
 
