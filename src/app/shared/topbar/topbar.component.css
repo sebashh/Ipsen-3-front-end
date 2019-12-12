@@ -1,90 +1,102 @@
 nav {
-    height: 110px;
-    width: 100%;
-    background-color: black;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    box-shadow: none;
+  height: 110px;
+  width: 100%;
+  background-color: black;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  box-shadow: none;
 }
 
 .logo {
-    height: 60%;
-    float: left;
+  height: 60%;
+  float: left;
 }
+
 .logo img {
-        height: 100%;
+  height: 100%;
 }
 
 .topnav {
-    overflow: hidden;
-  }
-  
+  overflow: hidden;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  background-color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  color: rgb(109, 190, 179);
+  ;
+}
+
+.topnav a.home {
+  float: left;
+}
+
+.topnav .icon {
+  background-color: rgb(109, 190, 179);
+  display: none;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.topnav .icon:hover {
+  color: black;
+  background-color: white;
+}
+
+@media screen and (max-width: 600px) {
   .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
     float: right;
     display: block;
-    color: #f2f2f2;
-    background-color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
   }
-  
-  .topnav a:hover {
-    color: rgb(109, 190, 179);;
+  nav {
+    height: 12.5%;
   }
-  
-  .topnav a.home {
-      float: left;
+  .logo {
+    z-index: 0;
   }
-  
-  .topnav .icon {
-    background-color: rgb(109, 190, 179);
-    display: none;
-    margin-top: 5px;
-    margin-right: 5px;
-  } 
-  .topnav .icon:hover {
-      color: black;
-      background-color: white;
-  }
- @media screen and (max-width: 600px) {
-    .topnav a {display: none;}
-    .topnav a.icon {
-      float: right;
-      display: block;
-    }
-    nav {
-        height:12.5%;
-    }
-    .logo {
-        z-index: 0;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    .topnav.responsive {position: relative;}
-    .topnav.responsiveLogIn a.icon {
-      display: none;
-    }
-    .topnav.responsiveLogOut a.icon {
-        display: none;
-      }
-    .topnav.responsiveLogIn a {
-      float: none;
-      width:100%;
-      display: block;
-    }
-    .topnav.responsiveLogOut a {
-        float: right;
-        width:100%;
-        display: block;
-        
-    }
+}
 
-    .logo.responsive {
-        display: none;
-    }
-  } 
+@media screen and (max-width: 600px) {
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsiveLogIn a.icon {
+    display: none;
+  }
+  .topnav.responsiveLogIn a.icon.close {
+    display: block;
+  }
+  .topnav.responsiveLogOut a.icon {
+    display: none;
+  }
+  .topnav.responsiveLogOut a.iconClose {
+    display: block;
+  }
+  .topnav.responsiveLogIn a {
+    float: none;
+    width: 100%;
+    display: block;
+  }
+  .topnav.responsiveLogOut a {
+    float: right;
+    width: 100%;
+    display: block;
+  }
+  .logo.responsive {
+    display: none;
+  }
+}
