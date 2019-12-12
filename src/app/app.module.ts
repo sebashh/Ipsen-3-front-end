@@ -18,6 +18,22 @@ import {RegisterService} from './user/register/register-service';
 import {FormsModule} from '@angular/forms';
 import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
+import { RegisterClientComponent } from './user/register/register-client/register-client.component';
+import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
+import { MatIconModule, MatButtonModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+
+
+export const routes: Routes = [
+  { path: 'home', component: PaperListComponent},
+  { path: 'projects', component: ProjectListComponent},
+  { path: 'about', component: PaperListComponent },
+  { path: 'archive', component: ProjectListComponent },
+  { path: 'register', component: PaperItemComponent },
+  
+]
+
 
 @NgModule({
   declarations: [
@@ -33,7 +49,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ProjectListComponent,
     ProjectItemComponent,
     PaperListComponent,
-    PaperItemComponent
+    PaperItemComponent,
+    RegisterStudentComponent,
+    RegisterClientComponent,
+    RegisterTeacherComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +61,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSelectModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
