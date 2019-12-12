@@ -16,13 +16,15 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login-service';
 import {RegisterService} from './user/register/register-service';
 import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
+import {MatCheckboxModule, MatExpansionModule, MatSelectModule, MatGridListModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
+import { ClientComponent } from './user-page/client/client.component';
+import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 
 
 export const routes: Routes = [
@@ -52,7 +54,9 @@ export const routes: Routes = [
     PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
+    ClientComponent,
+    ClientMyProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,8 @@ export const routes: Routes = [
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatGridListModule
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]

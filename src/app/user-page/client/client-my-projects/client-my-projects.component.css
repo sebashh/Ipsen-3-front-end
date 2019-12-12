@@ -1,0 +1,14 @@
+div {
+    text-align: center;
+}
+
+button{
+    background-color: rgb(109, 190, 179);
+    color: white;
+    margin: 25px;
+    padding: 10px;
+}
+.project {
+    background-color: rgb(109, 190, 179);
+    border-radius: 50px;
+}
