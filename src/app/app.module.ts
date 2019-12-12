@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
@@ -14,8 +13,14 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
-import {LoginService} from './shared/login-service';
-import {RegisterService} from './shared/register-service';
+import {LoginService} from './user/login/login-service';
+import {RegisterService} from './user/register/register-service';
+import {FormsModule} from '@angular/forms';
+import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
+import { RegisterClientComponent } from './user/register/register-client/register-client.component';
+import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -44,14 +49,21 @@ export const routes: Routes = [
     ProjectListComponent,
     ProjectItemComponent,
     PaperListComponent,
-    PaperItemComponent
+    PaperItemComponent,
+    RegisterStudentComponent,
+    RegisterClientComponent,
+    RegisterTeacherComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    MatExpansionModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
     RouterModule.forRoot(routes)
-     
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
