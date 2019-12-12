@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -121,6 +121,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "IPSEN3-Front-End"
 }

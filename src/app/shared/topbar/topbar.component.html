@@ -1,25 +1,33 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav>
-    <div class="logo">
-      <a>
-        <img src="../../../assets/plnt.png">
-      </a>
-    </div>
-    <ul class="nav-links"> 
-      <li><input matInput placeholder="E-mail"></li>
-      <li><input type="password" matInput placeholder="Wachtwoord"></li>
-      <li><a>Login</a></li>
-      <li><a>Register</a></li>
-      </ul>
-    <ul class="nav-links" [ngClass]="navOpen ? 'open' : ''">
-      <li><span class="material-icons">notification_important</span></li>
-      <li><span class="material-icons">account_circle</span></li>  
-    </ul>
-    <div class="nav-home">
-      <li><a>HOME</a></li>
-    </div>
-    <ul class="nav-bottom-right">
-      <li><a>PROJECTS</a></li>
-      <li><a>ARCHIVE</a></li>
-      <li><a>ABOUT</a></li>
-    </ul>
-  </nav>
+<div class="logo" id="myLogo" routerLink="home">
+  <a>
+    <img src="../../../assets/plnt.png">
+  </a>
+</div>
+<div class="topnav" id="myTopnav" *ngIf="isUserLoggedIn; else NotLoggedIn" id="myTopnav">
+  <a (click) = "logOut()" (click)="responsiveLogOut()">Log out</a>  
+  <a routerLink="userProfile"><mat-icon>face</mat-icon></a>
+  <a routerLink="notifications"><mat-icon>notification_important</mat-icon></a>  
+  <a class="icon" (click)="responsiveLogOut()">
+      <i class="fa fa-bars"></i>
+  </a>
+</div>
+<ng-template #NotLoggedIn>
+<div class="topnav" id="myTopnav">
+  <a routerLink="register">Register</a>
+  <a (click) = "logIn()" (click)="responsiveLogIn()">Login</a>
+  <a><input matInput placeholder="Wachtwoord"></a>
+  <a><input type="password" matInput placeholder="E-mail"></a>
+  <a class="icon" (click)="responsiveLogIn()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+</ng-template>
+<div class="topnav" id="myTopnavi">
+  <a class="home" routerLink="home">Home</a>
+  <a routerLink="about">About</a>
+  <a routerLink="projects">Projects</a>
+  <a routerLink="archive">Archive</a>
+</div>
+</nav>
