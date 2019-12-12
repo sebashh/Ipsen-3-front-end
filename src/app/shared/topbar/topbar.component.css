@@ -65,15 +65,24 @@ nav {
   
   @media screen and (max-width: 600px) {
     .topnav.responsive {position: relative;}
-    .topnav.responsive a.icon {
+    .topnav.responsiveLogIn a.icon {
       display: none;
     }
-    .topnav.responsive a {
+    .topnav.responsiveLogOut a.icon {
+        display: none;
+      }
+    .topnav.responsiveLogIn a {
       float: none;
       width:100%;
       display: block;
-      text-align: left;
     }
+    .topnav.responsiveLogOut a {
+        float: right;
+        width:100%;
+        display: block;
+        
+    }
+
     .logo.responsive {
         display: none;
     }

@@ -6,26 +6,25 @@
   </a>
 </div>
 <div class="topnav" id="myTopnav" *ngIf="isUserLoggedIn; else NotLoggedIn" id="myTopnav">
-  <a (click) = "logOut()">Log out</a>  
+  <a (click) = "logOut()" (click)="responsiveLogOut()">Log out</a>  
   <a><mat-icon>face</mat-icon></a>
   <a><mat-icon>notification_important</mat-icon></a>  
-  <a class="icon" (click)="myFunction()">
+  <a class="icon" (click)="responsiveLogOut()">
       <i class="fa fa-bars"></i>
   </a>
 </div>
-
 <ng-template #NotLoggedIn>
 <div class="topnav" id="myTopnav">
   <a>Register</a>
-  <a (click) = "logIn()" >Login</a>
+  <a (click) = "logIn()" (click)="responsiveLogIn()">Login</a>
   <a><input matInput placeholder="Wachtwoord"></a>
   <a><input type="password" matInput placeholder="E-mail"></a>
-  <a class="icon" (click)="myFunction()">
+  <a class="icon" (click)="responsiveLogIn()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
 </ng-template>
-<div class="topnav" id="myTopnav">
+<div class="topnav" id="myTopnavi">
   <a class="home">Home</a>
   <a>About</a>
   <a>Projects</a>

@@ -26,15 +26,32 @@ export class TopbarComponent implements OnInit {
     this.isUserLoggedIn = false;
   }
 
-  myFunction() {
+  responsiveLogIn() {
     var x = document.getElementById("myTopnav");
     var y = document.getElementById("myLogo");
+    var z = document.getElementById("myTopnavi");
     if (x.className === "topnav") {
-      x.className += " responsive";
+      x.className += " responsiveLogIn";
       y.className += " responsive";
+      z.className += " responsiveLogIn";
     } else {
       x.className = "topnav";
       y.className = "logo";
+      z.className = "topnav";
+    }
+  }
+  responsiveLogOut(){
+    var x = document.getElementById("myTopnav");
+    var y = document.getElementById("myLogo");
+    var z = document.getElementById("myTopnavi");
+    if (x.className === "topnav") {
+      x.className += " responsiveLogOut";
+      y.className += " responsive";
+      z.className += " responsiveLogOut";
+    } else {
+      x.className = "topnav";
+      y.className = "logo";
+      z.className = "topnav";
     }
   }
 }
