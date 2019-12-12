@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
-
+  
   isUserLoggedIn = false;
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { 
+
+  }
+  navigate(path) {
+    this.router.navigate([{outlets: {primary: path, sidemenu:path}}], 
+                         {relativeTo: this.route});
+}
 
   ngOnInit() {
   }
@@ -54,4 +61,5 @@ export class TopbarComponent implements OnInit {
       z.className = "topnav";
     }
   }
+  
 }

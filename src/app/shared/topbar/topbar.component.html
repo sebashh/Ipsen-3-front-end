@@ -7,15 +7,15 @@
 </div>
 <div class="topnav" id="myTopnav" *ngIf="isUserLoggedIn; else NotLoggedIn" id="myTopnav">
   <a (click) = "logOut()" (click)="responsiveLogOut()">Log out</a>  
-  <a><mat-icon>face</mat-icon></a>
-  <a><mat-icon>notification_important</mat-icon></a>  
+  <a routerLink="userProfile"><mat-icon>face</mat-icon></a>
+  <a routerLink="notifications"><mat-icon>notification_important</mat-icon></a>  
   <a class="icon" (click)="responsiveLogOut()">
       <i class="fa fa-bars"></i>
   </a>
 </div>
 <ng-template #NotLoggedIn>
 <div class="topnav" id="myTopnav">
-  <a>Register</a>
+  <a routerLink="register">Register</a>
   <a (click) = "logIn()" (click)="responsiveLogIn()">Login</a>
   <a><input matInput placeholder="Wachtwoord"></a>
   <a><input type="password" matInput placeholder="E-mail"></a>
@@ -25,9 +25,9 @@
 </div>
 </ng-template>
 <div class="topnav" id="myTopnavi">
-  <a class="home">Home</a>
-  <a>About</a>
-  <a>Projects</a>
-  <a>Archive</a>
+  <a class="home" routerLink="home">Home</a>
+  <a routerLink="about">About</a>
+  <a routerLink="projects">Projects</a>
+  <a routerLink="archive">Archive</a>
 </div>
 </nav>

@@ -17,6 +17,14 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './shared/login-service';
 import {RegisterService} from './shared/register-service';
 import { MatIconModule, MatButtonModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+
+
+export const routes: Routes = [
+  { path: 'home', component: PaperListComponent},
+  { path: 'projects', component: ProjectListComponent},
+]
+
 
 @NgModule({
   declarations: [
@@ -37,7 +45,9 @@ import { MatIconModule, MatButtonModule } from '@angular/material';
   imports: [
     BrowserModule,
     MatButtonModule,
-    MatIconModule 
+    MatIconModule,
+    RouterModule.forRoot(routes)
+     
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
