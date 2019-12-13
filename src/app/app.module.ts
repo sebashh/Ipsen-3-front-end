@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule} from "@angular/forms";
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
@@ -7,6 +8,7 @@ import { StudentComponent } from './user-page/student/student.component';
 import { TeacherComponent } from './user-page/teacher/teacher.component';
 import { GuestComponent } from './user-page/guest/guest.component';
 import { AdminComponent } from './user-page/admin/admin.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
@@ -21,6 +23,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
+import {ClientComponent} from "./user-page/client/client.component";
+import {UserPageModule} from "./user-page/user-page.module";
 
 @NgModule({
   declarations: [
@@ -28,9 +32,11 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
     FooterComponent,
     TopbarComponent,
     StudentComponent,
+    ClientComponent,
     TeacherComponent,
     GuestComponent,
     AdminComponent,
+
     LoginComponent,
     RegisterComponent,
     ProjectListComponent,
@@ -44,10 +50,13 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MatExpansionModule,
+    SelectDropDownModule,
     MatSelectModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
+    UserPageModule,
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
