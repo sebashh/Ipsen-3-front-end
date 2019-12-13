@@ -25,6 +25,19 @@ import { RegisterClientComponent } from './user/register/register-client/registe
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import {ClientComponent} from "./user-page/client/client.component";
 import {UserPageModule} from "./user-page/user-page.module";
+import { MatIconModule, MatButtonModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+
+
+export const routes: Routes = [
+  { path: 'home', component: PaperListComponent},
+  { path: 'projects', component: ProjectListComponent},
+  { path: 'about', component: PaperListComponent },
+  { path: 'archive', component: ProjectListComponent },
+  { path: 'register', component: PaperItemComponent },
+
+]
+
 
 @NgModule({
   declarations: [
@@ -36,7 +49,6 @@ import {UserPageModule} from "./user-page/user-page.module";
     TeacherComponent,
     GuestComponent,
     AdminComponent,
-
     LoginComponent,
     RegisterComponent,
     ProjectListComponent,
@@ -56,7 +68,10 @@ import {UserPageModule} from "./user-page/user-page.module";
     MatSelectModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    UserPageModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule.forRoot(routes),
+    UserPageModule
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
