@@ -2,10 +2,10 @@ div {
     text-align: center;
 }
 
-button{
+a{
     background-color: rgb(109, 190, 179);
     color: white;
-    margin: 25px;
+    margin: 50px;
     padding: 10px;
 }
 .project {
