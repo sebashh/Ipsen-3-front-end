@@ -25,6 +25,8 @@ import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './user-page/client/client.component';
 import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 export const routes: Routes = [
@@ -57,8 +59,10 @@ export const routes: Routes = [
     RegisterTeacherComponent,
     ClientComponent,
     ClientMyProjectsComponent
+    RegisterTeacherComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     MatExpansionModule,
