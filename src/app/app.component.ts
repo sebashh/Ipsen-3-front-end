@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {Http, Response} from '@angular/http';
-import { map } from 'rxjs/operators';
+import { RestApiService } from './src/server/server/server';
 
 @Component({
   selector: 'app-root',
@@ -10,23 +9,14 @@ import { map } from 'rxjs/operators';
 export class AppComponent {
   title = 'IPSEN3-Front-End';
 
-  private apiUrl ='http://localhost:8080/ipsen3projects/test';
-  data: any = {};
-  message;
+  constructor(
+    public restApi: RestApiService
+  ) { }
 
-  constructor (private http: Http) {
-  }
-
-  getData(){
-    return this.http.get(this.apiUrl).pipe(map(result => this.data));
-  }
-
-  getContacts() {
-    this.getData().subscribe(data => {
-      console.log(data);
-      this.data = data;
-      this.message = JSON.stringify(data);
-      })
-  }
-
+  // EXAMPLE
+  // HelloWorld() {
+  //   this.restApi.getTest().subscribe((data)=>{
+  //     console.log(data);
+  //   })
+  // }
 }

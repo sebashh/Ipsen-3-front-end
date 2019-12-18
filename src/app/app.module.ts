@@ -16,15 +16,26 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login-service';
 import {RegisterService} from './user/register/register-service';
 import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { UploadComponent } from './upload/upload.component';
 import { FormComponent } from './upload/form/form.component';
 import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
-import { HttpModule } from '@angular/http';
+import { SidebarModule } from 'ng-sidebar';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+export const routes: Routes = [
+  { path: 'home', component: PaperListComponent},
+  { path: 'projects', component: ProjectListComponent},
+  { path: 'about', component: PaperListComponent },
+  { path: 'archive', component: ProjectListComponent },
+  { path: 'register', component: PaperItemComponent }
+]
 
 @NgModule({
   declarations: [
@@ -41,21 +52,30 @@ import { HttpModule } from '@angular/http';
     ProjectItemComponent,
     PaperListComponent,
     PaperItemComponent,
+    PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
     RegisterTeacherComponent,
     UploadComponent,
     FormComponent,
-    UploadlistComponent
+    UploadlistComponent,
+    RegisterTeacherComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    MatCheckboxModule,
     MatExpansionModule,
     MatSelectModule,
+    SharedModule,
+    SidebarModule.forRoot(),
+    MatIconModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
