@@ -10,8 +10,10 @@ import { GuestComponent } from './user-page/guest/guest.component';
 import { AdminComponent } from './user-page/admin/admin.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { LoginComponent } from './user/login/login.component';
+
 import { RegisterComponent } from './user/register/register.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { ProjectViewCardComponent} from "./projects/project-view-card/project-view-card.component";
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
@@ -27,6 +29,7 @@ import {ClientComponent} from "./user-page/client/client.component";
 import {UserPageModule} from "./user-page/user-page.module";
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
+import {ProjectsModule} from "./projects/projects.module";
 
 
 export const routes: Routes = [
@@ -48,6 +51,7 @@ export const routes: Routes = [
     ClientComponent,
     TeacherComponent,
     GuestComponent,
+    ProjectViewCardComponent,
     AdminComponent,
     LoginComponent,
     RegisterComponent,
@@ -71,7 +75,8 @@ export const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     RouterModule.forRoot(routes),
-    UserPageModule
+    UserPageModule,
+    ProjectsModule
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]

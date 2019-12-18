@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import{ Project } from '../../../projects/project';
+import {Project} from "../../../shared/project.model";
 
 @Component({
 
