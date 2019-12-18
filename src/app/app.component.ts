@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import { RestApiService } from './src/server/server/server';
 
 
 @Component({
@@ -9,6 +10,16 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'IPSEN3-Front-End';
 
-  constructor() {}
+  constructor(
+    public restApi: RestApiService
+  ) { }
+  
+  // EXAMPLE
+  // HelloWorld() {
+  //   this.restApi.getTest().subscribe((data)=>{
+  //     console.log(data);
+  //   })
+  // }
 
 }
+
