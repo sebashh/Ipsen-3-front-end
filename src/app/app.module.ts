@@ -23,6 +23,8 @@ import { RegisterClientComponent } from './user/register/register-client/registe
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
+import {ServiceComponent} from './Service/service.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 export const routes: Routes = [
@@ -31,7 +33,6 @@ export const routes: Routes = [
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListComponent },
   { path: 'register', component: PaperItemComponent },
-  
 ]
 
 
@@ -52,7 +53,8 @@ export const routes: Routes = [
     PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
+    ServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +65,10 @@ export const routes: Routes = [
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
-  providers: [LoginService, RegisterService],
+  providers: [LoginService, RegisterService, ServiceComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
