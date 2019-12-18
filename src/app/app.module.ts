@@ -47,7 +47,7 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
     MatExpansionModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatCheckboxModule,
+    MatCheckboxModule
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]

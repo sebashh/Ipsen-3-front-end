@@ -26,6 +26,7 @@ hr {
   .register-form form.custom-form {
     padding: 55px 10px;
   }
+
 }
 
 .register-form .custom-form h1 {
@@ -115,7 +116,7 @@ hr {
 }
 
 img {
-  width: 200px;
+  width: 150px;
   margin: auto;
   display: block;
 }

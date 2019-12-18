@@ -2,46 +2,54 @@
   <div class="row">
     <div class="col-md-6">
       <div class="row register-form">
-        <div class="col-md-8 offset-md-2">
-          <form class="custom-form">
-            <h1>Register</h1>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">First name</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Infix</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Last name</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Email&nbsp;</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="email"></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Phone number</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Education</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-            </div>
-            <button class="btn btn-light submit-button" type="button">Submit</button></form>
-        </div>
+        <form class="custom-form">
+          <h1>Register</h1>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">First name</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Infix</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Last name</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Email&nbsp;</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="email"></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Phone number</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Education</label></div>
+            <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
+          </div>
+          <button class="btn btn-light submit-button" type="button">Submit</button>
+        </form>
       </div>
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6" class="interests">
+      <h1>Interests</h1>
+      <hr>
+      <div *ngFor="let interest of interests" >
+        <div class="interest"><p>{{ interest }}</p></div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <input class="form-control" (keyup.enter)="onKey($event)" placeholder="Insert new interest" [(ngModel)]="interestInput" id="interest_input" type="text">
+    </div>
   </div>
-</div>
+
 

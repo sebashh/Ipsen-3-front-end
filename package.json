@@ -21,8 +21,11 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "bootstrap": "^3.4.1",
+    "bootstrap": "^3.3.7",
+    "ngx-bootstrap": "^5.2.0",
+    "popper.js": "^1.16.0",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
