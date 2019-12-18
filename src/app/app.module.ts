@@ -16,11 +16,13 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login-service';
 import {RegisterService} from './user/register/register-service';
 import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatExpansionModule, MatSelectModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -37,17 +39,22 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
     ProjectItemComponent,
     PaperListComponent,
     PaperItemComponent,
+    PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
     RegisterTeacherComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    MatCheckboxModule,
     MatExpansionModule,
     MatSelectModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
+    SharedModule,
+    SidebarModule.forRoot(),
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
