@@ -30,6 +30,8 @@ import {UserPageModule} from "./user-page/user-page.module";
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import {ProjectsModule} from "./projects/projects.module";
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 export const routes: Routes = [
@@ -61,9 +63,10 @@ export const routes: Routes = [
     PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

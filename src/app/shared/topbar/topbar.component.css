@@ -49,6 +49,10 @@ nav {
   margin-right: 5px;
 }
 
+.topnav .iconClose {
+  display: none;
+}
+
 .topnav .icon:hover {
   color: black;
   background-color: white;
