@@ -59,7 +59,6 @@ export const routes: Routes = [
     RegisterTeacherComponent,
     ClientComponent,
     ClientMyProjectsComponent
-    RegisterTeacherComponent,
   ],
   imports: [
     HttpClientModule,
