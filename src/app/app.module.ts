@@ -23,6 +23,8 @@ import { RegisterClientComponent } from './user/register/register-client/registe
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 export const routes: Routes = [
@@ -52,9 +54,10 @@ export const routes: Routes = [
     PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     MatExpansionModule,
