@@ -22,8 +22,10 @@ import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
+import { UploadComponent } from './upload/upload.component';
+import { FormComponent } from './upload/form/form.component';
+import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
-import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -32,7 +34,7 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectListComponent},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListComponent },
-  { path: 'register', component: PaperItemComponent },  
+  { path: 'register', component: PaperItemComponent }
 ]
 
 @NgModule({
@@ -54,6 +56,10 @@ export const routes: Routes = [
     RegisterStudentComponent,
     RegisterClientComponent,
     RegisterTeacherComponent,
+    UploadComponent,
+    FormComponent,
+    UploadlistComponent,
+    RegisterTeacherComponent
   ],
   imports: [
     HttpClientModule,
@@ -66,11 +72,10 @@ export const routes: Routes = [
     SharedModule,
     SidebarModule.forRoot(),
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     RouterModule.forRoot(routes)
-
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
