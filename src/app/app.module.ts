@@ -30,7 +30,6 @@ import {UserPageModule} from "./user-page/user-page.module";
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import {ProjectsModule} from "./projects/projects.module";
-import { ClientComponent } from './user-page/client/client.component';
 import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -83,7 +82,7 @@ export const routes: Routes = [
     MatIconModule,
     RouterModule.forRoot(routes),
     UserPageModule,
-    ProjectsModule
+    ProjectsModule,
     MatGridListModule
   ],
   providers: [LoginService, RegisterService],

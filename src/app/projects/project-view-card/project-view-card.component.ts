@@ -34,11 +34,11 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.title = this.project.getData().title;
-    this.description = this.project.getData().description;
-    this.study = this.project.getData().study;
-    this.category = this.project.getData().category;
-    this.createdOn = this.project.getData().createdOn.toDateString();
+    // this.title = this.project.getData().title;
+    // this.description = this.project.getData().description;
+    // this.study = this.project.getData().study;
+    // this.category = this.project.getData().category;
+    // this.createdOn = this.project.getData().createdOn.toDateString();
   }
 
 

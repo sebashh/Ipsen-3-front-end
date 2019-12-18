@@ -9,6 +9,7 @@ a{
     padding: 10px;
 }
 .project {
-    background-color: rgb(109, 190, 179);
     border-radius: 50px;
+    border: solid;
+    text-align: left;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectViewCardComponent } from 'src/app/projects/project-view-card/project-view-card.component';
 
 export interface Tile {
   text: string;
@@ -12,42 +13,22 @@ export interface Tile {
 
 export class ClientMyProjectsComponent implements OnInit {
 
-  
+  project = new ProjectViewCardComponent;
   constructor() { }
 
-  tiles: Tile[] = [];
+  tiles: ProjectViewCardComponent[] = [];
   ngOnInit() {
     this.filInTheTiles(3);
   }
 
   addProject(){
-    this.tiles.push({text: "New Project Added"})
+    this.tiles.push(this.project);
   }
   filInTheTiles(amount){
-    const replacement = "This is a Project";
     for(var i = 0;i < amount; i++){
-      this.tiles.push({text: replacement});
+      this.tiles.push(this.project);
     }
     console.log(this.tiles);
   }
   
-  // tiles: Tile[] = [
-  //   {text: 'One'},
-  //   {text: 'Two'},
-  //   {text: 'Three'},
-  //   {text: 'Four'},
-  //   {text: 'Five'},
-  //   {text: 'Six'},
-  //   {text: 'Seven'},
-  //   {text: 'Eight'},
-  //   {text: 'Nine'},
-  //   {text: 'Ten'},
-  //   {text: 'Eleven'},
-  //   {text: 'Twelve'},
-  //   {text: 'Thirteen'},
-  //   {text: 'Fourteen'},
-  //   {text: 'Fifteen'},
-  //   {text: 'Sixteen'},
-  // ];
-
 }
