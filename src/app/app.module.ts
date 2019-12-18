@@ -21,6 +21,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
+import { UploadComponent } from './upload/upload.component';
+import { FormComponent } from './upload/form/form.component';
+import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
     PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
+    UploadComponent,
+    FormComponent,
+    UploadlistComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +55,7 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
     MatSelectModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
+    HttpModule,
   ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
