@@ -1,98 +1,64 @@
-<!--<div class="container-fluid">-->
-<!--<div class="row">-->
-<!--  <div class="col-xs-2">-->
-<!--  <button (click)="expand()">expand</button>-->
-<!--    <div [ngClass]="(expanded ? 'expanded': 'folded')" id="minimalWidth">-->
+<div class="panel panel-default">
+<mat-accordion @input() [multi]="true">
+  <input type="text" [innerText]="searchValue" class="form-control" [(ngModel)]="onUpdateSearch">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Studierichting</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-checkbox>Ict</mat-checkbox>
+    <mat-checkbox>Verzorging</mat-checkbox>
+    <mat-checkbox>Management</mat-checkbox>
+    <mat-checkbox>Techniek</mat-checkbox>
+  </mat-expansion-panel>
 
-<!--<div ng-controller="AppCtrl" layout="column" style="height: 500px;" ng-cloak>-->
-<!--  <section layout="row" flex>-->
-<!--    <md-sidenav class="md-sidenav left" md-component-id="left" md-disable-backdrop md-whiteframe="4">-->
-<!--      <md-toolbar class="md-theme-indigo">-->
-<!--        <h1 class="md-toolbar-tools">PLNT</h1>-->
-<!--      </md-toolbar>-->
-<!--      <md-content-->
-<!--    </md-sidenav>-->
-<!--  </section>-->
-<!--</div>-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Etc..</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-checkbox>Ict</mat-checkbox>
+    <mat-checkbox>Verzorging</mat-checkbox>
+    <mat-checkbox>Management</mat-checkbox>
+    <mat-checkbox>Techniek</mat-checkbox>
+  </mat-expansion-panel>
 
-<ng-sidebar-container>
-  <ng-sidebar [(opened)]="opened" [mode]="'slide'" [closeOnClickOutside]="true">
-    <mat-accordion @input() [multi]="true">
-      <p class="searchCSS">Search</p>
-      <input type="text" class="form-control" placeholder="Search.."> <!--[(ngModel)]="searchValue")]--> <!--(input)="onUpdateSearch($event)"-->
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>Studierichting</h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-checkbox>Ict</mat-checkbox>
-        <mat-checkbox>Verzorging</mat-checkbox>
-        <mat-checkbox>Management</mat-checkbox>
-        <mat-checkbox>Techniek</mat-checkbox>
-      </mat-expansion-panel>
-      <hr>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>Etc..</h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-checkbox>Ict</mat-checkbox>
-        <mat-checkbox>Verzorging</mat-checkbox>
-        <mat-checkbox>Management</mat-checkbox>
-        <mat-checkbox>Techniek</mat-checkbox>
-      </mat-expansion-panel>
-      <hr>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>Etc...</h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-checkbox>Ict</mat-checkbox>
-        <mat-checkbox>Verzorging</mat-checkbox>
-        <mat-checkbox>Management</mat-checkbox>
-        <mat-checkbox>Techniek</mat-checkbox>
-      </mat-expansion-panel>
-      <hr>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>Etc...</h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-checkbox>Ict</mat-checkbox>
-        <mat-checkbox>Verzorging</mat-checkbox>
-        <mat-checkbox>Management</mat-checkbox>
-        <mat-checkbox>Techniek</mat-checkbox>
-      </mat-expansion-panel>
-      <hr>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>Etc...</h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-checkbox>Ict</mat-checkbox>
-        <mat-checkbox>Verzorging</mat-checkbox>
-        <mat-checkbox>Management</mat-checkbox>
-        <mat-checkbox>Techniek</mat-checkbox>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </ng-sidebar>
-  <div ng-sidebar-content>
-    <button (click)="toggleSidebar()" style="background-color: transparent">
-      Filter
-    </button>
-  </div>
-</ng-sidebar-container>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Etc...</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-checkbox>Ict</mat-checkbox>
+    <mat-checkbox>Verzorging</mat-checkbox>
+    <mat-checkbox>Management</mat-checkbox>
+    <mat-checkbox>Techniek</mat-checkbox>
+  </mat-expansion-panel>
 
-<!--    </div>-->
-<!--  </div>-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Etc...</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-checkbox>Ict</mat-checkbox>
+    <mat-checkbox>Verzorging</mat-checkbox>
+    <mat-checkbox>Management</mat-checkbox>
+    <mat-checkbox>Techniek</mat-checkbox>
+  </mat-expansion-panel>
 
-<!--    <div class="col-xs-5">-->
-<!--      <h2>{{searchValue}}</h2>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Etc...</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-checkbox>Ict</mat-checkbox>
+    <mat-checkbox>Verzorging</mat-checkbox>
+    <mat-checkbox>Management</mat-checkbox>
+    <mat-checkbox>Techniek</mat-checkbox>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>

@@ -1,5 +1,4 @@
-import { Component, OnInit, /*Output, EventEmitter, Input*/ } from '@angular/core';
-// import {ProjectModel} from '../../shared/project.model';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-project-list',
@@ -7,24 +6,14 @@ import { Component, OnInit, /*Output, EventEmitter, Input*/ } from '@angular/cor
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-  opened = false;
-  textOnIcon = 'Filter';
-  // public ItemName: ProjectModel;
-  // public searchValue: string;
-  // @Input() resultSearch: ProjectModel[];
-  // @Output() resultNogWat = new EventEmitter<ProjectModel>();
 
-  searchValue = '';
+  searchValue = 'zoek';
   constructor() { }
 
   ngOnInit() {
   }
 
-  onUpdateSearch(event: Event) {
-    this.searchValue = (event.target as HTMLInputElement).value;
-  }
-
-  toggleSidebar() {
-    this.opened = !this.opened;
-  }
+  // onUpdateSearch(event: Event) {
+  //   this.searchValue = (<HTMLInputElement>event.target).value;
+  // }
 }
