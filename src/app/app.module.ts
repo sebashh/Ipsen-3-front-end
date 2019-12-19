@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { AgGridModule } from 'ag-grid-angular';
 import { FooterComponent } from './shared/footer/footer.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
 import { StudentComponent } from './user-page/student/student.component';
@@ -24,6 +25,7 @@ import { RegisterTeacherComponent } from './user/register/register-teacher/regis
 import { MatIconModule, MatButtonModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { BookmarkComponent } from './bookmark/bookmark.component';
 
 
 
@@ -33,7 +35,7 @@ export const routes: Routes = [
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListComponent },
   { path: 'register', component: PaperItemComponent },
-  
+
 ]
 
 
@@ -55,9 +57,11 @@ export const routes: Routes = [
     RegisterStudentComponent,
     RegisterClientComponent,
     RegisterTeacherComponent,
+    BookmarkComponent,
   ],
   imports: [
     HttpClientModule,
+    AgGridModule.withComponents([]),
     BrowserModule,
     FormsModule,
     MatExpansionModule,
