@@ -1,0 +1,12 @@
+<div class="container" id="paperContainer">
+  <p>Papers</p>
+    <div class="col" id="paperScrollContainer">
+      <ul>
+        <li *ngFor="let form of forms; let i =index">
+          <app-form id="{{'form'+i}}" [paperObject]=form></app-form>
+        </li>
+      </ul>
+    </div>
+    <button type="button" (click) = "addForm()">Add paper</button>
+</div>
+{{length}}
