@@ -1,0 +1,24 @@
+.create{
+  display: inline-block;
+  background-color: rgb(109, 190, 179);
+  padding: 8px 14px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color:#FFFFFF;
+  transition: all 0.2s;
+  margin:0.4em auto;
+}
+.create:hover{
+  opacity: 0.75;
+  cursor: pointer;
+}
+create-project{
+  margin: auto;
+}
+
+.content{
+  width: 70%;
+  margin: auto;
+}

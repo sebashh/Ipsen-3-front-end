@@ -1,0 +1,31 @@
+<label class="create-project">New project</label>
+
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+  <div class="title" id="titleCreateProj">
+    <label form>
+      Title:
+      <input [(ngModel)]="title_input" [ngClass]="(!checking ? 'default' : (projectForm.controls['title'].value ? 'checking-true' : 'checking-false'))" id="title-input" type="text" formControlName="title">
+    </label>
+  </div>
+  <div class="description">
+    <label  for="description">
+      Description:
+    </label>
+    <textarea [(ngModel)]="description_input" [ngClass]="(!checking ? 'default' : (projectForm.controls['description'].value ? 'checking-true' : 'checking-false'))" maxlength="300" type="text" id="description" formControlName="description"></textarea>
+  </div>
+
+  <div class="study">
+    <label>Choose study</label>
+    <ngx-select-dropdown [ngClass]="(!checking ? 'default' : (projectForm.controls['study'].value ? 'checking-true' : 'checking-false'))" formControlName="study" class="dropdown" [multiple]="false" [(ngModel)]="dataModelStudy" [config]="configStudy" [options]="optionsStudy"></ngx-select-dropdown>
+  </div>
+  <div class="category">
+    <label>Choose category</label>
+    <ngx-select-dropdown  [ngClass]="(!checking ? 'default' : (projectForm.controls['category'].value ? 'checking-true' : 'checking-false'))"  formControlName="category" class="dropdown" [multiple]="false" [(ngModel)]="dataModelCat" [config]="configCategory" [options]="optionsCategory"></ngx-select-dropdown>
+  </div>
+  <button type="submit" (mouseover)="checking=true" (mouseleave)="checking=false" [disabled]="!projectForm.valid">Submit</button>
+</form>
+<p>
+  Form Status: {{ projectForm.status }}
+</p>
+
