@@ -181,6 +181,11 @@ img {
   margin-left: 60px;
 }
 
+.warning {
+  float: right;
+  position: relative;
+  top: -30px;
+}
 
 
 

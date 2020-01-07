@@ -13,9 +13,9 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
-import {LoginService} from './user/login/login-service';
-import {RegisterService} from './user/register/register-service';
-import {FormsModule} from '@angular/forms';
+import {LoginService} from './user/login/login.service';
+import {RegisterService} from './user/register/register.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
@@ -61,22 +61,23 @@ export const routes: Routes = [
     UploadlistComponent,
     RegisterTeacherComponent
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    MatSelectModule,
-    SharedModule,
-    SidebarModule.forRoot(),
-    MatIconModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    RouterModule.forRoot(routes)
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        MatSelectModule,
+        SharedModule,
+        SidebarModule.forRoot(),
+        MatIconModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule,
+        RouterModule.forRoot(routes),
+        ReactiveFormsModule
+    ],
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
 })
