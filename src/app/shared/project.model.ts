@@ -5,7 +5,7 @@ export class Project {
     private description ? : String,
     private study ? : String,
     private category ? : String,
-    private createdOn ? : Date,
+    // private createdOn ? : Date,
     private clientId ? : Number,
   ){}
 
@@ -16,7 +16,7 @@ export class Project {
       description : this.description,
       study : this.study,
       category : this.category,
-      createdOn : this.createdOn,
+      // createdOn : this.createdOn,
       clientId : this.clientId
     }
   }
