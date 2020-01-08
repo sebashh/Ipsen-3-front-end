@@ -15,8 +15,8 @@ import {RestApiService } from "../../../src/server/server/server"
 export class CreateProjectComponent implements OnInit {
   checking: boolean;
   project: Project;
-  title_input: String;
-  description_input: String;
+  title_input: string;
+  description_input: string;
 
   optionsStudy = ["Study1", "Study2"];
   configStudy = {

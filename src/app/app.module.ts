@@ -28,6 +28,7 @@ import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 
 export const routes: Routes = [
   { path: 'home', component: PaperListComponent},
@@ -35,7 +36,7 @@ export const routes: Routes = [
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListComponent },
   { path: 'register', component: PaperItemComponent }
-]
+];
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ export const routes: Routes = [
     UploadComponent,
     FormComponent,
     UploadlistComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
+    ProjectScrollbarComponent
   ],
     imports: [
         HttpClientModule,
