@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-register-choose-user',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+
+export class RegisterComponent {
+  student = false;
+  teacher = false;
+  client = false;
 
   constructor() { }
 
-  ngOnInit() {
+  clientSelected() {
+    this.client = true;
+    this.student = false;
+    this.teacher = false;
+  }
+
+  teacherSelected() {
+    this.teacher = true;
+    this.student = false;
+    this.client = false;
+  }
+
+  studentSelected() {
+    this.student = true;
+    this.teacher = false;
+    this.client = false;
   }
 
 }
