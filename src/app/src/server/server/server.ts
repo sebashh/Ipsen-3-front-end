@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Project} from "../../../shared/project.model";
+import {Project} from '../../../shared/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +60,7 @@ export class RestApiService {
      return throwError(errorMessage);
   }
 
-  postResource(path : string, param : any, returnType : any) :
+  postResource(path: string, param: any, returnType: any):
      any {
     this.http.post(this.apiURL + path, param, {responseType : returnType})
       .pipe(
@@ -68,7 +68,7 @@ export class RestApiService {
         catchError(this.handleError)
       ).subscribe((data) => {
         return data;
-      })
+      });
 
   }
 }

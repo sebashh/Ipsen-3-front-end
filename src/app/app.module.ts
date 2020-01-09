@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { TopbarComponent } from './shared/topbar/topbar.component';
@@ -11,8 +11,10 @@ import { AdminComponent } from './user-page/admin/admin.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { ProjectListComponent } from './projects/project-list/project-list.component';
-import { ProjectViewCardComponent} from "./projects/project-view-card/project-view-card.component";
+import { ProjectListFilterComponent } from './projects/project-list/project-list-filter.component';
+// import { ProjectItemViewComponent } from './projects/project-list/project-item-view.component';
+// Waarom voegt hij bovenstaande toe bij projects.module.ts??
+import { ProjectViewCardComponent} from './projects/project-view-card/project-view-card.component';
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
@@ -26,20 +28,19 @@ import { RegisterStudentComponent } from './user/register/register-student/regis
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { SidebarModule } from 'ng-sidebar';
-import {ClientComponent} from "./user-page/client/client.component";
-import {UserPageModule} from "./user-page/user-page.module";
-import { MatIconModule, MatButtonModule } from '@angular/material';
+import {ClientComponent} from './user-page/client/client.component';
+import {UserPageModule} from './user-page/user-page.module';
 import { RouterModule, Routes } from '@angular/router';
-import {ProjectsModule} from "./projects/projects.module";
+import {ProjectsModule} from './projects/projects.module';
 import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 import { HttpClientModule } from '@angular/common/http';
 
 export const routes: Routes = [
   { path: 'home', component: PaperListComponent},
-  { path: 'projects', component: ProjectListComponent},
+  { path: 'projects', component: ProjectListFilterComponent},
   { path: 'about', component: PaperListComponent },
-  { path: 'archive', component: ProjectListComponent },
-  { path: 'register', component: PaperItemComponent },
+  { path: 'archive', component: ProjectListFilterComponent },
+  { path: 'register', component: PaperItemComponent }
 ]
 
 @NgModule({
@@ -54,7 +55,7 @@ export const routes: Routes = [
     AdminComponent,
     LoginComponent,
     RegisterComponent,
-    ProjectListComponent,
+    ProjectListFilterComponent,
     ProjectItemComponent,
     PaperListComponent,
     PaperItemComponent,
@@ -76,7 +77,7 @@ export const routes: Routes = [
     SharedModule,
     SidebarModule.forRoot(),
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     UserPageModule,

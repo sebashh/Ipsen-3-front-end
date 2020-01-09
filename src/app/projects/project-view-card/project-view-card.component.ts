@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit, } from '@angular/core';
-import {Project} from "../../shared/project.model";
-import{ trigger, state, style, transition, animate, keyframes} from '@angular/animations'
+import {Project} from '../../shared/project.model';
+import { trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 
 
 @Component({
