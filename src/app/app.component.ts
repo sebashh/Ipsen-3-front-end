@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RestApiService } from './src/server/server/server';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,12 +13,12 @@ export class AppComponent {
   constructor(
     public restApi: RestApiService
   ) { }
-  
+
   // EXAMPLE
   // HelloWorld() {
   //   this.restApi.getTest().subscribe((data)=>{
   //     console.log(data);
   //   })
   // }
-}
 
+}

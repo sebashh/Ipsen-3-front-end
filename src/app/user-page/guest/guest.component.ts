@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class GuestComponent implements OnInit {
 
   constructor() { }
+    maxProjects = 10;
+    projectAmount = 212;
+    userAmount = 533;
+    studentAmount = 312;
+    teacherAmount = 88;
+    clientAmount = 133;
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

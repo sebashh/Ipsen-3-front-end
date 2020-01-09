@@ -31,7 +31,7 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.state = 'loaded';
   }
 }
