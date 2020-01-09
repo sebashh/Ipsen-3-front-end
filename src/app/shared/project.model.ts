@@ -1,12 +1,12 @@
 export class Project {
   constructor(
-    private projectId ? : Number,
-    private title ? : String,
-    private description ? : String,
-    private study ? : String,
-    private category ? : String,
-    private createdOn ? : Date,
-    private clientId ? : Number,
+    public projectId ? : Number,
+    public title ? : String,
+    public description ? : String,
+    public study ? : String,
+    public category ? : String,
+    public createdOn ? : Date,
+    public clientId ? : Number,
   ){}
 
   public getData() {
