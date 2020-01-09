@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { CreateProjectComponent } from './client/create-project/create-project.component';
+import { HomePageComponent } from './client/home-page/home-page.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [],
+    declarations: [ CreateProjectComponent, HomePageComponent],
+    exports: [
+        CreateProjectComponent
+    ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UserPageModule { }
