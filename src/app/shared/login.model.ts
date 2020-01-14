@@ -1,13 +1,18 @@
-export class Project {
+export class LoginModel {
+  email: string;
+  password: string;
   constructor(
-    public email ? : String,
-    public password ? : String,
-  ){}
+    email: string,
+    password: string
+  ) {
+    this.email = email;
+    this.password = password;
+  }
 
   public getData() {
     return {
       email : this.email,
       password : this.password
-    }
+    };
   }
 }
