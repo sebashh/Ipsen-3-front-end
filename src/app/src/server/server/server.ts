@@ -8,7 +8,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 
 export class RestApiService {
-  
+
   // Define API
   apiURL = 'http://localhost:8080/';
 
@@ -23,20 +23,22 @@ export class RestApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }  
+  }
 
   //EXAMPLE
-  // getTest(): Observable<string> {
-  //   return this.http.get(this.apiURL + 'ipsen3projects/test', {responseType: 'text'})
-  //   .pipe(
-  //     retry(1),
-  //     catchError(this.handleError)
-  //   )
-  // }
+  getTest(): Observable<string> {
+  return this.http.get(this.apiURL + 'ipsen3projects/test', {responseType: 'text'})
+  .pipe(
+  retry(1),
+  catchError(this.handleError)
+   )
+ }
 
 
-  // Error handling 
+  // Error handling
   handleError(error) {
+    console.error("Error status: " + error.status);
+
      let errorMessage = '';
      if(error.error instanceof ErrorEvent) {
        // Get client-side error
@@ -48,5 +50,18 @@ export class RestApiService {
      window.alert(errorMessage);
      return throwError(errorMessage);
   }
+
+  postResource(path : string, param : any, returnType : any) :
+       any {
+      this.http.post(this.apiURL + path, param, {responseType : returnType, observe: 'response'})
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        ).subscribe((data) => {
+          console.log("console status: " + data.status)
+          return data;
+        })
+
+    }
 
 }

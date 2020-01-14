@@ -59,7 +59,7 @@ export const routes: Routes = [
     UploadComponent,
     FormComponent,
     UploadlistComponent,
-    RegisterTeacherComponent
+    RegisterTeacherComponent,
   ],
   imports: [
     HttpClientModule,
