@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectViewCardComponent } from 'src/app/projects/project-view-card/project-view-card.component';
-import { DatePipe } from '@angular/common';
 import { MockProject } from './mockProject';
 
 
 export interface Tile {
   text: string;
 }
-
-
 
 @Component({
   selector: 'app-client-my-projects',
@@ -25,7 +22,7 @@ export class ClientMyProjectsComponent implements OnInit {
 
   tiles: ProjectViewCardComponent[] = [];
   ngOnInit() {
-    this.filInTheTiles(3);
+    this.filInTheTiles(4);
   }
 
   addProject(){
