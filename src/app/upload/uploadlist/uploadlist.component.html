@@ -1,6 +1,6 @@
-<div class="container" id="paperContainer">
+<div meta name="viewport" class="container" id="paperContainer">
   <p>Papers</p>
-    <div class="col" id="paperScrollContainer">
+    <div class="col" id="paperScrollContainer" #paperScrollContainer>
       <ul>
         <li *ngFor="let form of forms; let i =index">
           <app-form id="{{'form'+i}}" [paperObject]=form></app-form>
@@ -9,4 +9,4 @@
     </div>
     <button type="button" (click) = "addForm()">Add paper</button>
 </div>
-{{length}}
+
