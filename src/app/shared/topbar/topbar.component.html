@@ -6,7 +6,7 @@
     </a>
   </div>
   <div class="topnav" id="myTopnav" *ngIf="isUserLoggedIn; else NotLoggedIn" id="myTopnav">
-    <a class="icon close" (click)="responsiveLogOut()">
+    <a class="iconClose" (click)="responsiveLogOut()">
       <i class="fa fa-times"></i>
     </a>
     <a (click)="logOut()" (click)="responsiveLogOut()">Log out</a>
@@ -22,7 +22,7 @@
   </div>
   <ng-template #NotLoggedIn>
     <div class="topnav" id="myTopnav">
-      <a class="icon close" (click)="responsiveLogIn()">
+      <a class="iconClose" (click)="responsiveLogIn()">
         <i class="fa fa-times">
         </i>
       </a>

@@ -25,6 +25,7 @@ export class ClientComponent implements OnInit {
       'description of the project description of the project description of the project description of the project',
       'study name',
       'category',
+      new Date,
       123)
     this.projects.push(this.project);
   }

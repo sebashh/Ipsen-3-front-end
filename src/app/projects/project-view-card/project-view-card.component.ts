@@ -6,18 +6,7 @@ import{ trigger, state, style, transition, animate, keyframes} from '@angular/an
 @Component({
   selector: 'app-project-view-card',
   templateUrl: './project-view-card.component.html',
-  styleUrls: ['./project-view-card.component.css'],
-  animations:[
-    trigger('bottomTrigger', [
-      state('start void', style({
-        height: '0px'
-      })),
-      state('loaded', style({
-        height: '35px'
-      })),
-      transition('start => loaded', animate('0.2s'))
-    ])
-  ]
+  styleUrls: ['./project-view-card.component.css']
 })
 export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   @Input()
@@ -28,7 +17,7 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   description : String;
   study : String;
   category : String;
-  // createdOn : String;
+  createdOn : String;
   constructor() {
 
   }
@@ -38,7 +27,7 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
     this.description = this.project.getData().description;
     this.study = this.project.getData().study;
     this.category = this.project.getData().category;
-    // this.createdOn = this.project.getData().createdOn.toDateString();
+    this.createdOn = this.project.getData().createdOn.toDateString();
   }
 
 
