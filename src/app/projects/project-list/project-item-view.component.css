@@ -1,0 +1,12 @@
+table {
+  table-layout: auto;
+}
+
+th,td {
+  border: 1px solid black;
+}
+
+jw-pagination {
+  margin-left: auto;
+  margin-right: auto;
+}

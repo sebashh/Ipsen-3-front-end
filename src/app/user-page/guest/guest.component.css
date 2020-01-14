@@ -13,44 +13,13 @@
       display: flex;
       overflow-x: auto;
       overflow:hidden;
-      align-items: top center;
       position: absolute;
       left: 0;
       right: 0;
       margin: auto;
+      margin-top: 100px;
     }
 
-   .card > div{
-      background-color: white;
-      height: 200px;
-      width: 400px;
-      margin: 10px;
-      border-style: solid;
-      border-radius: 10px;
-      border-color: black;
-   }
-
-   #project1, #project5{
-      height: 100px;
-      width: 200px;
-      position: relative;
-      top: 100px;
-      font-size: 5px;
-    }
-
-   #project3 {
-      position: static;
-      font-size: 15px;
-   }
-
-   #project2, #project4{
-      height: 150px;
-      width: 300px;
-      top: 50px;
-      position: relative;
-      top: 25px;
-      font-size: 10px;
-    }
 
   .wrapper {
     text-align: center;
@@ -130,4 +99,7 @@
     display: inline-block;
     margin: 10px;
     font-weight: bold;
+    margin-top: 100px;
   }
+
+

@@ -89,7 +89,7 @@ nav {
   .topnav.responsiveLogOut a.icon {
     display: none;
   }
-  .topnav.responsiveLogOut a.iconClose {
+  .topnav.responsiveLogOut a.icon close {
     display: block;
   }
   .topnav.responsiveLogIn a {

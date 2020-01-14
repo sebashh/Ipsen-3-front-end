@@ -14,9 +14,19 @@ ng-sidebar-container {
   overflow: hidden;
   position: absolute;
   max-height: 70vh;
+  /*max-width: 210px;*/
+  border: solid red 5px;
+  display: inline-block;
 }
 
-mat-checkbox {
+.bla {
+  border: solid green 5px;
+  display: inline-table;
+  /*vertical-align: top;*/
+  position: absolute;
+}
+
+.mat-checkbox {
   display: flex;
   align-items: center;
   color: black;
@@ -49,28 +59,29 @@ mat-expansion-panel:hover{
 }
 
 hr {
-  border: 0.5px solid;
-  margin-right: 62px;
-  margin-left: 14px;
+/*  border: 0.5px solid;*/
+/*  margin-right: 62px;*/
+/*  margin-left: 14px;*/
   margin-top: 0;
   margin-bottom: 0;
+/*  max-width: max-content;*/
 }
 
 /*Dit wellicht nog aanpassen, sws op mobiele grootte*/
-#minimalWidth {
-  min-width: 250px;
-  max-width: 250px;
-  border-left: 3px solid #ddd;
-  border-right: 3px solid #ddd;
-  border-bottom: 3px solid #ddd;
-  margin-bottom: 190px;
-}
+/*#minimalWidth {*/
+/*  min-width: 250px;*/
+/*  max-width: 250px;*/
+/*  border-left: 3px solid #ddd;*/
+/*  border-right: 3px solid #ddd;*/
+/*  border-bottom: 3px solid #ddd;*/
+/*  margin-bottom: 190px;*/
+/*}*/
 
-#tableEdits {
-  padding-top: 30px;
-  margin-left: 50px;
-  position: sticky;
-}
+/*#tableEdits {*/
+/*  padding-top: 30px;*/
+/*  margin-left: 50px;*/
+/*  position: sticky;*/
+/*}*/
 
 button {
   transform: rotate(90deg);
@@ -78,4 +89,11 @@ button {
   font-size: 15px;
   font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@media (max-width: 319px) {
+
+  .bla {
+    background-color: #2ea899;
+  }
 }
