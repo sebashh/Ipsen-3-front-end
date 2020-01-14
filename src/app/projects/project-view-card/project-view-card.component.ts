@@ -17,7 +17,7 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   description : String;
   study : String;
   category : String;
-  // createdOn : String;
+  createdOn : String;
   constructor() {
 
   }
@@ -27,7 +27,7 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
     this.description = this.project.getData().description;
     this.study = this.project.getData().study;
     this.category = this.project.getData().category;
-    // this.createdOn = this.project.getData().createdOn.toDateString();
+    this.createdOn = this.project.getData().createdOn.toDateString();
   }
 
 
