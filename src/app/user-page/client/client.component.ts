@@ -1,5 +1,5 @@
 import {Component, NgModule, OnInit} from '@angular/core';
-import {Project} from "../../shared/project.model";
+import {Project} from '../../shared/project.model';
 
 @Component({
   selector: 'app-client',
@@ -8,8 +8,8 @@ import {Project} from "../../shared/project.model";
 })
 
 export class ClientComponent implements OnInit {
-  project : Project;
-  projects : Array<Project> = [];
+  project: Project;
+  projects: Array<Project> = [];
 
   constructor() {
 
@@ -18,7 +18,7 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
   }
 
-  createProject(){
+  createProject() {
     this.project = new Project(
       null,
       'project title',
