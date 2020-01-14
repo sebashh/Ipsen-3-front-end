@@ -24,19 +24,6 @@ export class RestApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }  
-
-  //EXAMPLE
-  // getTest(): Observable<string> {
-  //   return this.http.get(this.apiURL + 'ipsen3projects/test', {responseType: 'text'})
-  //   .pipe(
-  //     retry(1),
-  //     catchError(this.handleError)
-  //   )
-  // }
-
-
-  // Error handling 
   }
 
 
@@ -72,7 +59,7 @@ export class RestApiService {
      window.alert(errorMessage);
      return throwError(errorMessage);
   }
-}
+
   postResource(path : string, param : any, returnType : any) :
      any {
     this.http.post(this.apiURL + path, param, {responseType : returnType})
