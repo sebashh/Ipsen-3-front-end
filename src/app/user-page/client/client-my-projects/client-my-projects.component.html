@@ -1,13 +1,12 @@
 <div>
     
 <h1>My Projects</h1>
-<a (click)="addProject()" >Add a Project</a><!--Don't forget to remove this "button"-->
 <br>
 <br>
 <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile class="project"
         *ngFor="let tile of tiles">
-              <app-project-view-card ></app-project-view-card></mat-grid-tile>
+              <app-project-view-card [project] = "myProject"></app-project-view-card></mat-grid-tile>
 </mat-grid-list>
 <br>
 <br>
