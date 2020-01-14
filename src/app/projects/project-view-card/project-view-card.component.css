@@ -1,7 +1,5 @@
 .content{
-
-
-  width: 500px;
+  width: 100%;
   margin-bottom: 50px;
   transition-duration: .1s;
   cursor: pointer;

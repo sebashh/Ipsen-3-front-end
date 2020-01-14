@@ -1,12 +1,12 @@
 export class Project {
   constructor(
-    public projectId: number,
-    public title: string,
-    public description: string,
-    public study: string,
-    public category: string,
-    public createdOn: Date,
-    public clientId: number,
+    private projectId ? : Number,
+    private title ? : String,
+    private description ? : String,
+    private study ? : String,
+    private category ? : String,
+    // private createdOn ? : Date,
+    private clientId ? : Number,
   ){}
 
   public getData() {
@@ -16,7 +16,7 @@ export class Project {
       description : this.description,
       study : this.study,
       category : this.category,
-      createdOn : this.createdOn,
+      // createdOn : this.createdOn,
       clientId : this.clientId
     }
   }

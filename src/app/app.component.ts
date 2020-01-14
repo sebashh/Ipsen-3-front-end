@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RestApiService } from './src/server/server/server';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,5 +19,5 @@ export class AppComponent {
   //     console.log(data);
   //   })
   // }
-
 }
+

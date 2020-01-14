@@ -1,0 +1,13 @@
+div {
+    text-align: center;
+}
+
+a{
+    background-color: rgb(109, 190, 179);
+    color: white;
+    margin: 50px;
+    padding: 10px;
+}
+.project {
+    text-align: left;
+}
