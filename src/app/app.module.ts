@@ -13,11 +13,10 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
-import {LoginService} from './user/login/login-service';
-import {RegisterService} from './user/register/register-service';
-import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule, MatExpansionModule, MatSelectModule, MatGridListModule} from '@angular/material';
-
+import {LoginService} from './user/login/login.service';
+import {RegisterService} from './user/register/register.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -28,8 +27,6 @@ import { FormComponent } from './upload/form/form.component';
 import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import { RouterModule, Routes } from '@angular/router';
-import {ProjectsModule} from "./projects/projects.module";
-import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 
@@ -60,25 +57,6 @@ export const routes: Routes = [
     RegisterStudentComponent,
     RegisterClientComponent,
     RegisterTeacherComponent,
-    ClientComponent,
-    ClientMyProjectsComponent
-  ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatExpansionModule,
-    SelectDropDownModule,
-    MatSelectModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatIconModule,
-    RouterModule.forRoot(routes),
-    UserPageModule,
-    ProjectsModule,
-    MatGridListModule
     UploadComponent,
     FormComponent,
     UploadlistComponent,
