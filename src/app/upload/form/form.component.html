@@ -1,0 +1,32 @@
+<div class="container">
+<mat-expansion-panel [expanded]=true [hideToggle]=true #panel1>
+  <mat-expansion-panel-header class="preventClick">
+    <mat-panel-title>
+      <p id="paperElementName">{{paperTitle}}</p>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+<div class="container" id="inputForm">
+<form #chooseFile = "ngForm" (ngSubmit) = "onSubmitClick(chooseFile)" >
+  <br/>
+<div class="row" id="paperTitleField">
+    <input type = "text" id="titleInput" name = "title" placeholder = "title" ngModel maxlength="12" required pattern="\S+">
+</div>
+<br/>
+  <div class="row" id="paperAuthorField">
+    <input type = "text" id="authorInput" name = "author" placeholder = "author" ngModel maxlength="12" required pattern="\S+">
+  </div>
+<br/>
+    <div class="row" id="paperFileSelect">
+      <input type="file" id="file"  name="paperFile" class="form-control" accept="application/pdf" ngModel (change)="getFiles($event)" [id] ="id">
+    </div>
+    <label for="file" id="fileSelectLabel">Select file</label>
+  <br/>
+  <div class="row" id="paperFileSelectLabel" #paperFileSelectElement>{{labelText}}<span>{{labelText}}</span></div>
+  <br/>
+      <div class="row"><input type = "submit" value = "Submit" id="paperSubmitButton" ></div>
+  <br>
+</form>
+</div>
+</mat-expansion-panel>
+</div>
+

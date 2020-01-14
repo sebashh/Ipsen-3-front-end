@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(
     public restApi: RestApiService
   ) { }
-  
+
   // EXAMPLE
   // HelloWorld() {
   //   this.restApi.getTest().subscribe((data)=>{

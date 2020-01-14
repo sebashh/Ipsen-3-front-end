@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Project} from "../../../shared/project.model";
+import {RestApiService } from "../../../src/server/server/server"
 
 @Component({
 
@@ -14,8 +15,8 @@ import {Project} from "../../../shared/project.model";
 export class CreateProjectComponent implements OnInit {
   checking: boolean;
   project: Project;
-  title_input: String;
-  description_input: String;
+  title_input: string;
+  description_input: string;
 
   optionsStudy = ["Study1", "Study2"];
   configStudy = {
@@ -44,7 +45,8 @@ export class CreateProjectComponent implements OnInit {
   dataModelCat: any;
   dataModelStudy: any;
 
-  constructor() {
+  constructor( public restApi: RestApiService) {
+
     this.checking = false;
   }
 
@@ -52,8 +54,8 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onSubmit() {
-    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy, this.dataModelCat, null)
-    console.warn(this.project)
+    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy, this.dataModelCat, null, 3);
+    console.log(this.restApi.postResource("ipsen3projects/upload/test", this.project, 'text'));
   }
 
 }
