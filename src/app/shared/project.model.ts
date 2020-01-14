@@ -7,7 +7,7 @@ export class Project {
     public category: string,
     public createdOn: Date,
     public clientId: number,
-  ){}
+  ) {}
 
   public getData() {
     return {
@@ -18,6 +18,6 @@ export class Project {
       category : this.category,
       createdOn : this.createdOn,
       clientId : this.clientId
-    }
+    };
   }
 }

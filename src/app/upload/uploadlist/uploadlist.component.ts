@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, ViewChildren, QueryList} from '@angular/core';
 import {FormComponent} from '../form/form.component';
+import {RestApiService } from "../../src/server/server/server";
 
 @Component({
   selector: 'app-uploadlist',
@@ -8,16 +9,29 @@ import {FormComponent} from '../form/form.component';
 })
 export class UploadlistComponent implements OnInit {
 
-  forms = [new FormComponent];
+  forms = [new FormComponent(this.restApi)];
+
+  @ViewChild('paperScrollContainer',{static: false}) container: ElementRef;
 
 
-  constructor() { }
+  constructor(public restApi: RestApiService) { }
 
   ngOnInit() {
+    this.scrollToBottom()
   }
 
   addForm(){
-    this.forms.push(new FormComponent);
+    this.forms.push(new FormComponent(this.restApi));
+    setTimeout(() => {
+      this.scrollToBottom()
+    });
+  }
+
+
+  scrollToBottom() {
+    try {
+      this.container.nativeElement.scrollTop = this.container.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
 }

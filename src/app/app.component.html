@@ -1,14 +1,11 @@
-<!--<div class="container-fluid">-->
-<!--<div class="row">-->
-<!--&lt;!&ndash;<app-topbar></app-topbar>&ndash;&gt;-->
-<!--</div>-->
-<!--  <div class="row">-->
-<!--    <app-project-list></app-project-list>-->
-<!--    <app-register-choose-user></app-register-choose-user>-->
-<!--  </div>-->
-<!--  <div class="row">-->
-<!--&lt;!&ndash;  <app-footer></app-footer>&ndash;&gt;-->
-<!--  </div>-->
-<!--</div>-->
-<app-guest></app-guest>
-
+<div class="container-fluid">
+<div class="row">
+<app-topbar></app-topbar>
+</div>
+  <div class="row">
+<router-outlet></router-outlet>
+  </div>
+  <div class="row">
+  <app-footer></app-footer>
+  </div>
+</div>

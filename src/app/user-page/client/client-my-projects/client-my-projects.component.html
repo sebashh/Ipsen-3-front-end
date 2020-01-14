@@ -1,0 +1,15 @@
+<div>
+    
+<h1>My Projects</h1>
+<br>
+<br>
+<mat-grid-list cols="3" rowHeight="2:1">
+        <mat-grid-tile class="project"
+        *ngFor="let tile of tiles">
+              <app-project-view-card [project] = "myProject"></app-project-view-card></mat-grid-tile>
+</mat-grid-list>
+<br>
+<br>
+<a>See more projects</a>
+
+</div>

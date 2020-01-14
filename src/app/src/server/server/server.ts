@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Project} from "../../../shared/project.model";
+import {Project} from '../../../shared/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,8 @@ export class RestApiService {
 
   // Error handling
   handleError(error) {
+    console.error("Error status: " + error.status);
+
      let errorMessage = '';
      if(error.error instanceof ErrorEvent) {
        // Get client-side error
@@ -61,14 +63,16 @@ export class RestApiService {
   }
 
   postResource(path : string, param : any, returnType : any) :
-     any {
-    this.http.post(this.apiURL + path, param, {responseType : returnType})
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      ).subscribe((data) => {
-        return data;
-      })
+       any {
+      this.http.post(this.apiURL + path, param, {responseType : returnType, observe: 'response'})
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        ).subscribe((data) => {
+          console.log("console status: " + data.status)
+          return data;
+        })
 
-  }
+    }
+
 }
