@@ -1,9 +1,8 @@
 mat-accordion {
   margin-top: 10px;
-  position: sticky; /*of sticky of fixed*/
+  /*position: sticky; !*of sticky of fixed*!*/
   min-width: 250px;
-  min-height: 71vh;
-  max-height: 70vh;
+  max-height: 88vh;
 }
 
 ::ng-deep aside {
@@ -11,19 +10,17 @@ mat-accordion {
 }
 
 ng-sidebar-container {
-  overflow: hidden;
-  position: absolute;
-  max-height: 70vh;
+  min-height: 88vh;
+  margin: 12vh 0 0 0;
   /*max-width: 210px;*/
-  border: solid red 5px;
   display: inline-block;
 }
 
-.bla {
-  border: solid green 5px;
-  display: inline-table;
-  /*vertical-align: top;*/
-  position: absolute;
+.project-table {
+  /*border: solid green 5px;*/
+  /*display: inline-table;*/
+  /*!*vertical-align: top;*!*/
+  /*position: absolute;*/
 }
 
 .mat-checkbox {
@@ -48,7 +45,7 @@ ng-sidebar-container {
 
 mat-expansion-panel {
   margin-left: -10px;
-  margin-right: 15px;
+  /*margin-right: 15px;*/
   margin-top: 0px;
   margin-bottom: 0px;
   /*max-width: 250px;*/
@@ -84,16 +81,16 @@ hr {
 /*}*/
 
 button {
-  transform: rotate(90deg);
-  margin-top: 300px;
-  font-size: 15px;
-  font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: block;
+  left: 0;
+  width: 100px;
+  height: 50px;
+  background-color: #4fd8b5;
 }
 
-@media (max-width: 319px) {
+@media only screen and (min-width: 320px) and (max-width: 480px) {
 
-  .bla {
-    background-color: #2ea899;
+  div .ng-sidebar-content {
+    background-color: green;
   }
 }

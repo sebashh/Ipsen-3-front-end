@@ -18,13 +18,13 @@ export class FormComponent implements OnInit {
 
   @Input() paperObject: any;
 
-  paper : Paper;
+  paper: Paper;
 
   title: string;
   author: string;
   paperFile: File;
   paperFileName: string;
-  labelText : string;
+  labelText: string;
   paperTitle: string;
   paperFileString: any;
 

@@ -34,8 +34,10 @@ import {ProjectsModule} from './projects/projects.module';
 import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
-import {SelectDropDownModule} from "ngx-select-dropdown";
-import {ProjectViewComponent} from "./projects/project-view/project-view.component";
+import {SelectDropDownModule} from 'ngx-select-dropdown';
+import {ProjectViewComponent} from './projects/project-view/project-view.component';
+import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
+import {JwPaginationComponent} from 'jw-angular-pagination';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -93,8 +95,7 @@ export const routes: Routes = [
     ProjectsModule,
     MatGridListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
-
+    RouterModule.forRoot(routes)
   ],
 
 

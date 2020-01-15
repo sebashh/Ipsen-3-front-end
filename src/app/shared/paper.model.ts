@@ -1,17 +1,18 @@
+
 export class Paper {
 
   constructor(
-    public projectId ? : Number,
-    public title ? : String,
-    public author ? : String,
-    public uploadedBy ? :  Number,
+    public projectId ? : number,
+    public title ? : string,
+    public author ? : string,
+    public uploadedBy ? : number,
     public uploadDate ? : Date,
-    public paperFile ? : String,
+    public paperFile ? : string,
     public id ? : number,
   ){}
 
 
-  public getPaperData(){
+  public getPaperData() {
     return {
       projectId : this.projectId,
       title : this.title,
