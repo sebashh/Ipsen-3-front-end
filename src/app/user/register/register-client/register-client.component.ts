@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {RestApiService} from '../../../src/server/server/server';
+import {Client} from '../../../shared/client.model';
 
 @Component({
   selector: 'app-register-client',
@@ -7,21 +9,20 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./register-client.component.css']
 })
 export class RegisterClientComponent implements OnInit {
-  private firstName: FormGroup;
-  private lastName: FormGroup;
+  private companyName: FormGroup;
+  private companyDescription: FormGroup;
   private email: FormGroup;
   private password: FormGroup;
-  private phoneNumber: FormGroup;
-  private education: FormGroup;
+  private client: Client;
 
-  constructor(formBuilder: FormBuilder) {
-    this.firstName = formBuilder.group({
-      currentFirstName: new FormControl('',
+  constructor(formBuilder: FormBuilder, public restApiService: RestApiService) {
+    this.companyName = formBuilder.group({
+      currentCompanyName: new FormControl('',
         Validators.compose([Validators.required]))
     });
 
-    this.lastName = formBuilder.group({
-      currentLastName: new FormControl('',
+    this.companyDescription = formBuilder.group({
+      currentCompanyDescription: new FormControl('',
         Validators.compose([Validators.required]))
     });
 
@@ -36,19 +37,16 @@ export class RegisterClientComponent implements OnInit {
       currentPassword: new FormControl('',
         Validators.compose([Validators.required, Validators.minLength(6)]))
     });
-
-    this.phoneNumber = formBuilder.group({
-      currentPhoneNumber: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
-
-    this.education = formBuilder.group({
-      currentEducation: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
   }
+
+
 
   ngOnInit() {
+
   }
 
+  submitClient() {
+    this.client = new Client(null, this.companyName.get('currentCompanyName').value, this.companyDescription.get('currentCompanyDescription').value, this.email.get('currentEmail').value, this.password.get('currentPassword').value);
+    this.restApiService.postResource('ipsen3users/client', this.client, 'text');
+  }
 }

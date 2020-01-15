@@ -4,22 +4,18 @@
       <div class="row register-form">
         <form class="custom-form">
           <h1>Register</h1>
-          <div [formGroup]="firstName" class="form-row form-group">
-            <div class="col-sm-4 label-column"><label class="col-form-label">First name</label></div>
-            <div class="col-sm-6 input-column"><input formControlName="currentFirstName" class="form-control" type="text" /></div>
-            <div class="warning" *ngIf="firstName.touched">
-              <small class="alert alert-danger" *ngIf="firstName.get('currentFirstName').hasError('required')">Required!</small>
+          <div [formGroup]="companyName" class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Company name</label></div>
+            <div class="col-sm-6 input-column"><input formControlName="currentCompanyName" class="form-control" type="text" /></div>
+            <div class="warning" *ngIf="companyName.touched">
+              <small class="alert alert-danger" *ngIf="companyName.get('currentCompanyName').hasError('required')">Required!</small>
             </div>
           </div>
-          <div class="form-row form-group">
-            <div class="col-sm-4 label-column"><label class="col-form-label">Infix</label></div>
-            <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-          </div>
-          <div [formGroup]="lastName" class="form-row form-group">
-            <div class="col-sm-4 label-column"><label class="col-form-label">Last name</label></div>
-            <div class="col-sm-6 input-column"><input formControlName="currentLastName" class="form-control" type="text"></div>
-            <div class="warning" *ngIf="lastName.touched">
-              <small class="alert alert-danger" *ngIf="lastName.get('currentLastName').hasError('required')">Required!</small>
+          <div [formGroup]="companyDescription" class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Description</label></div>
+            <div class="col-sm-6 input-column"><input formControlName="currentCompanyDescription" class="form-control" type="text"></div>
+            <div class="warning" *ngIf="companyDescription.touched">
+              <small class="alert alert-danger" *ngIf="companyDescription.get('currentCompanyDescription').hasError('required')">Required!</small>
             </div>
           </div>
           <div [formGroup]="email" class="form-row form-group">
@@ -38,21 +34,7 @@
               <small style="position: relative; left:40px;" class="alert alert-danger" *ngIf="password.get('currentPassword').hasError('minlength')">Minimum 6 chars</small>
             </div>
           </div>
-          <div [formGroup]="phoneNumber" class="form-row form-group">
-            <div class="col-sm-4 label-column"><label class="col-form-label">Phone number</label></div>
-            <div class="col-sm-6 input-column"><input formControlName="currentPhoneNumber" class="form-control" type="text" /></div>
-            <div class="warning" *ngIf="phoneNumber.touched">
-              <small class="alert alert-danger" *ngIf="phoneNumber.get('currentPhoneNumber').hasError('required')">Required!</small>
-            </div>
-          </div>
-          <div [formGroup]="education" class="form-row form-group">
-            <div class="col-sm-4 label-column"><label class="col-form-label">Education</label></div>
-            <div class="col-sm-6 input-column"><input formControlName="currentEducation" class="form-control" type="text" /></div>
-            <div class="warning" *ngIf="education.touched">
-              <small class="alert alert-danger" *ngIf="education.get('currentEducation').hasError('required')">Required!</small>
-            </div>
-          </div>
-          <button class="btn btn-light submit-button" type="button">Submit</button>
+          <button class="btn btn-light submit-button" (click)="submitClient()" type="button">Submit</button>
         </form>
       </div>
     </div>

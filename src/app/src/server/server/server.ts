@@ -103,7 +103,7 @@ export class RestApiService {
         ).subscribe((data) => {
           console.log("console status: " + data.status)
           return data;
-        })
+        });
 
     }
 
