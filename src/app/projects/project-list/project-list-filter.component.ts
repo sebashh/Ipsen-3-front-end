@@ -1,4 +1,5 @@
-import { Component, OnInit, /*Output, EventEmitter, Input*/ } from '@angular/core';
+import {Component, Input, OnInit, /*Output, EventEmitter, Input*/} from '@angular/core';
+import {Paper} from '../../shared/paper.model';
 // import {ProjectModel} from '../../shared/project.model';
 
 @Component({
@@ -8,13 +9,9 @@ import { Component, OnInit, /*Output, EventEmitter, Input*/ } from '@angular/cor
 })
 export class ProjectListFilterComponent implements OnInit {
   opened = false;
-  textOnIcon = 'Filter';
-  // public ItemName: ProjectModel;
-  // public searchValue: string;
-  // @Input() resultSearch: ProjectModel[];
-  // @Output() resultNogWat = new EventEmitter<ProjectModel>();
+  public searchValue: string;
 
-  searchValue = '';
+
   constructor() { }
 
   ngOnInit() {

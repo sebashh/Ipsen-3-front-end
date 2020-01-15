@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {Project} from '../../../shared/project.model';
+import {Paper} from '../../../shared/paper.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,32 +25,31 @@ export class RestApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }
+  };
 
 
-  getResource(path : String, type : any) :
-    Observable<any>{
-      return this.http.get(this.apiURL + path, {responseType: type})
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
+  getResource(path: string):
+    any {
+    this.http.get(this.apiURL + path)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      ).subscribe(item => {
+      return item;
+    });
     }
 
-  //EXAMPLE
-  getTest(): Observable<string> {
-    return this.http.get(this.apiURL + 'ipsen3projects/test', {responseType: 'text'})
-    .pipe(
+  getPapers(): Observable<Paper[]> {
+    return this.http.get<Paper[]>(this.apiURL + 'paper/papers').pipe(
       retry(1),
       catchError(this.handleError)
-    )
+    );
   }
-
 
   // Error handling
   handleError(error) {
      let errorMessage = '';
-     if(error.error instanceof ErrorEvent) {
+     if (error.error instanceof ErrorEvent) {
        // Get client-side error
        errorMessage = error.error.message;
      } else {
