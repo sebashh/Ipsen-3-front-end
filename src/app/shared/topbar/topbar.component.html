@@ -28,8 +28,8 @@
       </a>
       <a routerLink="register">Register</a>
       <a (click)="logIn()" (click)="responsiveLogIn()">Login</a>
-      <a><input matInput placeholder="Wachtwoord"></a>
-      <a><input type="password" matInput placeholder="E-mail"></a>
+      <a><input [(ngModel)]="password" placeholder="Wachtwoord"></a>
+      <a><input [(ngModel)]="email" placeholder="E-mail"></a>
       <a class="icon" (click)="responsiveLogIn()">
         <i class="fa fa-bars"></i>
       </a>

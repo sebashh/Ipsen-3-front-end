@@ -1,47 +1,49 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-12 col-xs-12 col-md-6">
       <div class="row register-form">
-        <div class="col-md-8 offset-md-2">
-          <form class="custom-form">
-            <h1>Register</h1>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">First name</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
+        <form class="custom-form">
+          <h1>Register</h1>
+          <div [formGroup]="companyName" class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Company name</label></div>
+            <div class="col-sm-6 input-column"><input formControlName="currentCompanyName" class="form-control" type="text" /></div>
+            <div class="warning" *ngIf="companyName.touched">
+              <small class="alert alert-danger" *ngIf="companyName.get('currentCompanyName').hasError('required')">Required!</small>
             </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Infix</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
+          </div>
+          <div [formGroup]="companyDescription" class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Description</label></div>
+            <div class="col-sm-6 input-column"><input formControlName="currentCompanyDescription" class="form-control" type="text"></div>
+            <div class="warning" *ngIf="companyDescription.touched">
+              <small class="alert alert-danger" *ngIf="companyDescription.get('currentCompanyDescription').hasError('required')">Required!</small>
             </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Last name</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
+          </div>
+          <div [formGroup]="email" class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Email&nbsp;</label></div>
+            <div class="col-sm-6 input-column"><input formControlName="currentEmail" class="form-control" type="email"></div>
+            <div style="position: relative; left: 178px" class="warning" *ngIf="email.touched">
+              <small class="alert alert-danger" *ngIf="email.get('currentEmail').hasError('required')">Required!</small>
+              <small style="margin-left: 12px;" class="alert alert-danger" *ngIf="email.invalid">Please enter valid email</small>
             </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Email&nbsp;</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="email"></div>
+          </div>
+          <div [formGroup]="password" class="form-row form-group">
+            <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
+            <div class="col-sm-6 input-column"><input formControlName="currentPassword" class="form-control" type="password"></div>
+            <div class="warning" *ngIf="password.touched">
+              <small class="alert alert-danger" *ngIf="password.get('currentPassword').hasError('required')">Required!</small>
+              <small style="position: relative; left:40px;" class="alert alert-danger" *ngIf="password.get('currentPassword').hasError('minlength')">Minimum 6 chars</small>
             </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Password</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="password"></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Phone number</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-            </div>
-            <div class="form-row form-group">
-              <div class="col-sm-4 label-column"><label class="col-form-label">Education</label></div>
-              <div class="col-sm-6 input-column"><input class="form-control" type="text" /></div>
-            </div>
-            <button class="btn btn-light submit-button" type="button">Submit</button></form>
-        </div>
+          </div>
+          <button class="btn btn-light submit-button" (click)="submitClient()" type="button">Submit</button>
+        </form>
       </div>
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-sm-12 col-xs-12 col-md-3">
+      <div class="row">
+        <img src="../assets/plnt.png" alt="logo">
+      </div>
+    </div>
   </div>
 </div>
+
 

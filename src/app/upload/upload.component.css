@@ -1,6 +1,12 @@
 .container {
   border: solid 3px black;
   border-radius: 1%;
-  height: 90vh;
-  width: 25%;
+  height: 80vh;
+  width: 25vw;
+}
+
+@media (max-width: 767px) {
+  .container {
+    width: 100vw;
+  }
 }

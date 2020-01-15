@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RestApiService } from './src/server/server/server';
+import {Project} from "./shared/project.model";
+
 
 @Component({
   selector: 'app-root',
@@ -18,5 +20,7 @@ export class AppComponent {
   //   this.restApi.getTest().subscribe((data)=>{
   //     console.log(data);
   //   })
-  // }
+  //
+  testProject: Project = new Project(1, "new project", "DESCRIPTION OF THE PROJECT THAT IS ALOT OF TEXT", "study", "category", new Date(), 1);
+
 }

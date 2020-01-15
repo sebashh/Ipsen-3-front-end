@@ -16,10 +16,10 @@
 <!--</div>-->
 
 <ng-sidebar-container>
-  <ng-sidebar [(opened)]="opened" [mode]="'slide'" [closeOnClickOutside]="true">
+  <ng-sidebar [(opened)]="opened" [mode]="'slide'" [closeOnClickOutside]="true" [position]="'left'">
     <mat-accordion @input() [multi]="true">
       <p class="searchCSS">Search</p>
-      <input type="text" class="form-control" placeholder="Search.."> <!--[(ngModel)]="searchValue")]--> <!--(input)="onUpdateSearch($event)"-->
+      <input type="text" class="form-control" placeholder="Search.." [(ngModel)]="searchValue"/>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -82,9 +82,14 @@
     </mat-accordion>
   </ng-sidebar>
   <div ng-sidebar-content>
-    <button (click)="toggleSidebar()" style="background-color: transparent">
+<!--    <app-topbar></app-topbar>-->
+    <button (click)="toggleSidebar()">
       Filter
     </button>
+    <div class="project-table">
+<app-project-item-view [searchValue]="searchValue"></app-project-item-view>
+    </div>
+<!--    <app-footer></app-footer>-->
   </div>
 </ng-sidebar-container>
 

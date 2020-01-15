@@ -1,0 +1,14 @@
+<a class="create">Create project</a>
+
+<create-project></create-project>
+<div class="content">
+  <button (click)="createProject()">add project</button>
+  <li *ngFor="let project of projects">
+    <app-project-view-card [project]="project"></app-project-view-card>
+  </li>
+</div>
+<!--<div class="content">-->
+<!--  <button (click)="createProject()">add project</button>-->
+<!--  <li *ngFor="let project of projects"><app-project-view-card [project]="project"></app-project-view-card> </li>-->
+<!--</div>-->
+
