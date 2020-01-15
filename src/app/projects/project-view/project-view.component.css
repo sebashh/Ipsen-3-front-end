@@ -1,0 +1,149 @@
+.content{
+  width: 60%;
+  margin: 50px auto auto;
+}
+
+.top{
+  display: flex;
+  height: 150px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.title{
+  width: 60%;
+  position: relative;
+  font-size: 2em;
+  text-align: center;
+}
+
+.title p{
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+
+.follow{
+  width: 50px;
+  position: relative;
+}
+
+.follow button{
+  position: absolute;
+  bottom: 0;
+}
+
+.client{
+  width: 150px;
+  height: 150px;
+  background-color: gray;
+}
+
+.description{
+  margin-top: 30px;
+}
+
+.papers{
+  width: 90%;
+  margin: 50px auto auto;
+
+}
+
+table{
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.paper_content{
+  background-color: #dddddd;
+
+}
+
+table:nth-child(even) {
+  background-color: white;
+}
+
+table:nth-child(even) td{
+  border: 1px solid #dddddd;
+}
+
+th{
+  text-align: center;
+}
+
+.header{
+
+}
+
+td{
+  border: 1px solid white;
+  text-align: left;
+  padding: 8px;
+}
+
+.paper_title{
+  width: 45%;
+}
+
+.paper_author{
+  width: 20%;
+}
+
+.paper_uploaded{
+  width: 20%;
+}
+
+.paper_date{
+  width: 15%;
+}
+
+.paper_content{
+  transition-duration: 0.3s;
+  height: 40px;
+}
+
+.upload{
+  height: 40px;
+  width: 20%;
+  margin-left: 80%;
+  margin-top: 50px;
+}
+
+.visable{
+  display: block;
+}
+
+app-upload{
+  transition-duration: 1s;
+  display: none;
+  position: absolute;
+  right: 0;
+  width: 20vw;
+  transform: translateX(500px);
+  top: 20vh
+}
+
+.uploading{
+
+  display: block;
+  transform: translateX(0);
+}
+
+.paper_content:hover{
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+span{
+  display: none;
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
+  color: #8e8e8e;
+}
+
+
+
