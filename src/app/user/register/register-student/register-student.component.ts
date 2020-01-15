@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {RestApiService} from '../../../src/server/server/server';
+import {Student} from '../../../shared/student.model';
 
 @Component({
   selector: 'app-register-student',
@@ -10,23 +12,16 @@ export class RegisterStudentComponent implements OnInit {
   interests = [];
   interest = '';
   interestInput: string;
-
-  private firstName: FormGroup;
-  private lastName: FormGroup;
+  private study: FormGroup;
   private email: FormGroup;
   private password: FormGroup;
-  private phoneNumber: FormGroup;
-  private education: FormGroup;
+  private student: Student;
 
-  constructor(formBuilder: FormBuilder) {
-    this.firstName = formBuilder.group({
-      currentFirstName: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
-
-    this.lastName = formBuilder.group({
-      currentLastName: new FormControl('',
-        Validators.compose([Validators.required]))
+  constructor(formBuilder: FormBuilder, public restApiService: RestApiService) {
+    this.study = formBuilder.group({
+      currentStudy: new FormControl('', [
+        Validators.required,
+      ])
     });
 
     this.email = formBuilder.group({
@@ -41,15 +36,6 @@ export class RegisterStudentComponent implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)]))
     });
 
-    this.phoneNumber = formBuilder.group({
-      currentPhoneNumber: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
-
-    this.education = formBuilder.group({
-      currentEducation: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
   }
 
   ngOnInit() {
@@ -60,6 +46,11 @@ export class RegisterStudentComponent implements OnInit {
     this.interest = event.target.value;
     this.interestInput = '';
     console.log(this.interests);
+  }
+
+  submitStudent() {
+    this.student = new Student(this.study.get('currentStudy').value, this.email.get('currentEmail').value, this.password.get('currentPassword').value);
+    this.restApiService.postResource('ipsen3users/student', this.student, 'text');
   }
 
 }

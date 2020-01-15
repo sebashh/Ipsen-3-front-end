@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Project} from "../../../shared/project.model";
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +67,7 @@ export class RestApiService {
         catchError(this.handleError)
       ).subscribe((data) => {
         return data;
-      })
+      });
 
   }
 }
