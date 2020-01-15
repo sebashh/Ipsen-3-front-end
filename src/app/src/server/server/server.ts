@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {Project} from '../../../shared/project.model';
@@ -11,6 +11,9 @@ import {ResponseContentType} from "@angular/http";
 })
 
 export class RestApiService {
+    get<T>(arg0: string): Observable<Project> {
+        throw new Error("Method not implemented.");
+    }
   private static instance: RestApiService;
   // Define API
   apiURL = 'http://localhost:8080/';
@@ -56,13 +59,22 @@ export class RestApiService {
 
 
 
-  //EXAMPLE
-  getTest(): Observable<string> {
-    return this.http.get(this.apiURL + 'ipsen3projects/test', {responseType: 'text'})
+  getProject(project_id: number): Observable<Project> {
+
+    return this.http.get<Project>(this.apiURL + 'ipsen3projects/project='+ project_id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
+  }
+
+  getAllMyProjects(client_id: number): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects='+ client_id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+
   }
 
 

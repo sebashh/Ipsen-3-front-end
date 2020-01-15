@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProjectViewCardComponent } from 'src/app/projects/project-view-card/project-view-card.component';
-import { MockProject } from './mockProject';
-
-
-export interface Tile {
-  text: string;
-}
+import { RestApiService } from 'src/app/src/server/server/server';
+import { Project } from 'src/app/shared/project.model';
 
 @Component({
   selector: 'app-client-my-projects',
@@ -15,24 +10,17 @@ export interface Tile {
 
 export class ClientMyProjectsComponent implements OnInit {
   
-  myProject = new MockProject;
-
-  project = new ProjectViewCardComponent;
-  constructor() { }
-
-  tiles: ProjectViewCardComponent[] = [];
+  allMyProjects = [];
+  constructor(public restApi: RestApiService) { }
   ngOnInit() {
-    this.filInTheTiles(4);
+    this.getAllProjects(2);
   }
 
-  addProject(){
-    this.tiles.push(this.project);
+  getAllProjects(client_id: number){
+    this.restApi.getAllMyProjects(client_id).subscribe((data)=>{
+      for(var i = 0; i < data.length; i++){
+        this.allMyProjects = data;
+      }
+    })
   }
-  filInTheTiles(amount){
-    for(var i = 0;i < amount; i++){
-      this.tiles.push(this.project);
-    }
-    console.log(this.tiles);
-  }
-  
 }
