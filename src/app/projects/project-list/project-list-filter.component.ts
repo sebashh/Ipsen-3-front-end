@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, /*Output, EventEmitter, Input*/} from '@angular/core';
 import {Paper} from '../../shared/paper.model';
-// import {ProjectModel} from '../../shared/project.model';
 
 @Component({
   selector: 'app-project-list-filter',

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {RestApiService} from '../../../src/server/server/server';
+import {Teacher} from '../../../shared/teacher.model';
 
 @Component({
   selector: 'app-register-teacher',
@@ -10,23 +12,16 @@ export class RegisterTeacherComponent implements OnInit {
   interests = [];
   interest = '';
   interestInput: string;
-
-  private firstName: FormGroup;
-  private lastName: FormGroup;
   private email: FormGroup;
   private password: FormGroup;
-  private phoneNumber: FormGroup;
-  private education: FormGroup;
+  private study: FormGroup;
+  private teacher: Teacher;
 
-  constructor(formBuilder: FormBuilder) {
-    this.firstName = formBuilder.group({
-      currentFirstName: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
-
-    this.lastName = formBuilder.group({
-      currentLastName: new FormControl('',
-        Validators.compose([Validators.required]))
+  constructor(formBuilder: FormBuilder, public restApiService: RestApiService) {
+    this.study = formBuilder.group({
+      currentStudy: new FormControl('', [
+        Validators.required
+      ])
     });
 
     this.email = formBuilder.group({
@@ -41,15 +36,7 @@ export class RegisterTeacherComponent implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)]))
     });
 
-    this.phoneNumber = formBuilder.group({
-      currentPhoneNumber: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
 
-    this.education = formBuilder.group({
-      currentEducation: new FormControl('',
-        Validators.compose([Validators.required]))
-    });
   }
 
   ngOnInit() {
@@ -62,4 +49,8 @@ export class RegisterTeacherComponent implements OnInit {
     console.log(this.interests);
   }
 
+  submitTeacher() {
+    this.teacher = new Teacher(this.study.get('currentStudy').value, this.email.get('currentEmail').value, this.password.get('currentPassword').value);
+    this.restApiService.postResource('ipsen3users/teacher', this.teacher, 'text');
+  }
 }

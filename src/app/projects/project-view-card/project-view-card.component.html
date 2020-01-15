@@ -1,21 +1,21 @@
 <div class="content">
   <div class="top">
     <div [ngClass]="'titleRow row'">
-      <label class="title">Title - {{title}}</label>
+      <label class="title">Title - {{project.title}}</label>
       <div class="category">
-        <label>Category - {{category}}</label>
+        <label>Category - {{project.category}}</label>
       </div>
     </div>
     <div [ngClass]="'studyRow row'">
-      <label class="study">Study - {{study}}</label>
+      <label class="study">Study - {{project.study}}</label>
     </div>
     <div [ngClass]="'descriptionRow row'">
-      <label class="description">Description - {{description}}</label>
+      <label class="description">Summary - {{project.summary}}</label>
     </div>
   </div>
   <div [ngClass]="'bottom'" >
     <div [ngClass]="'dateRow row'" >
-      <label class="upload-date">Uploaded on {{createdOn}}</label>
+      <label class="upload-date">Uploaded on {{project.createdOn}}</label>
     </div>
   </div>
 </div>

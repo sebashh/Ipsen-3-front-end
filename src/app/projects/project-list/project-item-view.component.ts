@@ -14,7 +14,7 @@ export class ProjectItemViewComponent implements OnInit {
   title: string;
   author: string;
   pdfLocation: string;
-  projectId: number;
+  paperId: number;
 
   pageOfItems: Array<any>;
 
@@ -27,8 +27,8 @@ export class ProjectItemViewComponent implements OnInit {
 
       this.title = this.paper[0].title,
         this.author = this.paper[0].author,
-        this.pdfLocation = this.paper[0].pdf_location,
-        this.projectId = this.paper[2].project_id;
+        this.pdfLocation = this.paper[0].paperFile,
+        this.paperId = this.paper[2].id;
     });
 
   }
