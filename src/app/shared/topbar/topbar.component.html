@@ -13,7 +13,7 @@
     <a routerLink="userProfile">
       <mat-icon>face</mat-icon>
     </a>
-    <a routerLink="notifications">
+    <a (click)="toggleNotifications()">
       <mat-icon>notification_important</mat-icon>
     </a>
     <a class="icon" (click)="responsiveLogOut()">
@@ -41,4 +41,7 @@
     <a routerLink="projects">Projects</a>
     <a routerLink="archive">Archive</a>
   </div>
+
 </nav>
+<app-notification [showing]="notificationVisable"></app-notification>
+

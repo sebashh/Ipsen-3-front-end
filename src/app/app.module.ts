@@ -36,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from "ngx-select-dropdown";
 import {ProjectViewComponent} from "./projects/project-view/project-view.component";
+import {NotificationService} from "./shared/notification.service";
 
 export const routes: Routes = [
   { path: 'home', component: PaperListComponent},
@@ -97,7 +98,7 @@ export const routes: Routes = [
   ],
 
 
-  providers: [LoginService, RegisterService],
+  providers: [LoginService, RegisterService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

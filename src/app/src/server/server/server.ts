@@ -89,4 +89,11 @@ export class RestApiService {
       catchError(this.handleError)
     );
   }
+
+  getNewNotifications() {
+    return this.http.get(this.apiURL + 'user=1/notifications').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
 }

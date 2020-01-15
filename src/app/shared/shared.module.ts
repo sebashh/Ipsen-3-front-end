@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NotificationComponent } from './topbar/notification/notification.component';
 
 
 
@@ -8,6 +9,8 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   exports: [
-  ]
+    NotificationComponent
+  ],
+  declarations: [NotificationComponent]
 })
 export class SharedModule { }
