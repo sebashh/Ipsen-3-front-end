@@ -7,10 +7,11 @@ export class Paper {
     public uploadedBy ? :  Number,
     public uploadDate ? : Date,
     public paperFile ? : String,
+    public id ? : number,
   ){}
 
 
-  public getData(){
+  public getPaperData(){
     return {
       projectId : this.projectId,
       title : this.title,

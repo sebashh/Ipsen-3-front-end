@@ -2,12 +2,10 @@
   display: inline-block;
   text-align: center;
   max-width: 100%;
+  border: solid 2px rgb(109, 190, 179);
+  border-radius: 5%;
   overflow-y: hidden;
   background-color: white;
-}
-
-.container{
-  padding: 0;
 }
 
 #paperElementName {
@@ -42,18 +40,12 @@
 }
 
 #paperSubmitButton {
-  background-color: rgb(255, 255, 255);
+  background-color:rgb(109, 190, 179);
   color: black;
-  width: 60%;
 }
 
 #paperSubmitButton:hover {
   background-color: lightblue;
-}
-
-input[type=file]{
-  padding: 0;
-  margin: auto;
 }
 
 input[type=submit] {
@@ -91,10 +83,6 @@ input[type=text] {
   font-size: 95%;
 }
 
-#paperFileSelect{
-  width: 80%;
-}
-
 #paperFileSelectLabel:hover span {
   display: block;
   text-align: center;
@@ -103,8 +91,8 @@ input[type=text] {
 }
 
 .mat-expansion-panel{
-  border: solid 1px gray;
-  width:22%;
+  border: solid 2px gray;
+  width:20%;
   background-color: white;
 }
 
@@ -114,8 +102,6 @@ input[type=text] {
   text-overflow: ellipsis;
   overflow-x: hidden;
 }
-
-
 
 .preventClick {
   pointer-events: none;
@@ -140,4 +126,3 @@ input[type=text] {
   border-color: rgb(201, 81, 75);
   background-color:  rgba(201, 81, 75, 0.1);
 }
-
