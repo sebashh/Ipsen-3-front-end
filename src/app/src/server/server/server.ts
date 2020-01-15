@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {Project} from '../../../shared/project.model';
+import {Statistics} from "../../../shared/statistics.model";
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,24 @@ export class RestApiService {
           catchError(this.handleError)
         )
     }
+
+    getStatistics() : Observable<Statistics>{
+      return this.http.get<Statistics>(this.apiURL + 'statistics/getall')
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        )
+    }
+
+  getTopPopularProjects() : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'statistics/topprojects')
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+
 
   //EXAMPLE
   getTest(): Observable<string> {

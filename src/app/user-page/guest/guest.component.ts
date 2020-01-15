@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Statistics} from "../../shared/statistics.model";
+import {RestApiService} from "../../src/server/server/server";
 
 @Component({
   selector: 'app-guest',
@@ -7,15 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestComponent implements OnInit {
 
-  constructor() { }
-    maxProjects = 10;
-    projectAmount = 212;
-    userAmount = 533;
-    studentAmount = 312;
-    teacherAmount = 88;
-    clientAmount = 133;
+  statistics: Statistics
+
+  constructor(public restApi: RestApiService) { }
+    projectAmount : number;
+    userAmount : number;
+    studentAmount : number;
+    teacherAmount : number;
+    clientAmount : number;
 
     ngOnInit() {
+      this.getStatistics()
+
+    }
+
+    getStatistics() : void {
+      this.restApi.getStatistics().subscribe((data)=>{
+        this.statistics= data;
+        console.log("data: ", data)
+        console.log("statistics: ", data)
+        this.setStatistics()
+      })
+
+    }
+
+    setStatistics() : void {
+        this.projectAmount = this.statistics.projectAmount;
+        this.userAmount = this.statistics.userAmount;
+        this.studentAmount = this.statistics.studentAmount;
+        this.teacherAmount = this.statistics.teacherAmount;
+        this.clientAmount = this.statistics.clientAmount;
     }
 
 }

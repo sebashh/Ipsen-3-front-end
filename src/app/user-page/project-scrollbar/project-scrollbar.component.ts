@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from '../../shared/project.model';
+import {RestApiService} from "../../src/server/server/server";
 
 @Component({
   selector: 'app-scrollbar',
@@ -8,16 +9,16 @@ import {Project} from '../../shared/project.model';
 })
 export class ProjectScrollbarComponent implements OnInit {
 
-  projects: Project[] = [];
-  constructor() {
+  projects: Array<Project> = [];
+  constructor(public restApi: RestApiService) {
   }
 
   ngOnInit() {
-    this.projects.push(new Project(1, 'title1', 'description', 'study', 'category', new Date(), 1));
-    this.projects.push(new Project(1, 'title2', 'description', 'study', 'category', new Date(), 1));
-    this.projects.push(new Project(1, 'title3', 'description', 'study', 'category', new Date(), 1));
-    this.projects.push(new Project(1, 'title4', 'description', 'study', 'category', new Date(), 1));
-    this.projects.push(new Project(1, 'title5', 'description', 'study', 'category', new Date(), 1));
+    this.restApi.getTopPopularProjects().subscribe((data)=>{
+      this.projects = data;
+      console.log("data: ", data)
+      console.log("statistics: ", data)
+    })
   }
 
 }
