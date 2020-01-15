@@ -38,8 +38,9 @@ import {SelectDropDownModule} from "ngx-select-dropdown";
 import {ProjectViewComponent} from "./projects/project-view/project-view.component";
 
 export const routes: Routes = [
-  { path: 'home', component: PaperListComponent},
-  { path: 'projects', component: ClientComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', component: GuestComponent},
+  { path: 'projects', component: ClientMyProjectsComponent},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: PaperItemComponent },
