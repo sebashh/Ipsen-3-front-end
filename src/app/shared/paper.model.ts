@@ -5,7 +5,7 @@ export class Paper {
     public title ? : String,
     public author ? : String,
     public uploadedBy ? :  Number,
-    public uploadDate ? : String,
+    public uploadDate ? : Date,
     public paperFile ? : String,
   ){}
 
