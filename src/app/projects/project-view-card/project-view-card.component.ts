@@ -27,14 +27,8 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
     this.summary = this.project.summary;
     this.study = this.project.study;
     this.category = this.project.category;
-    this.createdOn = this.convertUnixToDate(this.project.createdOn);
   }
 
-  convertUnixToDate(date: any){
-    var myDate = new Date(date*1000);
-    console.log(myDate.toLocaleString());
-    return myDate.toLocaleString();
-  }
   ngAfterViewInit() {
     this.state = 'loaded';
   }

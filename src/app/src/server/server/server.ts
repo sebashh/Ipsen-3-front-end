@@ -39,26 +39,24 @@ export class RestApiService {
         )
     }
 
-  //EXAMPLE
-  getTest(): Observable<string> {
-    return this.http.get(this.apiURL + 'ipsen3projects/test', {responseType: 'text'})
+  getProject(project_id: number): Observable<Project> {
+
+    return this.http.get<Project>(this.apiURL + 'ipsen3projects/project='+ project_id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  getMyProject(client_id: number): Observable<Project> {
-    const id = client_id.toString();
-    const options = client_id ?
-   { params: new HttpParams().set('id', id) } : {};
-
-    return this.http.get<Project>(this.apiURL + 'ipsen3projects/project', options)
+  getAllMyProjects(client_id: number): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects='+ client_id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
+
   }
+  
 
   // Error handling
   handleError(error) {
