@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {Project} from '../../../shared/project.model';
@@ -9,6 +9,9 @@ import {Project} from '../../../shared/project.model';
 })
 
 export class RestApiService {
+    get<T>(arg0: string): Observable<Project> {
+        throw new Error("Method not implemented.");
+    }
   private static instance: RestApiService;
   // Define API
   apiURL = 'http://localhost:8080/';
@@ -45,6 +48,17 @@ export class RestApiService {
     )
   }
 
+  getMyProject(client_id: number): Observable<Project> {
+    const id = client_id.toString();
+    const options = client_id ?
+   { params: new HttpParams().set('id', id) } : {};
+
+    return this.http.get<Project>(this.apiURL + 'ipsen3projects/project', options)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
   // Error handling
   handleError(error) {

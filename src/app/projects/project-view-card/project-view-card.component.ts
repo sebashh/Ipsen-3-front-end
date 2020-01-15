@@ -14,23 +14,27 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
 
   state:string = 'start';
   title : String;
-  description : String;
+  summary : String;
   study : String;
   category : String;
   createdOn : String;
-  constructor() {
+    constructor() {
 
   }
 
   ngOnInit() {
-    // this.title = this.project.getData().title;
-    // this.description = this.project.getData().description;
-    // this.study = this.project.getData().study;
-    // this.category = this.project.getData().category;
-    // this.createdOn = this.project.getData().createdOn.toDateString();
+    this.title = this.project.title;
+    this.summary = this.project.summary;
+    this.study = this.project.study;
+    this.category = this.project.category;
+    this.createdOn = this.convertUnixToDate(this.project.createdOn);
   }
 
-
+  convertUnixToDate(date: any){
+    var myDate = new Date(date*1000);
+    console.log(myDate.toLocaleString());
+    return myDate.toLocaleString();
+  }
   ngAfterViewInit() {
     this.state = 'loaded';
   }

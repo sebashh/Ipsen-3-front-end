@@ -38,7 +38,7 @@ import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-s
 
 export const routes: Routes = [
   { path: 'home', component: PaperListComponent},
-  { path: 'projects', component: ClientComponent},
+  { path: 'projects', component: ClientMyProjectsComponent},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: PaperItemComponent },

@@ -10,12 +10,12 @@
       <label class="study">Study - {{study}}</label>
     </div>
     <div [ngClass]="'descriptionRow row'">
-      <label class="description">Description - {{description}}</label>
+      <label class="description">Summary - {{summary}}</label>
     </div>
   </div>
   <div [ngClass]="'bottom'" >
     <div [ngClass]="'dateRow row'" >
-      <label class="upload-date">Uploaded on {{createdOn}}</label>
+      <label class="upload-date">Uploaded on {{createdOn * 1000 | date:'MM-dd-yyyy'}}</label>
     </div>
   </div>
 </div>

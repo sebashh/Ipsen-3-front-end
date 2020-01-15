@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectViewCardComponent } from 'src/app/projects/project-view-card/project-view-card.component';
 import { MockProject } from './mockProject';
+import { RestApiService } from 'src/app/src/server/server/server';
+import { Project } from 'src/app/shared/project.model';
 
 
 export interface Tile {
@@ -14,18 +16,24 @@ export interface Tile {
 })
 
 export class ClientMyProjectsComponent implements OnInit {
-  
-  myProject = new MockProject;
 
+  myProject = new Project();
   project = new ProjectViewCardComponent;
-  constructor() { }
+  constructor(public restApi: RestApiService) { }
 
   tiles: ProjectViewCardComponent[] = [];
   ngOnInit() {
-    this.filInTheTiles(4);
+    
+    this.restApi.getMyProject(2).subscribe((data)=>{
+        this.myProject = data;
+        console.log("data: ", data)
+        console.log("myProject: ", data)
+        this.tiles.push(this.project);
+        })
   }
 
   addProject(){
+
     this.tiles.push(this.project);
   }
   filInTheTiles(amount){
