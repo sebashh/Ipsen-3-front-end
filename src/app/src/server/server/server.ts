@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {Project} from '../../../shared/project.model';
 import {Statistics} from "../../../shared/statistics.model";
+import {ResponseContentType} from "@angular/http";
 
 @Injectable({
   providedIn: 'root'
@@ -94,4 +95,17 @@ export class RestApiService {
 
     }
 
+  getPapersOfProject(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'paper/project=' + projectId).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  downloadPDF(url): Observable<any>{
+    return this.http.get(this.apiURL + 'paper/pdf=' + url, {responseType: "blob"}).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
 }

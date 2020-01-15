@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectViewCardComponent } from 'src/app/projects/project-view-card/project-view-card.component';
+import { MockProject } from './mockProject';
+
 
 export interface Tile {
   text: string;
@@ -12,13 +14,15 @@ export interface Tile {
 })
 
 export class ClientMyProjectsComponent implements OnInit {
+  
+  myProject = new MockProject;
 
   project = new ProjectViewCardComponent;
   constructor() { }
 
   tiles: ProjectViewCardComponent[] = [];
   ngOnInit() {
-    this.filInTheTiles(3);
+    this.filInTheTiles(4);
   }
 
   addProject(){

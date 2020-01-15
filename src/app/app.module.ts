@@ -7,7 +7,6 @@ import { StudentComponent } from './user-page/student/student.component';
 import { TeacherComponent } from './user-page/teacher/teacher.component';
 import { GuestComponent } from './user-page/guest/guest.component';
 import { AdminComponent } from './user-page/admin/admin.component';
-import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProjectListFilterComponent } from './projects/project-list/project-list-filter.component';
@@ -35,10 +34,12 @@ import {ProjectsModule} from './projects/projects.module';
 import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
+import {SelectDropDownModule} from "ngx-select-dropdown";
+import {ProjectViewComponent} from "./projects/project-view/project-view.component";
 
 export const routes: Routes = [
   { path: 'home', component: PaperListComponent},
-  { path: 'projects', component: ProjectListFilterComponent},
+  { path: 'projects', component: ClientComponent},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: PaperItemComponent },
@@ -69,7 +70,8 @@ export const routes: Routes = [
     ProjectScrollbarComponent,
     ClientComponent,
     ClientMyProjectsComponent,
-    ProjectViewCardComponent
+    ProjectViewCardComponent,
+    ProjectViewComponent
   ],
   imports: [
     HttpClientModule,

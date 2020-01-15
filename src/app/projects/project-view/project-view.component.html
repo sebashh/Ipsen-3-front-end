@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="top">
+    <div class="title"><p>TITLE OF PROJECT</p></div>
+    <div class="follow"><button>follow</button></div>
+    <div class="client">
+    </div>
+  </div>
+  <div class="description">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisl lorem, sagittis eget velit id, rhoncus consectetur nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed faucibus ante eu posuere vulputate. Proin ultricies a sem sed ornare. Vivamus mauris leo, ullamcorper et nunc non, venenatis dictum tortor. Aenean at mauris arcu. Ut at risus congue, dapibus nunc vitae, bibendum nulla.
+    </p>
+  </div>
+  <div class="papers">
+    <table>
+      <tr class="header">
+        <th class="paper_title">Title</th>
+        <th class="paper_author">Author</th>
+        <th class="paper_uploaded">Uploaded by</th>
+        <th class="paper_date">Upload date</th>
+      </tr>
+      <span [ngClass]="{visable: hasContent}">no papers uploaded yet</span>
+      <tr (click)="showPaper(paper.paperFile)" class="paper_content" *ngFor="let paper of papers">
+        <td class="paper_title">{{paper.title}}</td>
+        <td class="paper_author">{{paper.author}}</td>
+        <td class="paper_uploaded">{{paper.uploadedBy}}</td>
+        <td class="paper_date">{{formatDate(paper.uploadDate)}}</td>
+      </tr>
+
+    </table>
+    <button (click)="toggleUpload()" class="upload">upload paper</button>
+
+  </div>
+
+</div>
+<app-upload [ngClass]="{'uploading':uploading}"></app-upload>
