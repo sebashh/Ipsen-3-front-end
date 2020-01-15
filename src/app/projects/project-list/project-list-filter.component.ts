@@ -2,11 +2,11 @@ import { Component, OnInit, /*Output, EventEmitter, Input*/ } from '@angular/cor
 // import {ProjectModel} from '../../shared/project.model';
 
 @Component({
-  selector: 'app-project-list',
-  templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.css']
+  selector: 'app-project-list-filter',
+  templateUrl: './project-list-filter.component.html',
+  styleUrls: ['./project-list-filter.component.css']
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListFilterComponent implements OnInit {
   opened = false;
   textOnIcon = 'Filter';
   // public ItemName: ProjectModel;

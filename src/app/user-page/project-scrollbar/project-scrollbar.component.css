@@ -1,16 +1,18 @@
-.horizontal-scrollable > .row {
+.testimonial-group > .row {
   overflow-x: auto;
   white-space: nowrap;
 }
-
-.horizontal-scrollable > .row > .col-xs-4 {
+.testimonial-group > .row > .col-xs-4 {
   display: inline-block;
   float: none;
 }
 
 .col-xs-4 {
-  font-size: 24px;
-  padding-bottom: 20px;
-  padding-top: 18px;
+  font-size: 20px;
 }
+
+h3 {
+  font-size: 12px;
+}
+
 

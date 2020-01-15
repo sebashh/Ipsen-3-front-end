@@ -4,6 +4,14 @@
   text-align: center;
 }
 
+@media (max-width: 767px) {
+  #paperContainer {
+    height: 80%;
+    width: 110%;
+    margin-left: -5%;
+  }
+}
+
 
 #paperScrollContainer{
   border: solid 2px black;
@@ -33,6 +41,12 @@ li {
   padding-left: 3%;
 }
 
+@media (max-width: 767px) {
+  li {
+    width: 400%;
+  }
+}
+
 p {
   font-weight: bold;
   font-size: 150%;
@@ -44,4 +58,3 @@ button {
   background-color:rgb(109, 190, 179);
   color: black;
 }
-

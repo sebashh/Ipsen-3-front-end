@@ -1,7 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit, } from '@angular/core';
-import {Project} from "../../shared/project.model";
-import{ trigger, state, style, transition, animate, keyframes} from '@angular/animations'
-
+import {Project} from '../../shared/project.model';
 
 @Component({
   selector: 'app-project-view-card',
@@ -13,25 +11,19 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   project : Project;
 
   state:string = 'start';
-  title : String;
-  description : String;
-  study : String;
-  category : String;
-  createdOn : String;
-  constructor() {
+  
+    constructor() {
 
   }
 
   ngOnInit() {
-    this.title = this.project.getData().title;
-    this.description = this.project.getData().description;
-    this.study = this.project.getData().study;
-    this.category = this.project.getData().category;
-    this.createdOn = this.project.getData().createdOn.toDateString();
+    // this.title = this.project.title;
+    // this.summary = this.project.summary;
+    // this.study = this.project.study;
+    // this.category = this.project.category;
   }
 
-
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.state = 'loaded';
   }
 }

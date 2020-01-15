@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { MatExpansionPanel } from '@angular/material';
+import {Paper} from "../../shared/paper.model";
+import {RestApiService } from "../../src/server/server/server";
 
 
 let uniqueId = 0;
@@ -16,22 +18,24 @@ export class FormComponent implements OnInit {
 
   @Input() paperObject: any;
 
+  paper : Paper;
+
   title: string;
   author: string;
   paperFile: File;
   paperFileName: string;
   labelText : string;
   paperTitle: string;
+  paperFileString: any;
 
   @ViewChild('panel1',{static: false}) firstPanel: MatExpansionPanel;
 
   @ViewChild('paperFileSelectElement',{static: false}) paperFileSelectElement;
 
 
-
   public forcedState = false;
 
-  constructor() {
+  constructor(public restApi: RestApiService) {
     this.labelText = "No file";
     this.paperTitle = "Paper details";
   }
@@ -49,6 +53,7 @@ export class FormComponent implements OnInit {
       this.author = form.controls['author'].value;
       this.paperTitle = form.controls['title'].value;
       this.toggleFirstPanel();
+      this.uploadPaper();
     }
   }
 
@@ -58,10 +63,29 @@ export class FormComponent implements OnInit {
     this.labelText = event.target.files[0].name;
     this.paperFile = event.target.files[0];
     this.paperFileName = event.target.files[0].name;
+    this.convertFile(event.target);
   }
 
-   toggleFirstPanel(){
+   toggleFirstPanel() : void{
       this.firstPanel.toggle();
     }
+
+  convertFile(e) : void{
+    var myReader = new FileReader();
+     myReader.onloadend = (e) => {
+     this.paperFileString = myReader.result;
+    }
+    myReader.readAsDataURL(this.paperFile);
+  }
+
+   uploadPaper() :void {
+     this.paper = new Paper(null, this.title, this.author, 4,null, this.paperFileString);
+     console.log(this.restApi.postResource("paper/upload", this.paper, 'application/json'));
+   }
+
+
+
+
+
 
 }

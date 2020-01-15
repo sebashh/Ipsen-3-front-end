@@ -9,14 +9,15 @@ import { GuestComponent } from './user-page/guest/guest.component';
 import { AdminComponent } from './user-page/admin/admin.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { ProjectListFilterComponent } from './projects/project-list/project-list-filter.component';
+import { ProjectViewCardComponent} from './projects/project-view-card/project-view-card.component';
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
 import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.component';
 import {LoginService} from './user/login/login.service';
 import {RegisterService} from './user/register/register.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -26,16 +27,23 @@ import { UploadComponent } from './upload/upload.component';
 import { FormComponent } from './upload/form/form.component';
 import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
+import {ClientComponent} from './user-page/client/client.component';
+import {UserPageModule} from './user-page/user-page.module';
 import { RouterModule, Routes } from '@angular/router';
+import {ProjectsModule} from './projects/projects.module';
+import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
+import {SelectDropDownModule} from "ngx-select-dropdown";
+import {ProjectViewComponent} from "./projects/project-view/project-view.component";
 
 export const routes: Routes = [
-  { path: 'home', component: PaperListComponent},
-  { path: 'projects', component: ProjectListComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', component: GuestComponent},
+  { path: 'projects', component: ClientMyProjectsComponent},
   { path: 'about', component: PaperListComponent },
-  { path: 'archive', component: ProjectListComponent },
-  { path: 'register', component: PaperItemComponent }
+  { path: 'archive', component: ProjectListFilterComponent },
+  { path: 'register', component: PaperItemComponent },
 ];
 
 @NgModule({
@@ -49,10 +57,9 @@ export const routes: Routes = [
     AdminComponent,
     LoginComponent,
     RegisterComponent,
-    ProjectListComponent,
+    ProjectListFilterComponent,
     ProjectItemComponent,
     PaperListComponent,
-    PaperItemComponent,
     PaperItemComponent,
     RegisterStudentComponent,
     RegisterClientComponent,
@@ -61,25 +68,36 @@ export const routes: Routes = [
     FormComponent,
     UploadlistComponent,
     RegisterTeacherComponent,
-    ProjectScrollbarComponent
+    ProjectScrollbarComponent,
+    ClientComponent,
+    ClientMyProjectsComponent,
+    ProjectViewCardComponent,
+    ProjectViewComponent
   ],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        MatCheckboxModule,
-        MatExpansionModule,
-        MatSelectModule,
-        SharedModule,
-        SidebarModule.forRoot(),
-        MatIconModule,
-        MatButtonModule,
-        BrowserAnimationsModule,
-        MatCheckboxModule,
-        RouterModule.forRoot(routes),
-        ReactiveFormsModule
-    ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    SelectDropDownModule,
+    MatSelectModule,
+    SharedModule,
+    SidebarModule.forRoot(),
+    MatIconModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    UserPageModule,
+    ProjectsModule,
+    MatGridListModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+
+  ],
+
+
   providers: [LoginService, RegisterService],
   bootstrap: [AppComponent]
 })
