@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" (click)="setCurretProject()" routerLink="/projectPage">
   <div class="top">
     <div [ngClass]="'titleRow row'">
       <label class="title">Title - {{project.title}}</label>
@@ -10,7 +10,7 @@
       <label class="study">Study - {{project.study}}</label>
     </div>
     <div [ngClass]="'descriptionRow row'">
-      <label class="description">Summary - {{project.summary}}</label>
+      <label class="description">Description - {{project.description}}</label>
     </div>
   </div>
   <div [ngClass]="'bottom'" >
