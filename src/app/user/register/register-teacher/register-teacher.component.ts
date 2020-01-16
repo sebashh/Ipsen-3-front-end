@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {RestApiService} from '../../../src/server/server/server';
-import {Teacher} from '../../../shared/teacher.model';
+import {Teacher} from '../../../shared/Models/teacher.model';
+import {RestApiService} from "../../../shared/Services/api-service";
 
 @Component({
   selector: 'app-register-teacher',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Statistics} from "../../shared/statistics.model";
-import {RestApiService} from "../../src/server/server/server";
+import {Statistics} from "../../shared/Models/statistics.model";
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-guest',

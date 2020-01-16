@@ -1,6 +1,6 @@
 import {Component, OnInit, ElementRef, ViewChild, ViewChildren, QueryList} from '@angular/core';
 import {FormComponent} from '../form/form.component';
-import {RestApiService } from "../../src/server/server/server";
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-uploadlist',

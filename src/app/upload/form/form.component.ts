@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { MatExpansionPanel } from '@angular/material';
-import {Paper} from "../../shared/paper.model";
-import {RestApiService } from "../../src/server/server/server";
+import {Paper} from "../../shared/Models/paper.model";
+import {RestApiService} from "../../shared/Services/api-service";
 
 
 let uniqueId = 0;

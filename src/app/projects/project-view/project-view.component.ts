@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Paper} from "../../shared/paper.model";
-import {RestApiService} from "../../src/server/server/server";
-import {Project} from "../../shared/project.model";
-import {ProjectService} from '../../shared/project.service';
+import {Paper} from "../../shared/Models/paper.model";
+import {Project} from "../../shared/Models/project.model";
 import {log} from 'util';
+import {ProjectService} from "../../shared/Services/project.service";
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-project-view',
@@ -21,7 +21,7 @@ export class ProjectViewComponent implements OnInit {
 
   constructor(private apiService: RestApiService, private projectService: ProjectService) {
     this.projectService.fire.subscribe(item => {
-
+      console.log(item)
     });
 
   }

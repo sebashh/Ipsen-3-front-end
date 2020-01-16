@@ -38,7 +38,7 @@ import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
-import {ProjectService} from './shared/project.service';
+import {ProjectService} from './shared/Services/project.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},

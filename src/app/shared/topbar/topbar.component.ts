@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {RestApiService} from '../../src/server/server/server';
-import {LoginModel} from '../login.model';
+import {LoginModel} from '../Models/login.model';
 import {log} from 'util';
+import {RestApiService} from "../Services/api-service";
 
 @Component({
   selector: 'app-topbar',
