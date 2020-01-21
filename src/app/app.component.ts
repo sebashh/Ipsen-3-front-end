@@ -14,13 +14,6 @@ export class AppComponent {
   constructor(
     public restApi: RestApiService
   ) { }
-
-  // EXAMPLE
-  // HelloWorld() {
-  //   this.restApi.getTest().subscribe((data)=>{
-  //     console.log(data);
-  //   })
-  //
   testProject: Project = new Project(1, "new project", "DESCRIPTION OF THE PROJECT THAT IS ALOT OF TEXT", "study", "category", new Date(), 1);
 
 }
