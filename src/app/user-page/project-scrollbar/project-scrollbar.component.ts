@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Project} from '../../shared/project.model';
-import {RestApiService} from "../../src/server/server/server";
+import {Project} from '../../shared/Models/project.model';
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-scrollbar',

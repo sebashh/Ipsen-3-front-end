@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {RestApiService} from '../../src/server/server/server';
-import {LoginModel} from '../login.model';
+import {LoginModel} from '../Models/login.model';
 import {log} from 'util';
+import {RestApiService} from "../Services/api-service";
 
 @Component({
   selector: 'app-topbar',
@@ -62,9 +62,9 @@ export class TopbarComponent implements OnInit {
 
   logIn() {
     this.isUserLoggedIn = true;
-    log(this.email);
-    this.loginModel = new LoginModel(this.email, this.password);
-    console.log(this.restApi.postResource('authentication/auth', this.loginModel, 'any'));
+    // log(this.email);
+    // this.loginModel = new LoginModel(this.email, this.password);
+    // console.log(this.restApi.postResource('authentication/auth', this.loginModel, 'any'));
   }
 
   logOut() {

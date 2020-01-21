@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { MatExpansionPanel } from '@angular/material';
-import {Paper} from "../../shared/paper.model";
-import {RestApiService } from "../../src/server/server/server";
+import {Paper} from "../../shared/Models/paper.model";
+import {RestApiService} from "../../shared/Services/api-service";
 
 
 let uniqueId = 0;
@@ -79,7 +79,7 @@ export class FormComponent implements OnInit {
   }
 
    uploadPaper() :void {
-     this.paper = new Paper(null, this.title, this.author, 4,null, this.paperFileString);
+     this.paper = new Paper(1, this.title, this.author, 4,null, this.paperFileString);
      console.log(this.restApi.postResource("paper/upload", this.paper, 'application/json'));
    }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RestApiService } from 'src/app/src/server/server/server';
-import { Project } from 'src/app/shared/project.model';
+import { Project } from 'src/app/shared/Models/project.model';
+import {RestApiService} from "../../../shared/Services/api-service";
 
 @Component({
   selector: 'app-client-my-projects',
@@ -9,7 +9,7 @@ import { Project } from 'src/app/shared/project.model';
 })
 
 export class ClientMyProjectsComponent implements OnInit {
-  
+
   allMyProjects = [];
   constructor(public restApi: RestApiService) { }
   ngOnInit() {

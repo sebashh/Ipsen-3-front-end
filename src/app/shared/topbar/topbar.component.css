@@ -60,6 +60,10 @@ nav {
   background-color: white;
 }
 
+input {
+  color: #000;
+}
+
 @media screen and (max-width: 600px) {
   .topnav a {
     display: none;

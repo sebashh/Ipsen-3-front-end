@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Paper} from "../../shared/paper.model";
-import {RestApiService} from "../../src/server/server/server";
-import {Project} from "../../shared/project.model";
+import {Paper} from "../../shared/Models/paper.model";
+import {Project} from "../../shared/Models/project.model";
+import {log} from 'util';
+import {ProjectService} from "../../shared/Services/project.service";
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-project-view',
@@ -9,24 +11,29 @@ import {Project} from "../../shared/project.model";
   styleUrls: ['./project-view.component.css']
 })
 export class ProjectViewComponent implements OnInit {
-  @Input()
-  project: Project;
+
+  project: Project = new Project(1, 'titel of project', 'summary of project', 'Informatica', 'Programming', new Date());
 
   papers: Paper[] = [];
 
   uploading: boolean = false;
   hasContent: boolean = false;
 
-  constructor(private apiService: RestApiService) { }
+  constructor(private apiService: RestApiService, private projectService: ProjectService) {
+    this.projectService.fire.subscribe(item => {
+      console.log(item)
+    });
+
+  }
 
   ngOnInit() {
     this.apiService.getPapersOfProject(this.project.projectId).subscribe((data) => {
       this.papers = data;
       this.hasContent = this.papers.length == 0;
     });
+    }
 
 
-  }
 
   toggleUpload() {
     this.uploading = !this.uploading;

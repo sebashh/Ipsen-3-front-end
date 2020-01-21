@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, } from '@angular/core';
-import {Project} from '../../shared/project.model';
+import {Project} from '../../shared/Models/project.model';
+import {ProjectService} from '../../shared/Services/project.service';
+import {log} from 'util';
 
 @Component({
   selector: 'app-project-view-card',
@@ -11,8 +13,8 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
   project : Project;
 
   state:string = 'start';
-  
-    constructor() {
+
+    constructor(private projectService: ProjectService) {
 
   }
 
@@ -25,5 +27,10 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.state = 'loaded';
+  }
+
+  setCurretProject() {
+      log("setting the new project");
+    this.projectService.changeCurrentProject(this.project);
   }
 }

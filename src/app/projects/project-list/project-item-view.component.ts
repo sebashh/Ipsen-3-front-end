@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {Paper} from '../../shared/paper.model';
-import {RestApiService} from '../../src/server/server/server';
+import {Paper} from '../../shared/Models/paper.model';
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-project-item-view',

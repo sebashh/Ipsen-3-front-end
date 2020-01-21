@@ -38,6 +38,7 @@ import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
+import {ProjectService} from './shared/Services/project.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -45,7 +46,11 @@ export const routes: Routes = [
   { path: 'projects', component: ClientMyProjectsComponent},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
-  { path: 'register', component: PaperItemComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'register/clientRegister', component: RegisterClientComponent},
+  { path: 'register/studentRegister', component: RegisterStudentComponent},
+  { path: 'register/teacherRegister', component: RegisterTeacherComponent},
+  { path: 'projectPage', component: ProjectViewComponent},
 ];
 
 @NgModule({
@@ -99,7 +104,7 @@ export const routes: Routes = [
   ],
 
 
-  providers: [LoginService, RegisterService],
+  providers: [LoginService, RegisterService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
