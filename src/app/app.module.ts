@@ -32,13 +32,14 @@ import {UserPageModule} from './user-page/user-page.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
 import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
+import {InterceptorService} from "./shared/Services/interceptor.service";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -104,7 +105,7 @@ export const routes: Routes = [
   ],
 
 
-  providers: [LoginService, RegisterService, ProjectService],
+  providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

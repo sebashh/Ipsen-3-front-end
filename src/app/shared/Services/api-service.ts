@@ -5,6 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import {Project} from "../Models/project.model";
 import {Paper} from "../Models/paper.model";
 import {Statistics} from "../Models/statistics.model";
+import {LoginModel} from "../Models/login.model";
 
 @Injectable({
   providedIn: 'root'
@@ -120,6 +121,13 @@ export class RestApiService {
 
   downloadPDF(url): Observable<any>{
     return this.http.get(this.apiURL + 'paper/pdf=' + url, {responseType: "blob"}).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  loginUser(loginModel: LoginModel) {
+    return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
       retry(1),
       catchError(this.handleError)
     );
