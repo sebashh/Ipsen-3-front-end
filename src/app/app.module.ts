@@ -39,18 +39,26 @@ import {ProjectViewComponent} from './projects/project-view/project-view.compone
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
+import { AdminStatisticsComponent } from './user-page/admin/admin-statistics/admin-statistics.component';
+import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/admin-list-papers.component';
+import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
+import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
   { path: 'projects', component: ClientMyProjectsComponent},
-  { path: 'about', component: PaperListComponent },
+  { path: 'about', component: AdminComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/clientRegister', component: RegisterClientComponent},
   { path: 'register/studentRegister', component: RegisterStudentComponent},
   { path: 'register/teacherRegister', component: RegisterTeacherComponent},
   { path: 'projectPage', component: ProjectViewComponent},
+  { path: 'admin/statistics', component: AdminStatisticsComponent },
+  { path: 'admin/papers', component: AdminListPapersComponent },
+  { path: 'admin/projects', component: AdminListProjectsComponent},
+  { path: 'admin/accounts', component: AdminListAccountsComponent},
 ];
 
 @NgModule({
@@ -100,7 +108,7 @@ export const routes: Routes = [
     ProjectsModule,
     MatGridListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
 
 

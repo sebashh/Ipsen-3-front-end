@@ -1,0 +1,56 @@
+<!-- <div class="middle">
+<table >
+    <tr >
+      <td class="table-header">Name</td>
+      <td class="table-header">Country</td>
+    </tr>
+</table>
+</div> -->
+
+<div class="container">
+	<div class="table">
+    <div>
+      <a class="button active" (click)="showStudents()" id="Students">student</a>
+      <a class="button"(click)="showTeachers()"  id="Teachers">teacher</a>
+      <a class="button" (click)="showClients()" id="Clients">client</a>
+    </div>
+    
+		<div class="table-header"  *ngIf="Students">
+      <div class="header__item"><a class="filter__link">E-mail</a></div>
+      <div class="header__item"><a class="filter__link">Study</a></div>
+			<div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
+    </div>
+  
+  
+    <div class="table-header"  *ngIf="Teachers">
+      <div class="header__item"><a class="filter__link">E-mail</a></div>
+      <div class="header__item"><a class="filter__link">Teacher</a></div>
+			<div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
+		</div>
+
+  
+    <div class="table-header" *ngIf="Clients">
+      <div class="header__item"><a class="filter__link">E-mail</a></div>
+      <div class="header__item"><a class="filter__link">Client</a></div>
+			<div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
+		</div>
+
+		<div class="table-content">	
+			<div class="table-row">		
+        <div class="table-data">student1@student.hsleiden.nl</div>
+        <div class="table-data">IT</div>
+				<div class="table-data">2</div>
+			</div>
+			<div class="table-row">
+        <div class="table-data">student2@student.hsleiden.nl</div>
+        <div class="table-data">IT</div>
+				<div class="table-data">1</div>
+			</div>
+			<div class="table-row">
+        <div class="table-data">student3@student.hsleiden.nl</div>
+        <div class="table-data">IT</div>
+				<div class="table-data">0</div>
+			</div>
+		</div>	
+	</div>
+</div>

@@ -12,6 +12,7 @@ import {RestApiService} from "../Services/api-service";
 export class TopbarComponent implements OnInit {
 
   isUserLoggedIn = false;
+  UserIsNotAnAdmin = true;
   loginModel: LoginModel;
   email: string;
   password: string;
@@ -61,7 +62,7 @@ export class TopbarComponent implements OnInit {
   }
 
   logIn() {
-    this.isUserLoggedIn = true;
+    this.UserIsNotAnAdmin = false;
     // log(this.email);
     // this.loginModel = new LoginModel(this.email, this.password);
     // console.log(this.restApi.postResource('authentication/auth', this.loginModel, 'any'));
