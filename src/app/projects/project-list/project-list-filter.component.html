@@ -19,7 +19,7 @@
   <ng-sidebar [(opened)]="opened" [mode]="'slide'" [closeOnClickOutside]="true" [position]="'left'">
     <mat-accordion @input() [multi]="true">
       <p class="searchCSS">Search</p>
-      <input type="text" class="form-control" placeholder="Search.." [(ngModel)]="searchValue"/>
+      <input type="text" class="form-control" (input)="updateFilter()" placeholder="Search.." [(ngModel)]="searchValue"/>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>

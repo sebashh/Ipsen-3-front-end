@@ -11,6 +11,7 @@ export class UserService {
   constructor() { }
 
   setCurrentUser(user: any){
+    console.log(user);
     this.user = user;
   }
 }

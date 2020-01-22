@@ -119,6 +119,13 @@ export class RestApiService {
     );
   }
 
+  getPapersAmountOfProject(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'paper/project=' + projectId + '/amount').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   downloadPDF(url): Observable<any>{
     return this.http.get(this.apiURL + 'paper/pdf=' + url, {responseType: "blob"}).pipe(
       retry(1),
@@ -128,6 +135,13 @@ export class RestApiService {
 
   loginUser(loginModel: LoginModel) {
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getFollowAmountOfProject(projectId: number): Observable<any>{
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow/amount').pipe(
       retry(1),
       catchError(this.handleError)
     );
