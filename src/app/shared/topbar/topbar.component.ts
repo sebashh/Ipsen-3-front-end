@@ -4,6 +4,7 @@ import {LoginModel} from '../Models/login.model';
 import {log} from 'util';
 import {RestApiService} from "../Services/api-service";
 import {UserService} from "../Services/user.service";
+import {User} from "../Models/user.model";
 
 @Component({
   selector: 'app-topbar',
@@ -68,7 +69,7 @@ export class TopbarComponent implements OnInit {
 
     this.loginModel = new LoginModel(this.email, this.password);
     this.restApi.loginUser(this.loginModel).subscribe(item =>
-    this.userService.setCurrentUser(item));
+    this.userService.setCurrentUser(<User>item));
     this.isUserLoggedIn = true;
   }
 
