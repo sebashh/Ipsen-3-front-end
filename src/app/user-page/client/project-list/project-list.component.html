@@ -1,11 +1,10 @@
 <div>
-    
-<h1>My Projects</h1>
-<br>
-<br>
+
+<h1>Projects</h1>
+  <input placeholder="search..." [(ngModel)]="inputField" (input)="filterContent()"/>
 <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile class="project"
-        *ngFor="let project of allMyProjects">
+        *ngFor="let project of filteredProjects">
               <app-project-view-card [project] = "project"></app-project-view-card></mat-grid-tile>
 </mat-grid-list>
 <br>

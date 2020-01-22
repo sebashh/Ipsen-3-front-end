@@ -11,10 +11,6 @@ import {RestApiService} from "../../shared/Services/api-service";
 export class ProjectItemViewComponent implements OnInit {
   paper: Paper[] = [];
   @Input() searchValue: string;
-  title: string;
-  author: string;
-  pdfLocation: string;
-  paperId: number;
 
   pageOfItems: Array<any>;
 
@@ -23,13 +19,10 @@ export class ProjectItemViewComponent implements OnInit {
   ngOnInit() {
     this.restApi.getPapers().subscribe((item) => {
       this.paper = item;
-      console.log(item);
-
-      this.title = this.paper[0].title,
-        this.author = this.paper[0].author,
-        this.pdfLocation = this.paper[0].paperFile,
-        this.paperId = this.paper[2].id;
     });
+  }
+
+  filterContent(value: string){
 
   }
 

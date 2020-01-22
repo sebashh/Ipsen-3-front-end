@@ -31,7 +31,7 @@ import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
-import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
+import { ProjectList } from './user-page/client/project-list/project-list';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
@@ -40,11 +40,14 @@ import {ProjectItemViewComponent} from './projects/project-list/project-item-vie
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
+import {SelectDropDownModule} from "ngx-select-dropdown";
+import {ProjectViewComponent} from "./projects/project-view/project-view.component";
+import {NotificationService} from "./shared/notification.service";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'projects', component: ClientMyProjectsComponent},
+  { path: 'projects', component: ProjectList},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: RegisterComponent },
@@ -78,7 +81,7 @@ export const routes: Routes = [
     RegisterTeacherComponent,
     ProjectScrollbarComponent,
     ClientComponent,
-    ClientMyProjectsComponent,
+    ProjectList,
     ProjectViewCardComponent,
     ProjectViewComponent
   ],
