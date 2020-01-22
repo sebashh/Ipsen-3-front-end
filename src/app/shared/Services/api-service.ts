@@ -5,6 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import {Project} from "../Models/project.model";
 import {Paper} from "../Models/paper.model";
 import {Statistics} from "../Models/statistics.model";
+import { Student } from '../Models/student.model';
 
 @Injectable({
   providedIn: 'root'
@@ -81,7 +82,14 @@ export class RestApiService {
         retry(1),
         catchError(this.handleError)
       );
+  }
 
+  getAllStudents(): Observable<Student[]>{
+    return this.http.get<Student[]>(this.apiURL + 'student/getAllStudents')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestApiService } from 'src/app/shared/Services/api-service';
 
 
 @Component({
@@ -6,10 +7,36 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './admin-list-accounts.component.html',
   styleUrls: ['./admin-list-accounts.component.css']
 })
+
+
 export class AdminListAccountsComponent{
+  testing = [
+    {name: 'test1', id: 1, date: "20-01-20"},
+    {name: 'test2', id: 2, date: "20-01-20"},
+    {name: 'test3', id: 3, date: "20-01-20"},
+    {name: 'test4', id: 4, date: "20-01-20"}
+  ];
+
+  constructor(public restApi: RestApiService){}
+
+  AllStudents = [];
   Students = true;
   Teachers = false;
   Clients = false;
+
+  ngOnInit(){
+    this.getAllStudents();
+    this.AllStudents = this.AllStudents.sort((a,b)=> a.lastLogin - b.lastLogin)
+  }
+
+  getAllStudents(){
+    this.restApi.getAllStudents().subscribe((data)=>{
+      for(var i = 0; i < data.length; i++){
+        console.log(data);
+        this.AllStudents = data;
+      }
+    })
+  }
   
   showStudents(){
     this.Students = true;
@@ -48,5 +75,9 @@ export class AdminListAccountsComponent{
     x.className = 'button';
     y.className = 'button';
     z.className = 'button';
+  }
+
+  logIndex(i: number){
+    console.log(i);
   }
 }

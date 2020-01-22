@@ -1,29 +1,4 @@
-/* table, th , td {
-    border: 1px solid grey;
-    border-collapse: collapse;
-    padding: 5px;
-    flex: 1;
-  }
 
-.table-header {
-    width: 75%;
-    background:#000;
-    color: white;
-    flex: 1;
-  }
-
-.middle {
-  display: flex;
-  justify-content: center;
-}
-  
-  table tr:nth-child(odd) {
-    background-color: #f1f1f1;
-  }
-  
-  table tr:nth-child(even) {
-    background-color: #ffffff;
-  } */
   @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
   *,
   *:before,
@@ -32,7 +7,7 @@
   }
   
   body {
-    padding: 12px;
+    padding: 8px;
     font-family: "Source Sans Pro", sans-serif;
     margin: 0;
   }
@@ -74,6 +49,7 @@
     display: flex;
     width: 100%;
     padding: 18px 0;
+    align-items: center;
   }
   .table-row:nth-of-type(odd) {
     background: #eeeeee;
@@ -120,9 +96,9 @@
     color: #f2f2f2;
     background-color: black;
     text-align: center;
-    padding: 14px 16px;
+    padding: 10px 12px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 15px;
   }
 
   a.button{
