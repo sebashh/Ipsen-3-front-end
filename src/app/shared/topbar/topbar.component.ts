@@ -16,6 +16,7 @@ export class TopbarComponent implements OnInit {
   loginModel: LoginModel;
   email: string;
   password: string;
+  notificationVisable: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, public restApi: RestApiService, private userService: UserService) {
 
@@ -64,13 +65,18 @@ export class TopbarComponent implements OnInit {
   logIn() {
     this.isUserLoggedIn = true;
     // log(this.email);
+
     this.loginModel = new LoginModel(this.email, this.password);
     this.restApi.loginUser(this.loginModel).subscribe(item =>
     this.userService.setCurrentUser(item));
+    this.isUserLoggedIn = true;
   }
 
   logOut() {
     this.isUserLoggedIn = false;
   }
 
+  toggleNotifications() {
+    this.notificationVisable = !this.notificationVisable;
+  }
 }
