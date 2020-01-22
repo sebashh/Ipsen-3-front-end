@@ -11,7 +11,6 @@ mat-accordion {
 
 ng-sidebar-container {
   min-height: 71vh;
-  margin: 12vh 0 0 0;
   /*max-width: 210px;*/
   display: inline-block;
 }
