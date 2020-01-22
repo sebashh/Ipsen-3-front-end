@@ -63,9 +63,6 @@ export class TopbarComponent implements OnInit {
   }
 
   logIn() {
-    this.isUserLoggedIn = true;
-    // log(this.email);
-
     this.loginModel = new LoginModel(this.email, this.password);
     this.restApi.loginUser(this.loginModel).subscribe(item =>
     this.userService.setCurrentUser(item));
