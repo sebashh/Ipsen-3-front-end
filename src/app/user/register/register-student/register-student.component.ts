@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {RestApiService} from '../../../src/server/server/server';
 import {Student} from '../../../shared/Models/student.model';
+import {RestApiService} from "../../shared/Services/api-service";
 import {CategoryService} from '../../../shared/Services/category.service';
 
 @Component({
