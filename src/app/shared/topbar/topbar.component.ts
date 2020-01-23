@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {RestApiService} from '../../src/server/server/server';
-import {LoginModel} from '../login.model';
+import {LoginModel} from '../Models/login.model';
 import {log} from 'util';
+import {RestApiService} from "../Services/api-service";
+import {UserService} from "../Services/user.service";
+import {User} from "../Models/user.model";
 
 @Component({
   selector: 'app-topbar',
@@ -15,8 +17,9 @@ export class TopbarComponent implements OnInit {
   loginModel: LoginModel;
   email: string;
   password: string;
+  notificationVisable: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, public restApi: RestApiService) {
+  constructor(private router: Router, private route: ActivatedRoute, public restApi: RestApiService, private userService: UserService) {
 
   }
   navigate(path) {
@@ -61,14 +64,17 @@ export class TopbarComponent implements OnInit {
   }
 
   logIn() {
-    this.isUserLoggedIn = true;
-    log(this.email);
     this.loginModel = new LoginModel(this.email, this.password);
-    console.log(this.restApi.postResource('authentication/auth', this.loginModel, 'any'));
+    this.restApi.loginUser(this.loginModel).subscribe(item =>
+    this.userService.setCurrentUser(<User>item));
+    this.isUserLoggedIn = true;
   }
 
   logOut() {
     this.isUserLoggedIn = false;
   }
 
+  toggleNotifications() {
+    this.notificationVisable = !this.notificationVisable;
+  }
 }

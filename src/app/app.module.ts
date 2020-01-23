@@ -31,23 +31,58 @@ import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
-import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ProjectList } from './user-page/client/project-list/project-list';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
 import {MatListModule} from '@angular/material';
+import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
+import {JwPaginationComponent} from 'jw-angular-pagination';
+import {ProjectService} from './shared/Services/project.service';
+import {InterceptorService} from "./shared/Services/interceptor.service";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'projects', component: ClientMyProjectsComponent},
+  { path: 'projects', component: ProjectList},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
-  { path: 'register', component: PaperItemComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'register/clientRegister', component: RegisterClientComponent},
+  { path: 'register/studentRegister', component: RegisterStudentComponent},
+  { path: 'register/teacherRegister', component: RegisterTeacherComponent},
+  { path: 'projectPage', component: ProjectViewComponent},
 ];
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    TopbarComponent,
+    StudentComponent,
+    TeacherComponent,
+    GuestComponent,
+    AdminComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProjectListFilterComponent,
+    ProjectItemComponent,
+    PaperListComponent,
+    PaperItemComponent,
+    RegisterStudentComponent,
+    RegisterClientComponent,
+    RegisterTeacherComponent,
+    UploadComponent,
+    FormComponent,
+    UploadlistComponent,
+    RegisterTeacherComponent,
+    ProjectScrollbarComponent,
+    ClientComponent,
+    ProjectList,
+    ProjectViewCardComponent,
+    ProjectViewComponent
+  ],
     declarations: [
         AppComponent,
         FooterComponent,
@@ -101,7 +136,7 @@ export const routes: Routes = [
   ],
 
 
-  providers: [LoginService, RegisterService],
+  providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

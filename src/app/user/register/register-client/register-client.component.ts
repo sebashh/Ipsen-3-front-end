@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {RestApiService} from '../../../src/server/server/server';
-import {Client} from '../../../shared/client.model';
+import {Client} from '../../../shared/Models/client.model';
+import {RestApiService} from "../../../shared/Services/api-service";
 
 @Component({
   selector: 'app-register-client',

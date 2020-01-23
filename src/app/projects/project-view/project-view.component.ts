@@ -1,7 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Paper} from "../../shared/paper.model";
-import {RestApiService} from "../../src/server/server/server";
-import {Project} from "../../shared/project.model";
+import {Paper} from "../../shared/Models/paper.model";
+import {Project} from "../../shared/Models/project.model";
+import {log} from 'util';
+import {ProjectService} from "../../shared/Services/project.service";
+import {RestApiService} from "../../shared/Services/api-service";
+import {Router} from "@angular/router";
+import {UserService} from "../../shared/Services/user.service";
 
 @Component({
   selector: 'app-project-view',
@@ -9,31 +13,44 @@ import {Project} from "../../shared/project.model";
   styleUrls: ['./project-view.component.css']
 })
 export class ProjectViewComponent implements OnInit {
-  @Input()
-  project: Project;
 
+  project: Project;
   papers: Paper[] = [];
 
   uploading: boolean = false;
   hasContent: boolean = false;
+  private following: boolean;
 
-  constructor(private apiService: RestApiService) { }
+  constructor(private apiService: RestApiService, private projectService: ProjectService) {
+    this.project = this.projectService.getCurrentProject();
+    if(this.project != null) this.setCurrentProject(this.project);
+  }
 
   ngOnInit() {
+  }
+
+  setCurrentProject(project: Project){
+    this.project = project;
+    this.apiService.userFollowingProject(project.projectId).subscribe(item => {
+      this.following = item});
+    this.getPapers();
+  }
+
+  getPapers(){
     this.apiService.getPapersOfProject(this.project.projectId).subscribe((data) => {
       this.papers = data;
       this.hasContent = this.papers.length == 0;
     });
-
-
   }
+
+
 
   toggleUpload() {
     this.uploading = !this.uploading;
   }
 
   formatDate(date) {
-    var d = new Date(date),
+    let d = new Date(date),
       month = '' + (d.getMonth() + 1),
       day = '' + d.getDate(),
       year = d.getFullYear();
@@ -54,5 +71,17 @@ export class ProjectViewComponent implements OnInit {
     });
   }
 
+  unFollowProject(){
+    this.apiService.unFollowProject(this.project.projectId);
+    this.changeFollowState(false);
+  }
 
+  followProject() {
+    this.apiService.followProject(this.project.projectId);
+    this.changeFollowState(true);
+  }
+
+  private changeFollowState(state: boolean) {
+    this.following = state;
+  }
 }

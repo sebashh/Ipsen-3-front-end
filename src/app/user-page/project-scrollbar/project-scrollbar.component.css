@@ -1,13 +1,23 @@
 .testimonial-group > .row {
   overflow-x: auto;
   white-space: nowrap;
+  height: 220px;
 }
 .testimonial-group > .row > .col-xs-4 {
   display: inline-block;
   float: none;
 }
 
+.row{
+
+}
+
+.container{
+height: 400px;
+}
+
 .col-xs-4 {
+  margin-top: 20px;
   font-size: 20px;
 }
 

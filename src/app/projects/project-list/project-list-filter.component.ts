@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, /*Output, EventEmitter, Input*/} from '@angular/core';
-import {Paper} from '../../shared/paper.model';
+import {Paper} from '../../shared/Models/paper.model';
 
 @Component({
   selector: 'app-project-list-filter',
@@ -16,11 +16,12 @@ export class ProjectListFilterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onUpdateSearch(event: Event) {
-    this.searchValue = (event.target as HTMLInputElement).value;
-  }
 
   toggleSidebar() {
     this.opened = !this.opened;
+  }
+
+  updateFilter() {
+
   }
 }

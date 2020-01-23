@@ -1,12 +1,12 @@
 <div class="content">
   <div class="top">
-    <div class="title"><p>TITLE OF PROJECT</p></div>
-    <div class="follow"><button>follow</button></div>
+    <div class="title"><p>{{project?.title}}</p></div>
+    <div class="follow"><button (click)="following ? unFollowProject() : followProject()">{{following? 'un-Follow' : 'follow'}}</button></div>
     <div class="client">
     </div>
   </div>
   <div class="description">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisl lorem, sagittis eget velit id, rhoncus consectetur nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed faucibus ante eu posuere vulputate. Proin ultricies a sem sed ornare. Vivamus mauris leo, ullamcorper et nunc non, venenatis dictum tortor. Aenean at mauris arcu. Ut at risus congue, dapibus nunc vitae, bibendum nulla.
+    <p>{{project?.description}}
     </p>
   </div>
   <div class="papers">
@@ -27,8 +27,6 @@
 
     </table>
     <button (click)="toggleUpload()" class="upload">upload paper</button>
-
   </div>
-
 </div>
 <app-upload [ngClass]="{'uploading':uploading}"></app-upload>

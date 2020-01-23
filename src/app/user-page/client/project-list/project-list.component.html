@@ -1,0 +1,10 @@
+<div>
+  <h1>Projects</h1>
+  <input placeholder="search..." [(ngModel)]="inputField" (input)="filterContent()"/>
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile class="project" *ngFor="let project of pageOfItems">
+            <app-project-view-card [project] = "project"></app-project-view-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  <jw-pagination [items]="filteredProjects" pageSize="20" (changePage)="onChangePage($event)"></jw-pagination>
+</div>
