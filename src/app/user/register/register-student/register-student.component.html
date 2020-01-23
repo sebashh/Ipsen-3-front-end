@@ -1,16 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="row register-form">
         <form class="custom-form">
           <h1>Register</h1>
-          <div [formGroup]="study" class="form-row form-group">
-            <div class="col-sm-4 label-column"><label class="col-form-label">Study </label></div>
-            <div class="col-sm-6 input-column"><input formControlName="currentStudy" class="form-control" type="text"></div>
-            <div style="position: relative; left: 178px" class="warning" *ngIf="study.touched">
-              <small class="alert alert-danger" *ngIf="study.get('currentStudy').hasError('required')">Required!</small>
-            </div>
-          </div>
           <div [formGroup]="email" class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label">Email&nbsp;</label></div>
             <div class="col-sm-6 input-column"><input formControlName="currentEmail" class="form-control" type="email"></div>
@@ -31,17 +24,22 @@
         </form>
       </div>
     </div>
-    <div class="col-md-6" class="interests">
-      <h1>Interests</h1>
-      <hr>
-      <div *ngFor="let interest of interests" >
-        <div class="interest"><p>{{ interest }}</p></div>
-      </div>
+    <div class="col-md-4">
+      <h1 id="interest">Interests</h1>
+      <mat-selection-list [(ngModel)]="selectedCategories">
+        <mat-list-option [value]="category" *ngFor="let category of categories">
+          {{category}}
+        </mat-list-option>
+      </mat-selection-list>
     </div>
-    <div class="col-md-6">
-      <input class="form-control" (keyup.enter)="onKey($event)" placeholder="Insert new interest" [(ngModel)]="interestInput" id="interest_input" type="text">
-
+    <div class="col-md-4">
+      <h1 id="study">Studies</h1>
+      <mat-selection-list [(ngModel)]="selectedStudies">
+        <mat-list-option [value]="study" *ngFor="let study of studies">
+          {{study}}
+        </mat-list-option>
+      </mat-selection-list>
     </div>
   </div>
-
+</div>
 
