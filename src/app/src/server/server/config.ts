@@ -1,8 +1,8 @@
 export const dbconfig = {
     username : 'postgres',
-    password : 'postgres',
-    database : 'plnt',
+    password : '6547251',
+    database : 'ipsen3',
     host : 'localhost',
     dialect : 'postgres',
-    port : 5432
+    port : 5433
 };

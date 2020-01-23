@@ -17,7 +17,7 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login.service';
 import {RegisterService} from './user/register/register.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -36,8 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
-import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
-import {JwPaginationComponent} from 'jw-angular-pagination';
+import {MatListModule} from '@angular/material';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -49,33 +48,33 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    TopbarComponent,
-    StudentComponent,
-    TeacherComponent,
-    GuestComponent,
-    AdminComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProjectListFilterComponent,
-    ProjectItemComponent,
-    PaperListComponent,
-    PaperItemComponent,
-    RegisterStudentComponent,
-    RegisterClientComponent,
-    RegisterTeacherComponent,
-    UploadComponent,
-    FormComponent,
-    UploadlistComponent,
-    RegisterTeacherComponent,
-    ProjectScrollbarComponent,
-    ClientComponent,
-    ClientMyProjectsComponent,
-    ProjectViewCardComponent,
-    ProjectViewComponent
-  ],
+    declarations: [
+        AppComponent,
+        FooterComponent,
+        TopbarComponent,
+        StudentComponent,
+        TeacherComponent,
+        GuestComponent,
+        AdminComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProjectListFilterComponent,
+        ProjectItemComponent,
+        PaperListComponent,
+        PaperItemComponent,
+        RegisterStudentComponent,
+        RegisterClientComponent,
+        RegisterTeacherComponent,
+        UploadComponent,
+        FormComponent,
+        UploadlistComponent,
+        RegisterTeacherComponent,
+        ProjectScrollbarComponent,
+        ClientComponent,
+        ClientMyProjectsComponent,
+        ProjectViewCardComponent,
+        ProjectViewComponent
+    ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -95,7 +94,10 @@ export const routes: Routes = [
     ProjectsModule,
     MatGridListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatAutocompleteModule,
+    MatInputModule,
+    MatListModule
   ],
 
 
