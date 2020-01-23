@@ -1,6 +1,5 @@
 mat-accordion {
   margin-top: 10px;
-  /*position: sticky; !*of sticky of fixed*!*/
   min-width: 250px;
   max-height: 88vh;
 }
@@ -13,13 +12,6 @@ ng-sidebar-container {
   min-height: 71vh;
   /*max-width: 210px;*/
   display: inline-block;
-}
-
-.project-table {
-  /*border: solid green 5px;*/
-  /*display: inline-table;*/
-  /*!*vertical-align: top;*!*/
-  /*position: absolute;*/
 }
 
 .mat-checkbox {
@@ -37,17 +29,14 @@ ng-sidebar-container {
 .form-control {
   margin-left: 10px;
   max-width: fit-content;
-  /*border-radius: 10px;*/
   border-width: 2px;
   border-color: darkgray;
 }
 
 mat-expansion-panel {
   margin-left: -10px;
-  /*margin-right: 15px;*/
   margin-top: 0px;
   margin-bottom: 0px;
-  /*max-width: 250px;*/
 }
 
 mat-expansion-panel:hover{
@@ -55,12 +44,8 @@ mat-expansion-panel:hover{
 }
 
 hr {
-/*  border: 0.5px solid;*/
-/*  margin-right: 62px;*/
-/*  margin-left: 14px;*/
   margin-top: 0;
   margin-bottom: 0;
-/*  max-width: max-content;*/
 }
 
 button {

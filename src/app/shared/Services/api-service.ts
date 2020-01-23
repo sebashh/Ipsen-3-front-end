@@ -6,6 +6,7 @@ import {Project} from "../Models/project.model";
 import {Paper} from "../Models/paper.model";
 import {Statistics} from "../Models/statistics.model";
 import {LoginModel} from "../Models/login.model";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class RestApiService {
   // Define API
   apiURL = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService ) { }
 
   /*========================================
     CRUD Methods for consuming RESTful API
@@ -82,9 +83,7 @@ export class RestApiService {
         retry(1),
         catchError(this.handleError)
       );
-
   }
-
 
   // Error handling
   handleError(error) {
@@ -109,11 +108,17 @@ export class RestApiService {
       ).subscribe((data) => {
       return data;
     });
-
   }
 
   getPapersOfProject(projectId: number): Observable<any> {
     return this.http.get(this.apiURL + 'paper/project=' + projectId).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getPapersAmountOfProject(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'paper/project=' + projectId + '/amount').pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -131,5 +136,33 @@ export class RestApiService {
       retry(1),
       catchError(this.handleError)
     );
+  }
+
+  getFollowAmountOfProject(projectId: number): Observable<any>{
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow/amount').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  userFollowingProject(projectId: number) : Observable<any>{
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/isFollowing').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  followProject(projectId: number) {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  unFollowProject(projectId: number) {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/unfollow').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
   }
 }

@@ -6,11 +6,11 @@ import {User} from '../Models/user.model';
 })
 export class UserService {
 
-  @Output() user: any;
+  @Output() user: User;
 
   constructor() { }
 
-  setCurrentUser(user: any) {
+  setCurrentUser(user: User) {
     this.user = user;
   }
 }

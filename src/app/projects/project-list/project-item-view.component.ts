@@ -20,6 +20,9 @@ export class ProjectItemViewComponent implements OnInit {
     this.restApi.getPapers().subscribe((item) => {
       this.paper = item;
     });
+  }
+
+  filterContent(value: string){
 
   }
 
