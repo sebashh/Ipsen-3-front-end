@@ -40,9 +40,6 @@ import {ProjectItemViewComponent} from './projects/project-list/project-item-vie
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
-import {SelectDropDownModule} from "ngx-select-dropdown";
-import {ProjectViewComponent} from "./projects/project-view/project-view.component";
-import {NotificationService} from "./shared/notification.service";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},

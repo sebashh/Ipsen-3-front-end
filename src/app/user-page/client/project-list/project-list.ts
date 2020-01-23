@@ -13,6 +13,7 @@ export class ProjectList implements OnInit {
   inputField: string;
   allMyProjects : Project[] = [];
   filteredProjects : Project[] = [];
+  private pageOfItems: Array<any>;
   constructor(public restApi: RestApiService) { }
   ngOnInit() {
     this.getAllProjects(2);
@@ -24,6 +25,11 @@ export class ProjectList implements OnInit {
       this.filterContent();
 
     })
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 
   filterContent() {
@@ -55,7 +61,7 @@ export class ProjectList implements OnInit {
             let notFound = values.some(value => {
               found = titleValues.some(title => {
                 if (value == null || value == '') return true;
-                if (title.includes(value)) {
+                if (title.includes(value) && title[0] == value[0]) {
                   let index = titleValues.indexOf(title);
                   if (index > -1) titleValues.splice(index, 1);
                   return true;
