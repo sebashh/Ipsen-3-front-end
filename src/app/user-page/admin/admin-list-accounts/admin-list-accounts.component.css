@@ -33,8 +33,7 @@
   
   .table {
     width: 100%;
-    
-    
+
   }
   
   .table-header {
@@ -72,8 +71,6 @@
     text-decoration: none;
     position: relative;
     display: inline-block;
-    padding-left: 24px;
-    padding-right: 24px;
   }
   .filter__link::after {
     content: "";

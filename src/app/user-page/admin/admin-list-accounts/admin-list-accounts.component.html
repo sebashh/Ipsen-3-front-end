@@ -14,54 +14,58 @@
       <a class="button"(click)="showTeachers()"  id="Teachers">teacher</a>
       <a class="button" (click)="showClients()" id="Clients">client</a>
     </div>
-    
-		<div class="table-header"  *ngIf="Students">
+    <div *ngIf="Students">
+		<div class="table-header">
       <div class="header__item"><a class="filter__link">E-mail</a></div>
       <div class="header__item"><a class="filter__link">Study</a></div>
       <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
       <div class="header__item"></div>
     </div>
+    <div *ngFor="let student of AllStudents; let i = index" class="table-row">
+      <div class="table-data" >{{student.email}}</div>
+      <div class="table-data">{{student.study}}</div>
+      <div class="table-data">{{student.lastLogin}}</div>
+      <div>
+        <button class="table-data" (click)="logIndex(i);">Edit</button>
+        <button class="table-data" (click)="delete(student.id);">Delete</button>
+        </div>
+    </div> 
+  </div>
   
-  
-    <div class="table-header"  *ngIf="Teachers">
+  <div  *ngIf="Teachers">
+    <div class="table-header">
       <div class="header__item"><a class="filter__link">E-mail</a></div>
       <div class="header__item"><a class="filter__link">Teacher</a></div>
-			<div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
-		</div>
+      <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
+      <div class="header__item"></div>
+    </div>
+    <div *ngFor="let teacher of AllTeachers; let i = index" class="table-row">
+      <div class="table-data">{{teacher.email}}</div>
+      <div class="table-data">{{teacher.study}}</div>
+      <div class="table-data">{{teacher.lastLogin}}</div>
+      <div>
+        <button class="table-data" (click)="logIndex(i);">Edit</button>
+        <button class="table-data" (click)="delete(teacher.id);">Delete</button>
+        </div>
+    </div> 
+  </div>
 
-  
+  <div *ngIf="Clients">
     <div class="table-header" *ngIf="Clients">
+      <div class="header__item"><a class="filter__link">Name</a></div>
+      <div class="header__item"><a class="filter__link">Description</a></div>
       <div class="header__item"><a class="filter__link">E-mail</a></div>
-      <div class="header__item"><a class="filter__link">Client</a></div>
-      <div class="header__item"><a class="filter__link">Last Login</a></div>
-      
-		</div>
-
-		<div>	
-      <div *ngFor="let student of AllStudents; let i = index" class="table-row">
-        <div class="table-data">{{student.email}}</div>
-        <div class="table-data">{{student.study}}</div>
-        <div class="table-data">{{student.lastLogin}}</div>
-        <div>
-          <button class="table-data" (click)="logIndex(i);">Edit</button>
-          <button class="table-data" (click)="logIndex(i);">Delete</button>
-          </div>
-      </div> 
-			<!-- <div class="table-row">		
-        <div class="table-data">student1@student.hsleiden.nl</div>
-        <div class="table-data">IT</div>
-				<div class="table-data">2</div>
-			</div>
-			<div class="table-row">
-        <div class="table-data">student2@student.hsleiden.nl</div>
-        <div class="table-data">IT</div>
-				<div class="table-data">1</div>
-			</div>
-			<div class="table-row">
-        <div class="table-data">student3@student.hsleiden.nl</div>
-        <div class="table-data">IT</div>
-				<div class="table-data">0</div>
-			</div> -->
-		</div>	
-	</div>
-</div>
+      <div class="header__item"><a class="filter__link">lastLogin</a></div>
+      <div class="header__item"></div>
+    </div>
+    <div *ngFor="let client of AllClients; let i = index" class="table-row">
+      <div class="table-data">{{client.company_name}}</div>
+      <div class="table-data">{{client.description}}</div>
+      <div class="table-data">{{client.email}}</div>
+      <div class="table-data">{{client.lastLogin}}</div>
+      <div>
+        <button class="table-data" (click)="logIndex(i);">Edit</button>
+        <button class="table-data" (click)="delete(client.id);">Delete</button>
+        </div>
+    </div> 
+  </div>

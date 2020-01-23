@@ -6,6 +6,8 @@ import {Project} from "../Models/project.model";
 import {Paper} from "../Models/paper.model";
 import {Statistics} from "../Models/statistics.model";
 import { Student } from '../Models/student.model';
+import { Teacher } from '../Models/teacher.model';
+import { Client } from '../Models/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -85,7 +87,31 @@ export class RestApiService {
   }
 
   getAllStudents(): Observable<Student[]>{
-    return this.http.get<Student[]>(this.apiURL + 'student/getAllStudents')
+    return this.http.get<Student[]>(this.apiURL + 'users/getAllStudents')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  
+  deleteUser(id: number): Observable<{}> {
+    console.log(id);
+    return this.http.delete(this.apiURL + 'user=' + id + '/delete')
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getAllTeachers(): Observable<Teacher[]>{
+    return this.http.get<Teacher[]>(this.apiURL + 'users/getAllTeachers')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  getAllClients(): Observable<Client[]>{
+    return this.http.get<Client[]>(this.apiURL + 'users/getAllClients')
     .pipe(
       retry(1),
       catchError(this.handleError)

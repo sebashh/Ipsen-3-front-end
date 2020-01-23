@@ -10,23 +10,19 @@ import { RestApiService } from 'src/app/shared/Services/api-service';
 
 
 export class AdminListAccountsComponent{
-  testing = [
-    {name: 'test1', id: 1, date: "20-01-20"},
-    {name: 'test2', id: 2, date: "20-01-20"},
-    {name: 'test3', id: 3, date: "20-01-20"},
-    {name: 'test4', id: 4, date: "20-01-20"}
-  ];
-
   constructor(public restApi: RestApiService){}
 
   AllStudents = [];
+  AllTeachers = [];
+  AllClients = [];
   Students = true;
   Teachers = false;
   Clients = false;
 
   ngOnInit(){
     this.getAllStudents();
-    this.AllStudents = this.AllStudents.sort((a,b)=> a.lastLogin - b.lastLogin)
+    this.getAllTeachers();
+    this.getAllClients();
   }
 
   getAllStudents(){
@@ -34,6 +30,24 @@ export class AdminListAccountsComponent{
       for(var i = 0; i < data.length; i++){
         console.log(data);
         this.AllStudents = data;
+      }
+    })
+  }
+
+  getAllTeachers(){
+    this.restApi.getAllTeachers().subscribe((data)=>{
+      for(var i = 0; i < data.length; i++){
+        console.log(data);
+        this.AllTeachers = data;
+      }
+    })
+  }
+
+  getAllClients(){
+    this.restApi.getAllClients().subscribe((data)=>{
+      for(var i = 0; i < data.length; i++){
+        console.log(data);
+        this.AllClients = data;
       }
     })
   }
@@ -79,5 +93,18 @@ export class AdminListAccountsComponent{
 
   logIndex(i: number){
     console.log(i);
+  }
+
+  delete(id: number){
+    var result = confirm("Are you sure you want to delete *EMAIL_HERE*?");
+    console.log(result);
+    if(result){
+      this.deleteUser(id);
+    }
+  }
+
+  deleteUser(id: number){
+    console.log("Deleting user ID: " + id);
+    this.restApi.deleteUser(id).subscribe();
   }
 }
