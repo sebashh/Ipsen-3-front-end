@@ -165,4 +165,11 @@ export class RestApiService {
       catchError(this.handleError)
     ).subscribe();
   }
+
+  getCategories() {
+    return this.http.get(this.apiURL + 'ipsen3categories/categories').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
 }
