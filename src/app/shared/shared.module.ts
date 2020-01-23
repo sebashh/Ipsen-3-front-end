@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {FilterPipe} from '../projects/project-list/search_list_module';
 
 
 @NgModule({
@@ -9,10 +9,11 @@ import { CommonModule } from '@angular/common';
   ],
 
   declarations: [
-
+    FilterPipe
   ],
 
   exports: [
-  ],
+    FilterPipe
+  ]
 })
 export class SharedModule { }

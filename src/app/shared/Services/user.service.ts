@@ -1,5 +1,5 @@
 import {Injectable, Output} from '@angular/core';
-import {User} from "../Models/user.model";
+import {User} from '../Models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,7 @@ export class UserService {
 
   constructor() { }
 
-  setCurrentUser(user: User){
-    console.log(user);
+  setCurrentUser(user: User) {
     this.user = user;
   }
 }
