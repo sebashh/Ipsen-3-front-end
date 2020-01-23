@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {Project} from '../../../shared/project.model';
-import {Statistics} from '../../../shared/statistics.model';
+import {Project} from '../../../shared/Models/project.model';
+import {Statistics} from '../../../shared/Models/statistics.model';
 import {ResponseContentType} from '@angular/http';
-import {Paper} from '../../../shared/paper.model';
-import {Category} from '../../../shared/category.model';
-import {Study} from '../../../shared/study.model';
+import {Paper} from '../../../shared/Models/paper.model';
+import {Category} from '../../../shared/Models/category.model';
+import {Study} from '../../../shared/Models/study.model';
 
 @Injectable({
   providedIn: 'root'
