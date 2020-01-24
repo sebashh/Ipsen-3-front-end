@@ -2,7 +2,7 @@ import {AbstractControl} from "@angular/forms";
 
 export class Student {
   constructor(
-    public study: string,
+    public study: number,
     public categories: number[],
     // tslint:disable-next-line:variable-name
     public email_user: AbstractControl,

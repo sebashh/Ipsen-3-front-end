@@ -28,7 +28,7 @@
       <h1 id="interest">Interests</h1>
       <mat-selection-list [(ngModel)]="selectedCategories">
         <mat-list-option [value]="category" *ngFor="let category of categories">
-          {{category}}
+          {{category.name}}
         </mat-list-option>
       </mat-selection-list>
     </div>
@@ -36,7 +36,7 @@
       <h1 id="study">Studies</h1>
       <mat-selection-list [(ngModel)]="selectedStudies">
         <mat-list-option [value]="study" *ngFor="let study of studies">
-          {{study}}
+          {{study.name}}
         </mat-list-option>
       </mat-selection-list>
     </div>

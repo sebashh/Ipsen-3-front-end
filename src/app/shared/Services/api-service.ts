@@ -7,6 +7,7 @@ import {Paper} from "../Models/paper.model";
 import {Statistics} from "../Models/statistics.model";
 import {LoginModel} from "../Models/login.model";
 import {UserService} from "./user.service";
+import {setOffsetToUTC} from "ngx-bootstrap/chronos/units/offset";
 
 @Injectable({
   providedIn: 'root'
@@ -99,9 +100,38 @@ export class RestApiService {
     return throwError(errorMessage);
   }
 
+  handleRegisterError(error) {
+    let errorMessage = '';
+    if(error.status == '406'){
+      errorMessage = 'Email already exists\nPlease enter a new email';
+    }
+    else if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
+  registerUser(path: string, param: any):
+    any {
+    console.log(param);
+    this.http.post(this.apiURL + path, param)
+      .pipe(
+        retry(1),
+        catchError(this.handleRegisterError)
+      ).subscribe((data) => {
+      return data;
+    });
+  }
+
   postResource(path: string, param: any, returnType: any):
     any {
-    this.http.post(this.apiURL + path, param, {responseType : returnType})
+    console.log(param);
+    this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -168,6 +198,13 @@ export class RestApiService {
 
   getCategories() {
     return this.http.get(this.apiURL + 'ipsen3categories/categories').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getStudies() {
+    return this.http.get(this.apiURL + 'ipsen3studies/studies').pipe(
       retry(1),
       catchError(this.handleError)
     );
