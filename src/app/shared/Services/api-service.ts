@@ -119,7 +119,11 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  
+
+  updateStudent(student){
+    console.log(student);
+  }
+
   deleteUser(id: number): Observable<{}> {
     console.log(id);
     return this.http.delete(this.apiURL + 'user=' + id + '/delete')
@@ -127,6 +131,7 @@ export class RestApiService {
         catchError(this.handleError)
       );
   }
+
 
   getAllTeachers(): Observable<Teacher[]>{
     return this.http.get<Teacher[]>(this.apiURL + 'users/getAllTeachers')

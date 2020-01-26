@@ -23,6 +23,7 @@ export class AdminListProjectsComponent implements OnInit {
         this.AllProjects = data;
       }
     })
+    
   }
 
   delete(id: number, title: String){
@@ -33,8 +34,6 @@ export class AdminListProjectsComponent implements OnInit {
     if(result){
       this.restApi.deleteProject(id).subscribe();;
       this.getAllProjects();
-      this.router.navigate(["/admin/projects"]);
     }
   }
-
 }

@@ -12,17 +12,25 @@
       <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
       <div class="header__item"></div>
     </div>
+   
     <div *ngFor="let student of AllStudents; let i = index" class="table-row">
-      <div class="table-data" >{{student.email}}</div>
-      <div class="table-data">{{student.study}}</div>
-      <div class="table-data">{{student.lastLogin}}</div>
-      <div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{student.email}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{student.study}}</div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input  [(ngModel)]="student.email" placeholder={{student.email}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input  [(ngModel)]="student.study" placeholder={{student.study}}></div>
+        <div class="table-data">{{student.lastLogin}}</div>
+      <div *ngIf="!edit || i != divIndex">
         <button class="table-data" (click)="logIndex(i);">Edit</button>
         <button class="table-data" (click)="delete(student.id, student.email);">Delete</button>
-        </div>
+      </div>
+      <div *ngIf="edit && i == divIndex">
+        <button class="table-data" (click)="save(student)">Save</button>
+        <button class="table-data" (click)="cancel()">Cancel</button>
+      </div> 
     </div> 
-  </div>
   
+  </div>
+
   <div  *ngIf="Teachers">
     <div class="table-header">
       <div class="header__item"><a class="filter__link">E-mail</a></div>

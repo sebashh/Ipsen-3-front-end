@@ -117,3 +117,7 @@
     opacity: 80%;
     cursor: pointer;
   }
+
+  .hide{
+    display: none;
+  }

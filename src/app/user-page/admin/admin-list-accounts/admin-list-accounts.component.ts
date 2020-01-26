@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/Services/api-service';
 import { Router } from '@angular/router';
-
+import { Student } from 'src/app/shared/Models/student.model';
 
 @Component({
   selector: 'app-admin-list-accounts',
@@ -19,6 +19,8 @@ export class AdminListAccountsComponent{
   Students = true;
   Teachers = false;
   Clients = false;
+  edit = false;
+  divIndex;
 
   ngOnInit(){
     this.getAllStudents();
@@ -27,7 +29,6 @@ export class AdminListAccountsComponent{
   getAllStudents(){
     this.restApi.getAllStudents().subscribe((data)=>{
       for(var i = 0; i < data.length; i++){
-        console.log(data);
         this.AllStudents = data;
       }
     })
@@ -36,7 +37,6 @@ export class AdminListAccountsComponent{
   getAllTeachers(){
     this.restApi.getAllTeachers().subscribe((data)=>{
       for(var i = 0; i < data.length; i++){
-        console.log(data);
         this.AllTeachers = data;
       }
     })
@@ -45,7 +45,6 @@ export class AdminListAccountsComponent{
   getAllClients(){
     this.restApi.getAllClients().subscribe((data)=>{
       for(var i = 0; i < data.length; i++){
-        console.log(data);
         this.AllClients = data;
       }
     })
@@ -79,9 +78,7 @@ export class AdminListAccountsComponent{
   }
 
   changeButton(id:string){
-    console.log(id);
     let x = document.getElementById(id);
-    console.log(x.className);
     x.className+= ' active';
   }
   resetButton(){
@@ -93,20 +90,35 @@ export class AdminListAccountsComponent{
     z.className = 'button';
   }
 
-  logIndex(i: number){
-    console.log(i);
+  logIndex(id: number){
+    console.log(id);
+    this.edit = true;
+    this.divIndex = id;
+    
+  }
+
+  save(user: any){
+    console.log(user);
+    this.refreshPage();
+  }
+
+  cancel(){
+    this.edit = false;
+    this.refreshPage();
   }
 
   delete(id: number, email: String){
     var result = confirm("Are you sure you want to delete "+email+"?");
-    console.log(result);
     if(result){
       this.deleteUser(id);
+      this.refreshPage();
     }
   }
 
+  updateStudent(student: Student){
+    this.restApi.updateStudent(student);
+  }
   deleteUser(id: number){
-    console.log("Deleting user ID: " + id);
     this.restApi.deleteUser(id).subscribe();
   }
 
@@ -117,7 +129,6 @@ export class AdminListAccountsComponent{
     this.router.navigate(["/admin/accounts"]);
   }
   openDialogEdit(id: number) {
-    console.log(id);
     alert(id);
     return this.dialog.open(AdminListAccountsComponent,  {
         data: {
