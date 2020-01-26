@@ -94,6 +94,14 @@ export class RestApiService {
     )
   }
 
+  deleteProject(id: number): Observable<{}> {
+    console.log(id);
+    return this.http.delete(this.apiURL + 'ipsen3projects/delete=' + id )
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   getAllStudents(): Observable<Student[]>{
     return this.http.get<Student[]>(this.apiURL + 'users/getAllStudents')
     .pipe(

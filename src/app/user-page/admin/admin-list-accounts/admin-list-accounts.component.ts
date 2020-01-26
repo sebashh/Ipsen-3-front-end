@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/Services/api-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { RestApiService } from 'src/app/shared/Services/api-service';
 
 export class AdminListAccountsComponent{
   dialog: any;
-  constructor(public restApi: RestApiService){}
+  constructor(public restApi: RestApiService, public router: Router){}
 
   AllStudents = [];
   AllTeachers = [];
@@ -110,10 +111,16 @@ export class AdminListAccountsComponent{
     this.restApi.deleteUser(id).subscribe();
   }
 
+  refreshPage(){
+    this.getAllClients();
+    this.getAllStudents();
+    this.getAllTeachers();
+    this.router.navigate(["/admin/accounts"]);
+  }
   openDialogEdit(id: number) {
     console.log(id);
     alert(id);
-    return this.dialog.open(AdminListAccountsComponent, "Hello", {
+    return this.dialog.open(AdminListAccountsComponent,  {
         data: {
           id: id
         }
