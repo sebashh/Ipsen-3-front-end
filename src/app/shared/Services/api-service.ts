@@ -86,6 +86,14 @@ export class RestApiService {
       );
   }
 
+  getAllProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects=all')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   getAllStudents(): Observable<Student[]>{
     return this.http.get<Student[]>(this.apiURL + 'users/getAllStudents')
     .pipe(

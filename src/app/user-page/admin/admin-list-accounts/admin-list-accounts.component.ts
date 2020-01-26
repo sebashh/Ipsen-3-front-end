@@ -10,6 +10,7 @@ import { RestApiService } from 'src/app/shared/Services/api-service';
 
 
 export class AdminListAccountsComponent{
+  dialog: any;
   constructor(public restApi: RestApiService){}
 
   AllStudents = [];
@@ -21,8 +22,6 @@ export class AdminListAccountsComponent{
 
   ngOnInit(){
     this.getAllStudents();
-    this.getAllTeachers();
-    this.getAllClients();
   }
 
   getAllStudents(){
@@ -53,6 +52,7 @@ export class AdminListAccountsComponent{
   }
   
   showStudents(){
+    this.getAllStudents();
     this.Students = true;
     this.Teachers = false;
     this.Clients = false;
@@ -61,6 +61,7 @@ export class AdminListAccountsComponent{
   }
 
   showTeachers(){
+    this.getAllTeachers();
     this.Students = false;
     this.Teachers = true;
     this.Clients = false;
@@ -69,6 +70,7 @@ export class AdminListAccountsComponent{
   }
 
   showClients(){
+    this.getAllClients();
     this.Students = false;
     this.Teachers = false;
     this.Clients = true;
@@ -107,4 +109,15 @@ export class AdminListAccountsComponent{
     console.log("Deleting user ID: " + id);
     this.restApi.deleteUser(id).subscribe();
   }
+
+  openDialogEdit(id: number) {
+    console.log(id);
+    alert(id);
+    return this.dialog.open(AdminListAccountsComponent, "Hello", {
+        data: {
+          id: id
+        }
+      });
+  }
+
 }
