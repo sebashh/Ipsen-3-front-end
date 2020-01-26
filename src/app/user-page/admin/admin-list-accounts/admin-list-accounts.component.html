@@ -1,70 +1,89 @@
 <div class="container">
-	<div class="table">
+  <div class="table">
     <div>
       <a class="button active" (click)="showStudents()" id="Students">student</a>
-      <a class="button"(click)="showTeachers()"  id="Teachers">teacher</a>
+      <a class="button" (click)="showTeachers()" id="Teachers">teacher</a>
       <a class="button" (click)="showClients()" id="Clients">client</a>
     </div>
     <div *ngIf="Students">
-		<div class="table-header">
-      <div class="header__item"><a class="filter__link">E-mail</a></div>
-      <div class="header__item"><a class="filter__link">Study</a></div>
-      <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
-      <div class="header__item"></div>
-    </div>
-   
-    <div *ngFor="let student of AllStudents; let i = index" class="table-row">
+      <div class="table-header">
+        <div class="header__item"><a class="filter__link">E-mail</a></div>
+        <div class="header__item"><a class="filter__link">Study</a></div>
+        <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
+        <div class="header__item"></div>
+      </div>
+      <div *ngFor="let student of AllStudents; let i = index" class="table-row">
         <div class="table-data" *ngIf="!edit || i != divIndex">{{student.email}}</div>
         <div class="table-data" *ngIf="!edit || i != divIndex">{{student.study}}</div>
-        <div class="table-data" *ngIf="edit && i == divIndex"><input  [(ngModel)]="student.email" placeholder={{student.email}}></div>
-        <div class="table-data" *ngIf="edit && i == divIndex"><input  [(ngModel)]="student.study" placeholder={{student.study}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="student.email"
+            placeholder={{student.email}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="student.study"
+            placeholder={{student.study}}></div>
         <div class="table-data">{{student.lastLogin}}</div>
-      <div *ngIf="!edit || i != divIndex">
-        <button class="table-data" (click)="logIndex(i);">Edit</button>
-        <button class="table-data" (click)="delete(student.id, student.email);">Delete</button>
+        <div *ngIf="!edit || i != divIndex">
+          <button class="table-data" (click)="editRow(i);">Edit</button>
+          <button class="table-data" (click)="delete(student.id, student.email);">Delete</button>
+        </div>
+        <div *ngIf="edit && i == divIndex">
+          <button class="table-data" (click)="updateStudent(student)">Save</button>
+          <button class="table-data" (click)="cancel()">Cancel</button>
+        </div>
       </div>
-      <div *ngIf="edit && i == divIndex">
-        <button class="table-data" (click)="save(student)">Save</button>
-        <button class="table-data" (click)="cancel()">Cancel</button>
-      </div> 
-    </div> 
-  
-  </div>
-
-  <div  *ngIf="Teachers">
-    <div class="table-header">
-      <div class="header__item"><a class="filter__link">E-mail</a></div>
-      <div class="header__item"><a class="filter__link">Teacher</a></div>
-      <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
-      <div class="header__item"></div>
     </div>
-    <div *ngFor="let teacher of AllTeachers; let i = index" class="table-row">
-      <div class="table-data">{{teacher.email}}</div>
-      <div class="table-data">{{teacher.study}}</div>
-      <div class="table-data">{{teacher.lastLogin}}</div>
-      <div>
-        <button class="table-data" (click)="openDialogEdit(i);">Edit</button>
-        <button class="table-data" (click)="delete(teacher.id, teacher.email);">Delete</button>
+    <div *ngIf="Teachers">
+      <div class="table-header">
+        <div class="header__item"><a class="filter__link">E-mail</a></div>
+        <div class="header__item"><a class="filter__link">Teacher</a></div>
+        <div class="header__item"><a class="filter__link filter__link--number">Last Login</a></div>
+        <div class="header__item"></div>
+      </div>
+      <div *ngFor="let teacher of AllTeachers; let i = index" class="table-row">
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{teacher.email}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{teacher.study}}</div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="teacher.email"
+            placeholder={{teacher.email}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="teacher.study"
+            placeholder={{teacher.study}}></div>
+        <div class="table-data">{{teacher.lastLogin}}</div>
+        <div *ngIf="!edit || i != divIndex">
+          <button class="table-data" (click)="editRow(i);">Edit</button>
+          <button class="table-data" (click)="delete(teacher.id, teacher.email);">Delete</button>
         </div>
-    </div> 
-  </div>
-
-  <div *ngIf="Clients">
-    <div class="table-header" *ngIf="Clients">
-      <div class="header__item"><a class="filter__link">Name</a></div>
-      <div class="header__item"><a class="filter__link">Description</a></div>
-      <div class="header__item"><a class="filter__link">E-mail</a></div>
-      <div class="header__item"><a class="filter__link">lastLogin</a></div>
-      <div class="header__item"></div>
+        <div *ngIf="edit && i == divIndex">
+          <button class="table-data" (click)="updateTeacher(teacher)">Save</button>
+          <button class="table-data" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
     </div>
-    <div *ngFor="let client of AllClients; let i = index" class="table-row">
-      <div class="table-data">{{client.company_name}}</div>
-      <div class="table-data">{{client.description}}</div>
-      <div class="table-data">{{client.email}}</div>
-      <div class="table-data">{{client.lastLogin}}</div>
-      <div>
-        <button class="table-data" (click)="logIndex(i);">Edit</button>
-        <button class="table-data" (click)="delete(client.id, client.email);">Delete</button>
+
+    <div *ngIf="Clients">
+      <div class="table-header" *ngIf="Clients">
+        <div class="header__item"><a class="filter__link">Name</a></div>
+        <div class="header__item"><a class="filter__link">Description</a></div>
+        <div class="header__item"><a class="filter__link">E-mail</a></div>
+        <div class="header__item"><a class="filter__link">lastLogin</a></div>
+        <div class="header__item"></div>
+      </div>
+      <div *ngFor="let client of AllClients; let i = index" class="table-row">
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{client.company_name}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{client.description}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{client.email}}</div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="client.company_name"
+            placeholder={{client.company_name}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="client.description"
+            placeholder={{client.description}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="client.email"
+            placeholder={{client.email}}></div>
+        <div class="table-data">{{client.lastLogin}}</div>
+        <div *ngIf="!edit || i != divIndex">
+          <button class="table-data" (click)="editRow(i);">Edit</button>
+          <button class="table-data" (click)="delete(client.id, client.email);">Delete</button>
         </div>
-    </div> 
+        <div *ngIf="edit && i == divIndex">
+          <button class="table-data" (click)="updateClient(client)">Save</button>
+          <button class="table-data" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

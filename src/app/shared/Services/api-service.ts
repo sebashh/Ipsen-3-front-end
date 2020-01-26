@@ -14,6 +14,7 @@ import { Client } from '../Models/client.model';
 })
 
 export class RestApiService {
+  
   get<T>(arg0: string): Observable<Project> {
     throw new Error("Method not implemented.");
   }
@@ -120,10 +121,41 @@ export class RestApiService {
     )
   }
 
-  updateStudent(student){
-    console.log(student);
+  updateStudent(student: Student): Observable<Student>{
+    return this.http.put<Student>(this.apiURL + 'users/studentUpdate', student)
+    .pipe(
+      catchError(this.handleError)
+    )
   }
 
+  updateTeacher(teacher: Teacher): Observable<Teacher>{
+    return this.http.put<Teacher>(this.apiURL + 'users/teacherUpdate', teacher)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updateClient(client: Client): Observable<Client>{
+    return this.http.put<Client>(this.apiURL + 'users/clientUpdate', client)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updatePaper(paper: Paper): Observable<Paper>{
+    return this.http.put<Paper>(this.apiURL + 'paper/paperUpdate', paper)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updateProject(project: Project): Observable<Project>{
+    return this.http.put<Project>(this.apiURL + 'ipsen3projects/projectUpdate', project)
+    .pipe(
+      catchError(this.handleError)
+    )
+  }
+  
   deleteUser(id: number): Observable<{}> {
     console.log(id);
     return this.http.delete(this.apiURL + 'user=' + id + '/delete')

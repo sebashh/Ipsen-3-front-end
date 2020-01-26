@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/Services/api-service';
 import { Router } from '@angular/router';
+import { Project } from 'src/app/shared/Models/project.model';
 
 @Component({
   selector: 'app-admin-list-projects',
@@ -12,6 +13,8 @@ export class AdminListProjectsComponent implements OnInit {
 
   constructor(public restApi: RestApiService,public router: Router) { }
   AllProjects = [];
+  edit = false;
+  divIndex;
 
   ngOnInit() {
     this.getAllProjects();
@@ -35,5 +38,29 @@ export class AdminListProjectsComponent implements OnInit {
       this.restApi.deleteProject(id).subscribe();;
       this.getAllProjects();
     }
+  }
+
+  editRow(id: number) {
+    console.log(id);
+    this.edit = true;
+    this.divIndex = id;
+
+  }
+
+  updateProject(project: Project) {
+    this.restApi.updateProject(project).subscribe();
+    // this.refreshPage();
+    this.cancel();
+  }
+
+
+  cancel() {
+    this.edit = false;
+    this.refreshPage();
+  }
+
+  refreshPage() {
+    this.getAllProjects();
+    this.router.navigate(["/admin/projects"]);
   }
 }

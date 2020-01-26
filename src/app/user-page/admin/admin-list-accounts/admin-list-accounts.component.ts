@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/Services/api-service';
 import { Router } from '@angular/router';
 import { Student } from 'src/app/shared/Models/student.model';
+import { Teacher } from 'src/app/shared/Models/teacher.model';
+import { Client } from 'src/app/shared/Models/client.model';
 
 @Component({
   selector: 'app-admin-list-accounts',
@@ -9,9 +11,9 @@ import { Student } from 'src/app/shared/Models/student.model';
   styleUrls: ['./admin-list-accounts.component.css']
 })
 
-export class AdminListAccountsComponent{
+export class AdminListAccountsComponent {
   dialog: any;
-  constructor(public restApi: RestApiService, public router: Router){}
+  constructor(public restApi: RestApiService, public router: Router) { }
 
   AllStudents = [];
   AllTeachers = [];
@@ -22,35 +24,35 @@ export class AdminListAccountsComponent{
   edit = false;
   divIndex;
 
-  ngOnInit(){
+  ngOnInit() {
     this.getAllStudents();
   }
 
-  getAllStudents(){
-    this.restApi.getAllStudents().subscribe((data)=>{
-      for(var i = 0; i < data.length; i++){
+  getAllStudents() {
+    this.restApi.getAllStudents().subscribe((data) => {
+      for (var i = 0; i < data.length; i++) {
         this.AllStudents = data;
       }
     })
   }
 
-  getAllTeachers(){
-    this.restApi.getAllTeachers().subscribe((data)=>{
-      for(var i = 0; i < data.length; i++){
+  getAllTeachers() {
+    this.restApi.getAllTeachers().subscribe((data) => {
+      for (var i = 0; i < data.length; i++) {
         this.AllTeachers = data;
       }
     })
   }
 
-  getAllClients(){
-    this.restApi.getAllClients().subscribe((data)=>{
-      for(var i = 0; i < data.length; i++){
+  getAllClients() {
+    this.restApi.getAllClients().subscribe((data) => {
+      for (var i = 0; i < data.length; i++) {
         this.AllClients = data;
       }
     })
   }
-  
-  showStudents(){
+
+  showStudents() {
     this.getAllStudents();
     this.Students = true;
     this.Teachers = false;
@@ -59,7 +61,7 @@ export class AdminListAccountsComponent{
     this.changeButton('Students');
   }
 
-  showTeachers(){
+  showTeachers() {
     this.getAllTeachers();
     this.Students = false;
     this.Teachers = true;
@@ -68,7 +70,7 @@ export class AdminListAccountsComponent{
     this.changeButton('Teachers');
   }
 
-  showClients(){
+  showClients() {
     this.getAllClients();
     this.Students = false;
     this.Teachers = false;
@@ -77,11 +79,11 @@ export class AdminListAccountsComponent{
     this.changeButton('Clients');
   }
 
-  changeButton(id:string){
+  changeButton(id: string) {
     let x = document.getElementById(id);
-    x.className+= ' active';
+    x.className += ' active';
   }
-  resetButton(){
+  resetButton() {
     let x = document.getElementById('Students');
     let y = document.getElementById('Teachers');
     let z = document.getElementById('Clients');
@@ -90,39 +92,55 @@ export class AdminListAccountsComponent{
     z.className = 'button';
   }
 
-  logIndex(id: number){
+  editRow(id: number) {
     console.log(id);
     this.edit = true;
     this.divIndex = id;
-    
+
   }
 
-  save(user: any){
+  save(user: any) {
     console.log(user);
     this.refreshPage();
+
   }
 
-  cancel(){
+  cancel() {
     this.edit = false;
     this.refreshPage();
   }
 
-  delete(id: number, email: String){
-    var result = confirm("Are you sure you want to delete "+email+"?");
-    if(result){
+  delete(id: number, email: String) {
+    var result = confirm("Are you sure you want to delete " + email + "?");
+    if (result) {
       this.deleteUser(id);
-      this.refreshPage();
+
     }
   }
 
-  updateStudent(student: Student){
-    this.restApi.updateStudent(student);
+  updateStudent(student: Student) {
+    this.restApi.updateStudent(student).subscribe();
+
+    this.cancel();
   }
-  deleteUser(id: number){
+
+  updateTeacher(teacher: Teacher) {
+    this.restApi.updateTeacher(teacher).subscribe();
+    this.cancel();
+  }
+
+  updateClient(client: Client) {
+    this.restApi.updateClient(client).subscribe();
+
+    this.cancel();
+  }
+
+
+  deleteUser(id: number) {
     this.restApi.deleteUser(id).subscribe();
   }
 
-  refreshPage(){
+  refreshPage() {
     this.getAllClients();
     this.getAllStudents();
     this.getAllTeachers();
@@ -130,11 +148,11 @@ export class AdminListAccountsComponent{
   }
   openDialogEdit(id: number) {
     alert(id);
-    return this.dialog.open(AdminListAccountsComponent,  {
-        data: {
-          id: id
-        }
-      });
+    return this.dialog.open(AdminListAccountsComponent, {
+      data: {
+        id: id
+      }
+    });
   }
 
 }

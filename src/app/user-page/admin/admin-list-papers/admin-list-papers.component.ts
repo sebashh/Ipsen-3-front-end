@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/Services/api-service';
 import { Router } from '@angular/router';
+import { Paper } from 'src/app/shared/Models/paper.model';
 
 @Component({
   selector: 'app-admin-list-papers',
@@ -11,6 +12,8 @@ export class AdminListPapersComponent implements OnInit {
 
   constructor(public restApi: RestApiService,public router: Router) { }
   AllPapers = [];
+  edit = false;
+  divIndex;
 
   ngOnInit() {
     this.getAllPapers();
@@ -36,4 +39,26 @@ export class AdminListPapersComponent implements OnInit {
     }
   }
 
+  editRow(id: number) {
+    console.log(id);
+    this.edit = true;
+    this.divIndex = id;
+
+  }
+
+  updatePaper(paper: Paper) {
+    this.restApi.updatePaper(paper).subscribe();
+
+    this.cancel();
+  }
+
+  cancel() {
+    this.edit = false;
+    this.refreshPage();
+  }
+
+  refreshPage() {
+    this.getAllPapers();
+    this.router.navigate(["/admin/papers"]);
+  }
 }
