@@ -18,7 +18,7 @@
       <div class="table-data">{{student.lastLogin}}</div>
       <div>
         <button class="table-data" (click)="logIndex(i);">Edit</button>
-        <button class="table-data" (click)="delete(student.id);">Delete</button>
+        <button class="table-data" (click)="delete(student.id, student.email);">Delete</button>
         </div>
     </div> 
   </div>
@@ -36,7 +36,7 @@
       <div class="table-data">{{teacher.lastLogin}}</div>
       <div>
         <button class="table-data" (click)="openDialogEdit(i);">Edit</button>
-        <button class="table-data" (click)="delete(teacher.id);">Delete</button>
+        <button class="table-data" (click)="delete(teacher.id, teacher.email);">Delete</button>
         </div>
     </div> 
   </div>
@@ -56,7 +56,7 @@
       <div class="table-data">{{client.lastLogin}}</div>
       <div>
         <button class="table-data" (click)="logIndex(i);">Edit</button>
-        <button class="table-data" (click)="delete(client.id);">Delete</button>
+        <button class="table-data" (click)="delete(client.id, client.email);">Delete</button>
         </div>
     </div> 
   </div>

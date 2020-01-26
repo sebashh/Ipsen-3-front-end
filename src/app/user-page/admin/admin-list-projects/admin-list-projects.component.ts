@@ -25,15 +25,15 @@ export class AdminListProjectsComponent implements OnInit {
     })
   }
 
-  delete(id: number){
-    var result = confirm("Are you sure you want to delete *EMAIL_HERE*?");
+  delete(id: number, title: String){
+    var result = confirm("Are you sure you want to delete "+title+"?");
     console.log(result);
 
     console.log(id);
     if(result){
       this.restApi.deleteProject(id).subscribe();;
       this.getAllProjects();
-    this.router.navigate(["/admin/projects"]);
+      this.router.navigate(["/admin/projects"]);
     }
   }
 

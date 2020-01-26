@@ -52,6 +52,16 @@ export class RestApiService {
       catchError(this.handleError)
     );
   }
+
+  deletePaper(id: number): Observable<{}> {
+    console.log(id);
+    return this.http.delete(this.apiURL + 'paper/delete=' + id )
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+
   getStatistics(): Observable<Statistics>{
     return this.http.get<Statistics>(this.apiURL + 'statistics/getall')
       .pipe(

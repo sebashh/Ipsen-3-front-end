@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-list-accounts.component.css']
 })
 
-
 export class AdminListAccountsComponent{
   dialog: any;
   constructor(public restApi: RestApiService, public router: Router){}
@@ -98,8 +97,8 @@ export class AdminListAccountsComponent{
     console.log(i);
   }
 
-  delete(id: number){
-    var result = confirm("Are you sure you want to delete *EMAIL_HERE*?");
+  delete(id: number, email: String){
+    var result = confirm("Are you sure you want to delete "+email+"?");
     console.log(result);
     if(result){
       this.deleteUser(id);
