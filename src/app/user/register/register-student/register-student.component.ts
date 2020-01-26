@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../../shared/Models/student.model';
-import {RestApiService} from "../../shared/Services/api-service";
 import {CategoryService} from '../../../shared/Services/category.service';
+import {RestApiService} from "../../../shared/Services/api-service";
+import {Category} from "../../../shared/Models/category.model";
+import {StudyService} from "../../../shared/Services/study.service";
+import {Study} from "../../../shared/Models/study.model";
 
 @Component({
   selector: 'app-register-student',
@@ -13,12 +16,16 @@ export class RegisterStudentComponent implements OnInit {
   private email: FormGroup;
   private password: FormGroup;
   private student: Student;
-  categories: string[] = [];
-  studies: string[] = [];
-  selectedCategories: string[];
-  selectedStudies: string[];
+  categories: Category[] = [];
+  studies: Study[] = [];
+  selectedCategories: Category[];
+  selectedStudies: Study[];
 
-  constructor(formBuilder: FormBuilder, public restApiService: RestApiService, public categoryService: CategoryService) {
+  constructor(formBuilder: FormBuilder,
+              public restApiService: RestApiService,
+              public categoryService: CategoryService,
+              public studyService: StudyService
+  ) {
 
     this.email = formBuilder.group({
       currentEmail: new FormControl('', [
@@ -35,30 +42,17 @@ export class RegisterStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.restApiService.getCategories().subscribe( (data) => {
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < data.length; i++) {
-        this.categories.push(data[i].name);
-      }
-    });
-
-    this.restApiService.getStudies().subscribe( (data) => {
-      // tslint:disable-next-line:prefer-for-of
-      for (let i = 0; i < data.length; i++) {
-        this.studies.push(data[i].name);
-      }
-    });
-
+    this.categories = this.categoryService.categories;
+    this.studies = this.studyService.studies;
   }
 
-  convertCategories(): number[] {
+  getCategoryIdList(): number[] {
     const convertedCategories = [];
     this.selectedCategories.forEach(item => {
-      convertedCategories.push(this.categoryService.getCategoryId(item));
+      convertedCategories.push(item.id);
     })
     return convertedCategories;
   }
-
 
   submitStudent() {
     if (this.selectedStudies == null) {
@@ -67,13 +61,9 @@ export class RegisterStudentComponent implements OnInit {
       if (this.selectedStudies[1] != null) {
         alert('You can only submit one study');
       } else {
-        this.student = new Student(this.selectedStudies[0], this.convertCategories(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-        this.restApiService.postResource('ipsen3users/student', this.student, 'text');
+        this.student = new Student(this.selectedStudies[0].id, this.getCategoryIdList(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
+        this.restApiService.registerUser('ipsen3users/student', this.student);
       }
     }
-
-
   }
-
-
 }

@@ -1,12 +1,6 @@
-export class Study {
+export class Study{
   constructor(
-    public name?: string
-
+    public name: string,
+    public id: number
   ) {}
-
-  public getData() {
-    return {
-      name : this.name,
-    };
-  }
 }
