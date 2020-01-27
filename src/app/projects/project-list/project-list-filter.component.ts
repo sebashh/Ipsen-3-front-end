@@ -16,11 +16,12 @@ export class ProjectListFilterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onUpdateSearch(event: Event) {
-    this.searchValue = (event.target as HTMLInputElement).value;
-  }
 
   toggleSidebar() {
     this.opened = !this.opened;
+  }
+
+  updateFilter() {
+
   }
 }

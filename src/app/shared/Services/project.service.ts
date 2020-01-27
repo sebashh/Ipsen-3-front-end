@@ -6,10 +6,14 @@ import {Project} from "../Models/project.model";
 })
 export class ProjectService {
 
-  @Output() public fire: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public project: Project;
   constructor() { }
 
   changeCurrentProject(project: Project){
-    this.fire.emit(project);
+    this.project = project;
+  }
+
+  getCurrentProject() {
+    return this.project;
   }
 }
