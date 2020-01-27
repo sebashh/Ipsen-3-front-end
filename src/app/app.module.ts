@@ -29,7 +29,7 @@ import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
-import { RouterModule, Routes } from '@angular/router';
+import {Route, RouterModule, Routes} from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
 import { ProjectList } from './user-page/client/project-list/project-list';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -41,18 +41,35 @@ import {ProjectItemViewComponent} from './projects/project-list/project-item-vie
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
+import {RoutingGuard} from "./shared/Gaurds/routing.guard";
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'projects', component: ProjectList},
+  { path: 'projects',
+    component: ProjectList,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'teacher', 'student']
+    }},
   { path: 'about', component: PaperListComponent },
-  { path: 'archive', component: ProjectListFilterComponent },
+  { path: 'archive',
+    component: ProjectListFilterComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'teacher', 'student']
+    }},
   { path: 'register', component: RegisterComponent },
   { path: 'register/clientRegister', component: RegisterClientComponent},
   { path: 'register/studentRegister', component: RegisterStudentComponent},
   { path: 'register/teacherRegister', component: RegisterTeacherComponent},
-  { path: 'projectPage', component: ProjectViewComponent},
+  { path: 'projectPage', component:
+    ProjectViewComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'teacher', 'student']
+    }},
 ];
 
 @NgModule({
