@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Category} from "../Models/category.model";
 import {RestApiService} from "./api-service";
 import {Study} from "../Models/study.model";
 
