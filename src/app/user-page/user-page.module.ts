@@ -10,7 +10,7 @@ import { AdminListPapersComponent } from './admin/admin-list-papers/admin-list-p
 import { AdminListProjectsComponent } from './admin/admin-list-projects/admin-list-projects.component';
 
 @NgModule({
-    declarations: [ CreateProjectComponent, HomePageComponent, AdminStatisticsComponent, AdminListAccountsComponent, AdminListPapersComponent, AdminListProjectsComponent],
+    declarations: [ CreateProjectComponent, AdminStatisticsComponent, AdminListAccountsComponent, AdminListPapersComponent, AdminListProjectsComponent],
     exports: [
         CreateProjectComponent
     ],
