@@ -14,7 +14,7 @@ import {User} from "../Models/user.model";
 export class TopbarComponent implements OnInit {
 
   isUserLoggedIn = false;
-  UserIsNotAnAdmin = true;
+  UserIsNotAnAdmin = false;
   loginModel: LoginModel;
   email: string;
   password: string;

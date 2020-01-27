@@ -50,7 +50,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
   { path: 'projects', component: ProjectList},
-  { path: 'about', component: PaperListComponent },
+  { path: 'about', component: AdminListAccountsComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/clientRegister', component: RegisterClientComponent},

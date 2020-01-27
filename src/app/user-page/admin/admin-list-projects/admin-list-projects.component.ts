@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/Services/api-service';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/shared/Models/project.model';
+import { StudyService } from 'src/app/shared/Services/study.service';
+import { CategoryService } from 'src/app/shared/Services/category.service';
 
 @Component({
   selector: 'app-admin-list-projects',
@@ -11,13 +13,18 @@ import { Project } from 'src/app/shared/Models/project.model';
 export class AdminListProjectsComponent implements OnInit {
   showComponent: boolean;
 
-  constructor(public restApi: RestApiService,public router: Router) { }
+  constructor(public restApi: RestApiService,public router: Router, 
+    public studyService: StudyService, public categoryService: CategoryService) { }
   AllProjects = [];
   edit = false;
   divIndex;
+  AllStudies = [];
+  AllCategories = [];
 
   ngOnInit() {
     this.getAllProjects();
+    this.AllStudies = this.studyService.studies;
+    this.AllCategories = this.categoryService.categories;
   }
 
   getAllProjects(){
@@ -37,6 +44,7 @@ export class AdminListProjectsComponent implements OnInit {
     if(result){
       this.restApi.deleteProject(id).subscribe();;
       this.getAllProjects();
+      
     }
   }
 

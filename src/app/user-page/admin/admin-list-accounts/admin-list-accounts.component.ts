@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Student } from 'src/app/shared/Models/student.model';
 import { Teacher } from 'src/app/shared/Models/teacher.model';
 import { Client } from 'src/app/shared/Models/client.model';
+import { StudyService } from 'src/app/shared/Services/study.service';
 
 @Component({
   selector: 'app-admin-list-accounts',
@@ -13,7 +14,8 @@ import { Client } from 'src/app/shared/Models/client.model';
 
 export class AdminListAccountsComponent {
   dialog: any;
-  constructor(public restApi: RestApiService, public router: Router) { }
+  constructor(public restApi: RestApiService, public router: Router,
+    public studyService: StudyService) { }
 
   AllStudents = [];
   AllTeachers = [];
@@ -23,9 +25,13 @@ export class AdminListAccountsComponent {
   Clients = false;
   edit = false;
   divIndex;
+  AllStudies = [];
 
+  
   ngOnInit() {
     this.getAllStudents();
+    this.AllStudies = this.studyService.studies;
+    
   }
 
   getAllStudents() {
@@ -114,13 +120,12 @@ export class AdminListAccountsComponent {
     var result = confirm("Are you sure you want to delete " + email + "?");
     if (result) {
       this.deleteUser(id);
-
+      this.refreshPage();
     }
   }
 
   updateStudent(student: Student) {
     this.restApi.updateStudent(student).subscribe();
-
     this.cancel();
   }
 

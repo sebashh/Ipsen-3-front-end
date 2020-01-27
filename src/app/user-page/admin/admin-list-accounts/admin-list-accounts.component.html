@@ -17,8 +17,11 @@
         <div class="table-data" *ngIf="!edit || i != divIndex">{{student.study}}</div>
         <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="student.email"
             placeholder={{student.email}}></div>
-        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="student.study"
-            placeholder={{student.study}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex">
+          <select [(ngModel)]="student.study">
+            <option *ngFor="let study of AllStudies">{{study.name}}</option>
+          </select>
+        </div>
         <div class="table-data">{{student.lastLogin}}</div>
         <div *ngIf="!edit || i != divIndex">
           <button class="table-data" (click)="editRow(i);">Edit</button>
@@ -42,8 +45,9 @@
         <div class="table-data" *ngIf="!edit || i != divIndex">{{teacher.study}}</div>
         <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="teacher.email"
             placeholder={{teacher.email}}></div>
-        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="teacher.study"
-            placeholder={{teacher.study}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><select [(ngModel)]="teacher.study">
+          <option *ngFor="let study of AllStudies">{{study.name}}</option>
+        </select></div>
         <div class="table-data">{{teacher.lastLogin}}</div>
         <div *ngIf="!edit || i != divIndex">
           <button class="table-data" (click)="editRow(i);">Edit</button>

@@ -12,19 +12,23 @@
       </div>
       <div *ngFor="let project of AllProjects; let i = index" class="table-row">
         <div class="table-data" *ngIf="!edit || i != divIndex">{{project.title}}</div>
-        <div class="table-data" *ngIf="!edit || i != divIndex">{{project.summary}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{project.description}}</div>
         <div class="table-data" *ngIf="!edit || i != divIndex">{{project.category}}</div>
         <!-- <div class="table-data">{{project.client}}</div> -->
         <div class="table-data" *ngIf="!edit || i != divIndex">{{project.study}}</div>
         <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="project.title"
           placeholder={{project.title}}></div>
-        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="project.summary"
-          placeholder={{project.summary}}></div>
-        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="project.category"
-          placeholder={{project.category}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="project.description"
+          placeholder={{project.description}}>
+        </div>
+          <div class="table-data" *ngIf="edit && i == divIndex"><select [(ngModel)]="project.category">
+            <option *ngFor="let category of AllCategories">{{category.name}}</option>
+          </select>
+        </div>
         <!-- <div class="table-data">{{project.client}}</div> -->
-        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="project.study"
-          placeholder={{project.study}}></div>
+        <div class="table-data" *ngIf="edit && i == divIndex"><select [(ngModel)]="project.study">
+          <option *ngFor="let study of AllStudies">{{study.name}}</option>
+        </select></div>
         <div class="table-data">{{project.createdOn}}</div>
         <div *ngIf="!edit || i != divIndex">
           <button class="table-data" (click)="editRow(i);">Edit</button>
