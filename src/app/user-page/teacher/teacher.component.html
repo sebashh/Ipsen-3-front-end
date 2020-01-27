@@ -1,1 +1,40 @@
-<p>teacher works!</p>
+<div class="content">
+  <h1>PLNT APP HOME - Teacher</h1><hr>
+  <div id="introtext"><h3> Welkom {{teacherDisplayName}}</h3><p>
+    Sinds u laatste bezoek
+    <em *ngIf="projectsAmountInterests > 1; else lessThen"> zijn er {{projectsAmountInterests}} projecten </em>
+    <ng-template #lessThen>
+      <em>
+        is er {{projectsAmountInterests}} project
+      </em>
+    </ng-template>
+    aangemaakt met uw interesses. <br>
+    Hiernaast
+    <em *ngIf="projectsAmountUploadedTo > 1; else lessThen"> zijn de projecten waar u naar geupload heeft </em>
+    <ng-template #lessThen>
+      <em>
+        is het project waar u naar geupload heeft
+      </em>
+    </ng-template>
+    <em>totaal {{projectViews}} bekeken.</em></p></div>
+  <br>
+  <section class="card">
+    <h2>Sommige projecten die u volgt</h2>
+    <br>
+    <div id ="scrollContainerDiv1">
+      <app-scrollbar [projects]=this.followedProjects></app-scrollbar>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Recentelijke aangemaakt projecten met uw interesses</h2>
+    <br>
+    <div id ="scrollContainerDiv2">
+      <app-scrollbar [projects]=this.projectsWithInterests></app-scrollbar>
+    </div>
+  </section>
+  <br>
+  <button type="button">Uw gevolgde projecten</button><button type="button">Alle projecten</button>
+
+</div>
+

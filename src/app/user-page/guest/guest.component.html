@@ -1,12 +1,13 @@
 <div class="content">
 <h1>PLNT APP HOME</h1><hr>
-<div id="introtext"><p>A brief explanation of the app is shown here. <br>
-Perhaps even they way someone might be able to register is also located here. <br>
-Maybe some information about the organisation could be shown here as well.</p></div>
+<div id="introtext"><p>
+Altijd al willen weten of een onderwerp al eerder is uitgewerkt.  <br>
+Of ben je op zoek naar informatie, maar geen zin om stoffige boeken door te kijken? <br>
+De PLNT app bundelt alle informatie in Leiden tot een handige app</p></div>
 
 <section class="card">
   <div id ="scrollContainerDiv">
-    <app-scrollbar></app-scrollbar>
+    <app-scrollbar [projects]=this.projects></app-scrollbar>
   </div>
 </section>
 

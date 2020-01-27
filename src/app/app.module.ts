@@ -29,7 +29,7 @@ import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
-import { RouterModule, Routes } from '@angular/router';
+import {Route, RouterModule, Routes} from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
 import { ProjectList } from './user-page/client/project-list/project-list';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -41,21 +41,40 @@ import {ProjectItemViewComponent} from './projects/project-list/project-item-vie
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
+import {RoutingGuard} from "./shared/Gaurds/routing.guard";
 import { AdminStatisticsComponent } from './user-page/admin/admin-statistics/admin-statistics.component';
 import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/admin-list-papers.component';
 import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
 import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 
+import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
+
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'projects', component: ProjectList},
-  { path: 'about', component: AdminListAccountsComponent },
-  { path: 'archive', component: ProjectListFilterComponent },
+  { path: 'projects',
+    component: ProjectList,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'teacher', 'student']
+    }},
+  { path: 'about', component: PaperListComponent },
+  { path: 'archive',
+    component: ProjectListFilterComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'teacher', 'student']
+    }},
   { path: 'register', component: RegisterComponent },
   { path: 'register/clientRegister', component: RegisterClientComponent},
   { path: 'register/studentRegister', component: RegisterStudentComponent},
   { path: 'register/teacherRegister', component: RegisterTeacherComponent},
+  { path: 'projectPage', component:
+    ProjectViewComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'teacher', 'student']
+    }},
   { path: 'projectPage', component: ProjectViewComponent},
   { path: 'admin/statistics', component: AdminStatisticsComponent },
   { path: 'admin/papers', component: AdminListPapersComponent },
@@ -89,7 +108,8 @@ export const routes: Routes = [
     ClientComponent,
     ProjectList,
     ProjectViewCardComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    HomePageComponent
   ],
   imports: [
     HttpClientModule,

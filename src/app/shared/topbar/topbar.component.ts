@@ -73,6 +73,7 @@ export class TopbarComponent implements OnInit {
 
   logOut() {
     this.isUserLoggedIn = false;
+    this.userService.removeUser();
   }
 
   toggleNotifications() {
