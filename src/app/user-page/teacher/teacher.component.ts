@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RestApiService} from "../../shared/Services/api-service";
 import {Project} from "../../shared/Models/project.model";
+import {UserService} from "../../shared/Services/user.service";
 
 @Component({
   selector: 'app-teacher',
@@ -28,7 +29,7 @@ export class TeacherComponent implements OnInit {
 
 
   getRecentStatisticsTeacher(){
-    this.apiService.getRecentStatisticsTeacher(this.teacherName).subscribe((data) => {
+    this.apiService.getRecentStatisticsTeacher().subscribe((data) => {
       console.log(data);
       this.projectsAmountInterests = data[0];
       this.projectsAmountUploadedTo = data[1];
@@ -38,13 +39,13 @@ export class TeacherComponent implements OnInit {
 
 
   getProjectsWithInterests() {
-    this.apiService.getRecentlyCreatedProjectsWithInterest(5).subscribe((data) => {
+    this.apiService.getRecentlyCreatedProjectsWithInterest().subscribe((data) => {
       this.projectsWithInterests = data;
     })
   }
 
   getFollowedProjects(){
-    this.apiService.getRandomFollowedProjects(5).subscribe((data) => {
+    this.apiService.getRandomFollowedProjects().subscribe((data) => {
       this.followedProjects = data;
     })
   }

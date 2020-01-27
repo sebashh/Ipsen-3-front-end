@@ -27,7 +27,7 @@ export class StudentComponent implements OnInit {
 
 
   getRecentStatisticsUser(){
-    this.apiService.getRecentStatisticsStudent(this.studentName).subscribe((data) => {
+    this.apiService.getRecentStatisticsStudent().subscribe((data) => {
       console.log(data);
       this.projectsAmount = data[0];
       this.papersAmount = data[1];
@@ -36,13 +36,13 @@ export class StudentComponent implements OnInit {
 
 
   getProjectsWithInterests() {
-    this.apiService.getRecentlyCreatedProjectsWithInterest(5).subscribe((data) => {
+    this.apiService.getRecentlyCreatedProjectsWithInterest().subscribe((data) => {
       this.projectsWithInterests = data;
     })
   }
 
   getFollowedProjects(){
-    this.apiService.getRandomFollowedProjects(5).subscribe((data) => {
+    this.apiService.getRandomFollowedProjects().subscribe((data) => {
       this.followedProjects = data;
     })
   }

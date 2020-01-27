@@ -310,54 +310,54 @@ export class RestApiService {
     );
   }
 
-  getRecentStatisticsStudent(email_user: string) : Observable<any>{
-    return this.http.get(this.apiURL + 'statistics/student=' + email_user).pipe(
+  getRecentStatisticsStudent() : Observable<any>{
+    return this.http.get(this.apiURL + 'statistics/student').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
-  getRandomFollowedProjects(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/followed/user=' + user_id)
+  getRandomFollowedProjects() : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/followed/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getRecentlyCreatedProjectsWithInterest(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/interested/user=' + user_id)
+  getRecentlyCreatedProjectsWithInterest() : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/interested/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getRecentStatisticsTeacher(email_teacher: string) : Observable<any>{
-    return this.http.get(this.apiURL + 'statistics/teacher=' + email_teacher).pipe(
+  getRecentStatisticsTeacher() : Observable<any>{
+    return this.http.get(this.apiURL + 'statistics/teacher').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
 
-  getRecentStatisticsClient(clientName: string) : Observable<any> {
-    return this.http.get(this.apiURL + 'statistics/client=' + clientName).pipe(
+  getRecentStatisticsClient() : Observable<any> {
+    return this.http.get(this.apiURL + 'statistics/client').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
-  getRecentlyUpdatedProjects(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/user=' + user_id)
+  getRecentlyUpdatedProjects() : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/top/user=' + user_id)
+  getTopViewedProjectsClient() : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/top/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
