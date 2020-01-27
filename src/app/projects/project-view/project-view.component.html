@@ -1,7 +1,7 @@
 <div class="content">
   <div class="top">
     <div class="title"><p>{{project?.title}}</p></div>
-    <div class="follow"><button (click)="following ? unFollowProject() : followProject()">{{following? 'un-Follow' : 'follow'}}</button></div>
+    <div class="follow"><button *ngIf="isEducational()" (click)="following ? unFollowProject() : followProject()">{{following? 'un-Follow' : 'follow'}}</button></div>
     <div class="client">
     </div>
   </div>
@@ -24,9 +24,9 @@
         <td class="paper_uploaded">{{paper.uploadedBy}}</td>
         <td class="paper_date">{{formatDate(paper.uploadDate)}}</td>
       </tr>
-
     </table>
-    <button (click)="toggleUpload()" class="upload">upload paper</button>
+    <button (click)="doAccesButtonAction()" *ngIf="isTeacher()" class="upload">{{accesButtonText}}</button>
   </div>
+  <app-client-project-view *ngIf="isCurrentOwner()" [currentOwner]="isCurrentOwner()" [project]="project" [papers]="papers"></app-client-project-view>
 </div>
 <app-upload [ngClass]="{'uploading':uploading}"></app-upload>
