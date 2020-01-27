@@ -1,0 +1,18 @@
+
+<span>Requests to access project</span>
+<table>
+  <tr *ngFor="let teacher of teacherRequests">
+    <td class="email">{{teacher.email}}</td>
+    <td class="accept"><button (click)="acceptRequest(teacher.id)">Accept</button></td>
+    <td class="deny"><button (click)="denyRequest(teacher.id)">Deny</button></td>
+  </tr>
+</table>
+
+<table>
+<span>Teachers with access</span>
+  <tr *ngFor="let teacher of teacherAccess">
+    <td class="email">{{teacher.email}}</td>
+    <td class="paperAmount">Papers uploaded: {{getPaperAmount(teacher.id)}}</td>
+    <td class="remove"><button>Revoke access</button></td>
+  </tr>
+</table>

@@ -12,7 +12,6 @@ export class InterceptorService implements HttpInterceptor{
 
   intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log(req.headers);
     //encrypting data when header "encrypt" is in headers
     if(req.headers.has('encrypt')){
       req.headers.keys().forEach(item =>{
