@@ -1,0 +1,75 @@
+.content{
+  margin-top: 15vh;
+  margin-bottom: 150px;
+}
+
+* {
+  text-align: center;
+}
+
+h1 {
+  font-size: 25px;
+  color: rgb(109,190,179);
+}
+
+.card {
+  background-color:transparent;
+  display: inline-block;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
+.wrapper {
+  text-align: center;
+  display: inline-block;
+  margin: 10px;
+}
+
+
+.statistics {
+  position: relative;
+  top: 225px;
+  width: 5%;
+  text-align: center;
+  display: inline-block;
+  margin: 10px;
+  font-weight: bold;
+  margin-top: 100px;
+}
+
+#scrollContainerDiv1, #scrollContainerDiv2 {
+  display: inline-block;
+  text-align: center;
+  height: 20vh;
+}
+
+
+h3 {
+  font-size: 140%;
+}
+
+h2 {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+em {
+  font-weight: bolder;
+  font-size: 115%;
+}
+
+button {
+  height: 7vh;
+  width: 12vw;
+  font-weight: bold;
+  font-size: 115%;
+  border-radius: 3%;
+  margin: 1%;
+}
+
+#introtext{
+  font-size: 120%;
+}

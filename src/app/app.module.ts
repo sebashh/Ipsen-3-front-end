@@ -39,10 +39,11 @@ import {ProjectViewComponent} from './projects/project-view/project-view.compone
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
+import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: GuestComponent},
+  { path: 'home', component: StudentComponent},
   { path: 'projects', component: ClientMyProjectsComponent},
   { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
@@ -79,7 +80,8 @@ export const routes: Routes = [
     ClientComponent,
     ClientMyProjectsComponent,
     ProjectViewCardComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    HomePageComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,5 +1,5 @@
 .testimonial-group > .row {
-  overflow-x: auto;
+  overflow-x: hidden;
   white-space: nowrap;
 }
 .testimonial-group > .row > .col-xs-4 {
