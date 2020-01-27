@@ -29,7 +29,7 @@ import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
-import {Route, RouterModule, Routes} from '@angular/router';
+import {Route, Router, RouterModule, Routes} from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
 import { ProjectList } from './user-page/client/project-list/project-list';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -42,24 +42,45 @@ import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
 import {RoutingGuard} from "./shared/Gaurds/routing.guard";
+import {ClientProjectViewComponent} from "./projects/project-view/Client-component/client-project-view/client-project-view.component";
 
 import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
+  { path: 'home/client', component: ClientComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['client']
+    }},
+  { path: 'home/teacher', component: TeacherComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['teacher']
+    }},
+  { path: 'home/student', component: StudentComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['student']
+    }},
+  { path: 'home/admin', component: AdminComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin']
+    }},
   { path: 'projects',
     component: ProjectList,
     canActivate: [RoutingGuard],
     data: {
-      expectedRoles: ['admin', 'teacher', 'student']
+      expectedRoles: ['admin', 'client', 'teacher', 'student']
     }},
   { path: 'about', component: PaperListComponent },
   { path: 'archive',
     component: ProjectListFilterComponent,
     canActivate: [RoutingGuard],
     data: {
-      expectedRoles: ['admin', 'teacher', 'student']
+      expectedRoles: ['admin', 'client', 'teacher', 'student']
     }},
   { path: 'register', component: RegisterComponent },
   { path: 'register/clientRegister', component: RegisterClientComponent},
@@ -69,7 +90,7 @@ export const routes: Routes = [
     ProjectViewComponent,
     canActivate: [RoutingGuard],
     data: {
-      expectedRoles: ['admin', 'teacher', 'student']
+      expectedRoles: ['admin', 'client', 'teacher', 'student']
     }},
 ];
 
@@ -100,6 +121,7 @@ export const routes: Routes = [
     ProjectList,
     ProjectViewCardComponent,
     ProjectViewComponent,
+    ClientProjectViewComponent,
     HomePageComponent
   ],
   imports: [
@@ -126,7 +148,6 @@ export const routes: Routes = [
     MatInputModule,
     MatListModule
   ],
-
 
   providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
   bootstrap: [AppComponent]

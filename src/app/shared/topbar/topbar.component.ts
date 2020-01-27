@@ -78,4 +78,10 @@ export class TopbarComponent implements OnInit {
   toggleNotifications() {
     this.notificationVisable = !this.notificationVisable;
   }
+
+  getUserPath(): string {
+    let path = '/home';
+    if(this.userService.user) path = path + '/' + this.userService.user.role;
+    return path;
+  }
 }

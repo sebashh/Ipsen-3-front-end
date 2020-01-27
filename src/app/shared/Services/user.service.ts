@@ -1,5 +1,6 @@
 import {Injectable, Output} from '@angular/core';
 import {User} from '../Models/user.model';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class UserService {
   @Output() user: User;
   timer: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   isAuthorized(roles: string[]){
     let userRole;
@@ -23,12 +24,14 @@ export class UserService {
 
   setCurrentUser(user: User) {
     this.user = user;
-    const timeLeft = Date.now() - user.exp.getTime();
+    this.router.navigateByUrl('/home/' + user.role);
+    const timeLeft = user.exp - Date.now();
     this.timer = setTimeout(this.removeUser, timeLeft);
   }
 
   removeUser(){
     this.user = null;
+    this.router.navigateByUrl('/home');
     clearTimeout(this.timer);
   }
 }

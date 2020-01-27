@@ -120,7 +120,6 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    console.log(param);
     this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
@@ -274,5 +273,48 @@ export class RestApiService {
       );
   }
 
+
+
+  getAccessInformation(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/information', {responseType: 'text'}).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  requestProjectAccess(projectId: number) {
+    this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/request').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  getAllAccessMembers(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/all').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getAllAccessRequests(projectId: number):Observable<any> {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/requests/all').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  acceptAccessRequest(id: number, userId: number) {
+    this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/access/teacher-id=' + userId + '/response=true').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  denyAccessRequest(id: number, userId: number) {
+    this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/access/teacher-id=' + userId + '/response=false').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
 
 }
