@@ -18,7 +18,7 @@ import {dateStatistic} from "../Models/dateStatistic.model";
 })
 
 export class RestApiService {
-  
+
   get<T>(arg0: string): Observable<Project> {
     throw new Error("Method not implemented.");
   }
@@ -103,7 +103,7 @@ export class RestApiService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects=all')
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects/all')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -160,7 +160,7 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  
+
   deleteUser(id: number): Observable<{}> {
     console.log(id);
     return this.http.delete(this.apiURL + 'user=' + id + '/delete')
@@ -230,7 +230,6 @@ export class RestApiService {
 
   postResource(path: string, param: any, returnType: any):
     any {
-    console.log(param);
     this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),

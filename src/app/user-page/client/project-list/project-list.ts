@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from 'src/app/shared/Models/project.model';
 import {RestApiService} from "../../../shared/Services/api-service";
+import {UserService} from "../../../shared/Services/user.service";
 
 @Component({
   selector: 'app-client-my-projects',
@@ -14,17 +15,16 @@ export class ProjectList implements OnInit {
   allMyProjects : Project[] = [];
   filteredProjects : Project[] = [];
   private pageOfItems: Array<any>;
-  constructor(public restApi: RestApiService) { }
+  constructor(public restApi: RestApiService, private userService: UserService) { }
   ngOnInit() {
-    this.getAllProjects(2);
+    this.getAllProjects(this.userService.user.id);
   }
 
   getAllProjects(client_id: number){
-    this.restApi.getAllMyProjects(client_id).subscribe((data)=>{
+    this.restApi.getAllProjects().subscribe((data)=> {
       this.allMyProjects = data;
       this.filterContent();
-
-    })
+    });
   }
 
   onChangePage(pageOfItems: Array<any>) {

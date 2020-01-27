@@ -20,6 +20,4 @@ export class AppComponent {
     categoryService.init();
     studyService.init();
   }
-  testProject: Project = new Project(1, "new project", "DESCRIPTION OF THE PROJECT THAT IS ALOT OF TEXT", "study", "category", new Date(), 1);
-
 }

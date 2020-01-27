@@ -1,13 +1,10 @@
 
 export class Client {
   constructor(
-    public id?: number,
-    public picture? : String,
-    public company_name? : String,
-    public description? : String,
-    public email? : String,
-    public password_user? : String,
-    public lastLogin? : String
+    public name_company? : String,
+    public description_company? : String,
+    public email_user? : String,
+    public password_user? : String
   ){}
 
 }

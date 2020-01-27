@@ -3,8 +3,8 @@ export class Project {
     public projectId?: number,
     public title?: string,
     public description?: string,
-    public study?: string,
-    public category?: string,
+    public study?: number,
+    public category?: number,
     public createdOn?: Date,
     public clientId?: number,
   ) {}

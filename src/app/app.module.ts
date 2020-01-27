@@ -52,7 +52,7 @@ import {HomePageComponent} from "./user-page/client/home-page/home-page.componen
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'home/client', component: ClientComponent,
+  { path: 'home/client', component: HomePageComponent,
     canActivate: [RoutingGuard],
     data: {
       expectedRoles: ['client']
@@ -77,6 +77,12 @@ export const routes: Routes = [
     canActivate: [RoutingGuard],
     data: {
       expectedRoles: ['admin', 'client', 'teacher', 'student']
+    }},
+  { path: 'project/create',
+    component: ClientComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['client']
     }},
   { path: 'about', component: PaperListComponent },
   { path: 'archive',

@@ -18,16 +18,4 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
   }
 
-  createProject() {
-    this.project = new Project(
-      null,
-      'project title',
-      'description of the project description of the project description of the project description of the project',
-      'study name',
-      'category',
-      new Date,
-      123)
-    this.projects.push(this.project);
-  }
-
 }
