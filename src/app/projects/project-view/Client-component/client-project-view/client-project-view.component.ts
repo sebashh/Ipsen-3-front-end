@@ -42,7 +42,7 @@ export class ClientProjectViewComponent implements OnInit {
   }
 
   acceptRequest(id: number) {
-    this.apiService.acceptAccessRequest(this.project.projectId,id);
+    this.apiService.acceptAccessRequest(this.project.projectId, id);
   }
 
   denyRequest(id: number) {
