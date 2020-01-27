@@ -28,7 +28,7 @@ export class HomePageComponent implements OnInit {
 
 
   getRecentStatisticsClient(){
-    this.apiService.getRecentStatisticsClient(this.clientName).subscribe((data) => {
+    this.apiService.getRecentStatisticsClient().subscribe((data) => {
       console.log(data);
       this.projectsViewsAmount = data[0];
       this.papersUploadAmount = data[1];
@@ -38,13 +38,13 @@ export class HomePageComponent implements OnInit {
 
 
   getTopViewedProjects() {
-    this.apiService.getTopViewedProjectsClient(2).subscribe((data) => {
+    this.apiService.getTopViewedProjectsClient().subscribe((data) => {
       this.topViewedProjects = data;
     })
   }
 
   getRecentlyUpdatedProjects(){
-    this.apiService.getRecentlyUpdatedProjects(2).subscribe((data) => {
+    this.apiService.getRecentlyUpdatedProjects().subscribe((data) => {
       this.recentlyUpdatedProjects = data;
     })
   }
