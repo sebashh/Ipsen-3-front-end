@@ -1,0 +1,36 @@
+.content{
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+}
+
+* {
+  text-align: center;
+}
+
+h1 {
+  font-size: 25px;
+  color: rgb(109,190,179);
+}
+
+.container{
+  width: 98vw;
+  height: 50vh;
+}
+
+.col-md-12 {
+  border: solid lightgrey 1px;
+  border-radius: 1%;
+  margin: 1%;
+  padding-bottom: 2%;
+  height: 100%;
+  width: 48%;
+  background-color: rgba(109,190,179,0.04);
+}
+
+canvas {
+
+}
+
+
+
+

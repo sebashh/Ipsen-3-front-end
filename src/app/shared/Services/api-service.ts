@@ -8,6 +8,7 @@ import {Statistics} from "../Models/statistics.model";
 import {LoginModel} from "../Models/login.model";
 import {UserService} from "./user.service";
 import {setOffsetToUTC} from "ngx-bootstrap/chronos/units/offset";
+import {dateStatistic} from "../Models/dateStatistic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,7 @@ export class RestApiService {
         catchError(this.handleError)
       );
   }
+
 
   getAllMyProjects(client_id: number): Observable<Project[]> {
     return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects='+ client_id)
@@ -209,4 +211,68 @@ export class RestApiService {
       catchError(this.handleError)
     );
   }
+
+  getRecentStatisticsStudent(email_user: string) : Observable<any>{
+    return this.http.get(this.apiURL + 'statistics/student=' + email_user).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getRandomFollowedProjects(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/followed/user=' + user_id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getRecentlyCreatedProjectsWithInterest(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/interested/user=' + user_id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getRecentStatisticsTeacher(email_teacher: string) : Observable<any>{
+    return this.http.get(this.apiURL + 'statistics/teacher=' + email_teacher).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+
+  getRecentStatisticsClient(clientName: string) : Observable<any> {
+    return this.http.get(this.apiURL + 'statistics/client=' + clientName).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getRecentlyUpdatedProjects(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/user=' + user_id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/top/user=' + user_id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getAdminSpecificStatistics(url : string) : Observable<dateStatistic[]>{
+    return this.http.get<dateStatistic[]>(this.apiURL + 'statistics/admin/' + url)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+
 }

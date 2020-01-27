@@ -30,69 +30,6 @@
   }
 
 
-  .buttonprev {
-      border-top: 25px solid transparent;
-      border-bottom: 25px solid transparent;
-      border-right: 25px solid rgb(109,190,179);
-      border-left: none;
-      background-color: transparent;
-  }
-
-  .buttonnext {
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 25px solid rgb(109,190,179);
-    border-right: none;
-    background-color: transparent;
-  }
-
-  .buttonprev:hover{
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-right: 25px solid rgb(50,100,90);
-    border-left: none;
-    background-color: transparent;
-  }
-
-  .buttonnext:hover{
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 25px solid rgb(50,100,90);
-    border-right: none;
-    background-color: transparent;
-  }
-
-  .buttonprev:active{
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-right: 25px solid rgb(25,50,45);
-    border-left: none;
-    background-color: transparent;
-  }
-
-  .buttonnext:active{
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 25px solid rgb(25,50,45);
-    border-right: none;
-    background-color: transparent;
-  }
-
-  .dot {
-    height: 30px;
-    width: 30px;
-    background-color: rgb(109,190,179);
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    top:15px;
-  }
-
-  #buttons{
-    position: relative;
-    top: 210px;
-  }
-
   .statistics {
     position: relative;
     top: 225px;

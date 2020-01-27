@@ -43,6 +43,7 @@ import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
 import {RoutingGuard} from "./shared/Gaurds/routing.guard";
 
+import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -98,7 +99,8 @@ export const routes: Routes = [
     ClientComponent,
     ProjectList,
     ProjectViewCardComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    HomePageComponent
   ],
   imports: [
     HttpClientModule,
