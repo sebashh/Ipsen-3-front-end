@@ -19,7 +19,13 @@ describe('TopbarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('#logIn() should be false at start', () => {
     expect(component).toBeTruthy();
+    // const comp = component;
+    // expect(comp.isUserLoggedIn).toBe(false, 'off at start');
+    // comp.logIn();
+    // expect(comp.isUserLoggedIn).toBe(true, 'on after click login');
+    // comp.logOut();
+    // expect(comp.isUserLoggedIn).toBe(false, 'off after click logout');
   });
 });
