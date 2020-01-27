@@ -17,7 +17,7 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login.service';
 import {RegisterService} from './user/register/register.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -31,14 +31,16 @@ import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
 import { RouterModule, Routes } from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
-import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ProjectList } from './user-page/client/project-list/project-list';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
+import {MatListModule} from '@angular/material';
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
+import {InterceptorService} from "./shared/Services/interceptor.service";
 import { AdminStatisticsComponent } from './user-page/admin/admin-statistics/admin-statistics.component';
 import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/admin-list-papers.component';
 import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
@@ -47,8 +49,8 @@ import { AdminListAccountsComponent } from './user-page/admin/admin-list-account
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'projects', component: ClientMyProjectsComponent},
-  { path: 'about', component: AdminComponent },
+  { path: 'projects', component: ProjectList},
+  { path: 'about', component: PaperListComponent },
   { path: 'archive', component: ProjectListFilterComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/clientRegister', component: RegisterClientComponent},
@@ -85,7 +87,7 @@ export const routes: Routes = [
     RegisterTeacherComponent,
     ProjectScrollbarComponent,
     ClientComponent,
-    ClientMyProjectsComponent,
+    ProjectList,
     ProjectViewCardComponent,
     ProjectViewComponent
   ],
@@ -109,10 +111,13 @@ export const routes: Routes = [
     MatGridListModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    MatAutocompleteModule,
+    MatInputModule,
+    MatListModule
   ],
 
 
-  providers: [LoginService, RegisterService, ProjectService],
+  providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

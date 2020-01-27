@@ -1,13 +1,12 @@
-<app-topbar></app-topbar>
 <div class="content">
   <div class="top">
-    <div class="title"><p>{{project.title}}</p></div>
-    <div class="follow"><button>follow</button></div>
+    <div class="title"><p>{{project?.title}}</p></div>
+    <div class="follow"><button (click)="following ? unFollowProject() : followProject()">{{following? 'un-Follow' : 'follow'}}</button></div>
     <div class="client">
     </div>
   </div>
   <div class="description">
-    <p>{{project.summary}}
+    <p>{{project?.description}}
     </p>
   </div>
   <div class="papers">
@@ -31,4 +30,3 @@
   </div>
 </div>
 <app-upload [ngClass]="{'uploading':uploading}"></app-upload>
-<app-footer></app-footer>

@@ -5,6 +5,9 @@ import { retry, catchError } from 'rxjs/operators';
 import {Project} from "../Models/project.model";
 import {Paper} from "../Models/paper.model";
 import {Statistics} from "../Models/statistics.model";
+import {LoginModel} from "../Models/login.model";
+import {UserService} from "./user.service";
+import {setOffsetToUTC} from "ngx-bootstrap/chronos/units/offset";
 import { Student } from '../Models/student.model';
 import { Teacher } from '../Models/teacher.model';
 import { Client } from '../Models/client.model';
@@ -22,7 +25,7 @@ export class RestApiService {
   // Define API
   apiURL = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService ) { }
 
   /*========================================
     CRUD Methods for consuming RESTful API
@@ -196,16 +199,44 @@ export class RestApiService {
     return throwError(errorMessage);
   }
 
+  handleRegisterError(error) {
+    let errorMessage = '';
+    if(error.status == '406'){
+      errorMessage = 'Email already exists\nPlease enter a new email';
+    }
+    else if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
+  registerUser(path: string, param: any):
+    any {
+    console.log(param);
+    this.http.post(this.apiURL + path, param)
+      .pipe(
+        retry(1),
+        catchError(this.handleRegisterError)
+      ).subscribe((data) => {
+      return data;
+    });
+  }
+
   postResource(path: string, param: any, returnType: any):
     any {
-    this.http.post(this.apiURL + path, param, {responseType : returnType})
+    console.log(param);
+    this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
         catchError(this.handleError)
       ).subscribe((data) => {
       return data;
     });
-
   }
 
   getPapersOfProject(projectId: number): Observable<any> {
@@ -215,8 +246,64 @@ export class RestApiService {
     );
   }
 
+  getPapersAmountOfProject(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'paper/project=' + projectId + '/amount').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   downloadPDF(url): Observable<any>{
     return this.http.get(this.apiURL + 'paper/pdf=' + url, {responseType: "blob"}).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  loginUser(loginModel: LoginModel) {
+    return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getFollowAmountOfProject(projectId: number): Observable<any>{
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow/amount').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  userFollowingProject(projectId: number) : Observable<any>{
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/isFollowing').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  followProject(projectId: number) {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  unFollowProject(projectId: number) {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/unfollow').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  getCategories() {
+    return this.http.get(this.apiURL + 'ipsen3categories/categories').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getStudies() {
+    return this.http.get(this.apiURL + 'ipsen3studies/studies').pipe(
       retry(1),
       catchError(this.handleError)
     );
