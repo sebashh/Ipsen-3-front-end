@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="table">
+    <div>
+      <div class="table-header">
+        <div class="header__item"><a class="filter__link">Title</a></div>
+        <div class="header__item"><a class="filter__link">Author</a></div>
+        <!-- <div class="header__item"><a class="filter__link">Uploaded By</a></div> -->
+        <div class="header__item"><a class="filter__link">Upload Date</a></div>
+        <div class="header__item"><a class="filter__link">File</a></div>
+        <div class="header__item"></div>
+      </div>
+      <div *ngFor="let paper of AllPapers; let i = index" class="table-row">
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{paper.title}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{paper.author}}</div>
+        <!-- <div class="table-data" *ngIf="!edit || i != divIndex">{{paper.uploadedBy}}</div> -->
+        <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="paper.title"
+          placeholder={{paper.title}}></div>
+      <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="paper.author"
+          placeholder={{paper.author}}></div>
+      <!-- <div class="table-data" *ngIf="edit && i == divIndex">{{paper.uploadedBy}}</div> -->
+      <div class="table-data" *ngIf="!edit || i != divIndex">{{paper.uploadDate}}</div>
+      <div class="table-data">{{paper.paperFile}}</div>
+      <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="paper.paperFile"
+          placeholder={{paper.paperFile}}></div>
+      <div *ngIf="!edit || i != divIndex">
+        <button class="table-data" (click)="editRow(i);">Edit</button>
+        <button class="table-data" (click)="delete(paper.id, paper.title);">Delete</button>
+      </div>
+      <div *ngIf="edit && i == divIndex">
+        <button class="table-data" (click)="updatePaper(paper)">Save</button>
+        <button class="table-data" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

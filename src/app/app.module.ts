@@ -42,6 +42,10 @@ import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
 import {InterceptorService} from "./shared/Services/interceptor.service";
 import {RoutingGuard} from "./shared/Gaurds/routing.guard";
+import { AdminStatisticsComponent } from './user-page/admin/admin-statistics/admin-statistics.component';
+import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/admin-list-papers.component';
+import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
+import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 
 import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
 
@@ -71,6 +75,11 @@ export const routes: Routes = [
     data: {
       expectedRoles: ['admin', 'teacher', 'student']
     }},
+  { path: 'projectPage', component: ProjectViewComponent},
+  { path: 'admin/statistics', component: AdminStatisticsComponent },
+  { path: 'admin/papers', component: AdminListPapersComponent },
+  { path: 'admin/projects', component: AdminListProjectsComponent},
+  { path: 'admin/accounts', component: AdminListAccountsComponent},
 ];
 
 @NgModule({
