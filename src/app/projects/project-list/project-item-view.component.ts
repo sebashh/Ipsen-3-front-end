@@ -10,8 +10,8 @@ import {RestApiService} from '../../shared/Services/api-service';
 
 export class ProjectItemViewComponent implements OnInit {
   paper: Paper[] = [];
-  @Input() searchValue: string;
 
+  @Input() searchValue: string;
   pageOfItems: Array<any>;
 
   constructor(public restApi: RestApiService) { }
@@ -22,12 +22,20 @@ export class ProjectItemViewComponent implements OnInit {
     });
   }
 
-  filterContent(value: string){
+  filterContent(value: string) {
 
   }
 
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfItems = pageOfItems;
+  }
+
+  showPaper(paperFile: String) {
+    this.restApi.downloadPDF(paperFile).subscribe(res => {
+      const pdf = new Blob([res], { type: 'application/pdf' });
+      const fileURL = URL.createObjectURL(pdf);
+      window.open(fileURL, '_blank');
+    });
   }
 }

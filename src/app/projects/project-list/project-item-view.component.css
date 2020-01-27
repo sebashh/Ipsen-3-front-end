@@ -25,3 +25,8 @@ jw-pagination {
   margin-left: auto;
   margin-right: auto;
 }
+
+.row-content:hover {
+  background-color: #4fd8b5;
+  cursor: pointer;
+}

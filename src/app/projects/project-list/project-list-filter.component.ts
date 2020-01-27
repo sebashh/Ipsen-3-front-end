@@ -1,5 +1,4 @@
-import {Component, Input, OnInit, /*Output, EventEmitter, Input*/} from '@angular/core';
-import {Paper} from '../../shared/Models/paper.model';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-project-list-filter',
