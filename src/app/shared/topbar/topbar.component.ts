@@ -14,7 +14,7 @@ import {User} from "../Models/user.model";
 export class TopbarComponent implements OnInit {
 
   isUserLoggedIn = false;
-  UserIsNotAnAdmin = true;
+  UserIsAdmin = false;
   loginModel: LoginModel;
   email: string;
   password: string;
@@ -29,6 +29,7 @@ export class TopbarComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.UserIsAdmin = this.userService.isAuthorized(['admin'])
   }
 
   message() {
