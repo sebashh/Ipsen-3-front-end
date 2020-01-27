@@ -2,16 +2,16 @@
   <tbody>
   <tr>
   <th>Title</th>
-  <th>Description</th>
-  <th>Study</th>
-  <th>Category</th>
+  <th>Author</th>
+  <th>Upload Date</th>
+  <th>Project ID</th>
 </tr>
-  <tr *ngFor="let paperItem of pageOfItems; let i = index">
+  <tr (click)="showPaper(paperItem.paperFile)" class="row-content" *ngFor="let paperItem of pageOfItems; let i = index">
     <td>{{paperItem.title}}</td>
     <td>{{paperItem.author}}</td>
-    <td>{{paperItem.paperFile}}</td>
-    <td>{{paperItem.id}}</td>
+    <td>{{paperItem.uploadDate}}</td>
+    <td>{{paperItem.projectId}}</td>
   </tr>
   </tbody>
 </table>
-<jw-pagination [items]="paper | filter : 'title' : searchValue" pageSize="25" (changePage)="onChangePage($event)"></jw-pagination>
+<jw-pagination [items]="paper | filter : 'title' : searchValue" (changePage)="onChangePage($event)"></jw-pagination>

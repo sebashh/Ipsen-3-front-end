@@ -17,7 +17,7 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login.service';
 import {RegisterService} from './user/register/register.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
+import {MatListModule, MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -36,12 +36,15 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
-import {MatListModule} from '@angular/material';
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {ProjectService} from './shared/Services/project.service';
-import {InterceptorService} from "./shared/Services/interceptor.service";
+import {InterceptorService} from './shared/Services/interceptor.service';
 import {RoutingGuard} from "./shared/Gaurds/routing.guard";
+import { AdminStatisticsComponent } from './user-page/admin/admin-statistics/admin-statistics.component';
+import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/admin-list-papers.component';
+import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
+import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 import {ClientProjectViewComponent} from "./projects/project-view/Client-component/client-project-view/client-project-view.component";
 
 import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
@@ -92,6 +95,11 @@ export const routes: Routes = [
     data: {
       expectedRoles: ['admin', 'client', 'teacher', 'student']
     }},
+  { path: 'projectPage', component: ProjectViewComponent},
+  { path: 'admin/statistics', component: AdminStatisticsComponent },
+  { path: 'admin/papers', component: AdminListPapersComponent },
+  { path: 'admin/projects', component: AdminListProjectsComponent},
+  { path: 'admin/accounts', component: AdminListAccountsComponent},
 ];
 
 @NgModule({
