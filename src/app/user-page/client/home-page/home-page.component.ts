@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from "../../../shared/Models/project.model";
 import {RestApiService} from "../../../shared/Services/api-service";
+import { UserService } from 'src/app/shared/Services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -17,7 +18,7 @@ export class HomePageComponent implements OnInit {
   recentlyUpdatedProjects: Array<Project> = [];
   topViewedProjects: Array<Project> = [];
 
-  constructor(private apiService: RestApiService) { }
+  constructor(private apiService: RestApiService, private userService: UserService) { }
 
   ngOnInit() {
     this.setClientName();
@@ -38,13 +39,13 @@ export class HomePageComponent implements OnInit {
 
 
   getTopViewedProjects() {
-    this.apiService.getTopViewedProjectsClient().subscribe((data) => {
+    this.apiService.getTopViewedProjectsClient(this.userService.user.id).subscribe((data) => {
       this.topViewedProjects = data;
     })
   }
 
   getRecentlyUpdatedProjects(){
-    this.apiService.getRecentlyUpdatedProjects().subscribe((data) => {
+    this.apiService.getRecentlyUpdatedProjects(this.userService.user.id).subscribe((data) => {
       this.recentlyUpdatedProjects = data;
     })
   }

@@ -18,7 +18,7 @@ export class TeacherComponent implements OnInit {
   followedProjects: Array<Project> = [];
   projectsWithInterests: Array<Project> = [];
 
-  constructor(private apiService: RestApiService) { }
+  constructor(private apiService: RestApiService, private userService: UserService) { }
 
   ngOnInit() {
     this.setTeacherName();
@@ -39,13 +39,13 @@ export class TeacherComponent implements OnInit {
 
 
   getProjectsWithInterests() {
-    this.apiService.getRecentlyCreatedProjectsWithInterest().subscribe((data) => {
+    this.apiService.getRecentlyCreatedProjectsWithInterest(this.userService.user.id).subscribe((data) => {
       this.projectsWithInterests = data;
     })
   }
 
   getFollowedProjects(){
-    this.apiService.getRandomFollowedProjects().subscribe((data) => {
+    this.apiService.getRandomFollowedProjects(this.userService.user.id).subscribe((data) => {
       this.followedProjects = data;
     })
   }
