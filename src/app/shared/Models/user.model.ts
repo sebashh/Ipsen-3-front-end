@@ -2,8 +2,8 @@
 
 export class User {
   constructor(
-    public iat: Date,
-    public exp: Date,
+    public iat: number,
+    public exp: number,
     public id: number,
     public role: string,
     public authToken: string

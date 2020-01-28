@@ -18,7 +18,7 @@ import {dateStatistic} from "../Models/dateStatistic.model";
 })
 
 export class RestApiService {
-  
+
   get<T>(arg0: string): Observable<Project> {
     throw new Error("Method not implemented.");
   }
@@ -160,7 +160,7 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  
+
   deleteUser(id: number): Observable<{}> {
     console.log(id);
     return this.http.delete(this.apiURL + 'users/delete=' + id)
@@ -219,7 +219,6 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    console.log(param);
     this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
@@ -231,7 +230,6 @@ export class RestApiService {
 
   postResource(path: string, param: any, returnType: any):
     any {
-    console.log(param);
     this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
@@ -311,8 +309,8 @@ export class RestApiService {
     );
   }
 
-  getRecentStatisticsStudent(email_user: string) : Observable<any>{
-    return this.http.get(this.apiURL + 'statistics/student=' + email_user).pipe(
+  getRecentStatisticsStudent() : Observable<any>{
+    return this.http.get(this.apiURL + 'statistics/student').pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -334,16 +332,16 @@ export class RestApiService {
       );
   }
 
-  getRecentStatisticsTeacher(email_teacher: string) : Observable<any>{
-    return this.http.get(this.apiURL + 'statistics/teacher=' + email_teacher).pipe(
+  getRecentStatisticsTeacher() : Observable<any>{
+    return this.http.get(this.apiURL + 'statistics/teacher').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
 
-  getRecentStatisticsClient(clientName: string) : Observable<any> {
-    return this.http.get(this.apiURL + 'statistics/client=' + clientName).pipe(
+  getRecentStatisticsClient() : Observable<any> {
+    return this.http.get(this.apiURL + 'statistics/client').pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -373,5 +371,48 @@ export class RestApiService {
       );
   }
 
+
+
+  getAccessInformation(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/information', {responseType: 'text'}).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  requestProjectAccess(projectId: number) {
+    this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/request').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  getAllAccessMembers(projectId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/all').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getAllAccessRequests(projectId: number):Observable<any> {
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/requests/all').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  acceptAccessRequest(id: number, userId: number) {
+    this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/access/teacher-id=' + userId + '/response=true').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
+
+  denyAccessRequest(id: number, userId: number) {
+    this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/access/teacher-id=' + userId + '/response=false').pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe();
+  }
 
 }
