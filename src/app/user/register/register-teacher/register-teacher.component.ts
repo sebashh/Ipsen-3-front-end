@@ -60,7 +60,7 @@ export class RegisterTeacherComponent implements OnInit {
         alert('You can only submit one study');
       } else {
         this.teacher = new Teacher(this.selectedStudies[0].id, this.getCategoryIdList(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-        this.restApiService.registerUser('ipsen3users/teacher', this.teacher);
+        this.restApiService.registerUser('users/teacher', this.teacher);
       }
     }
   }
