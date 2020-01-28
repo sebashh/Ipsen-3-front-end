@@ -9,7 +9,7 @@ import { GuestComponent } from './user-page/guest/guest.component';
 import { AdminComponent } from './user-page/admin/admin.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { ProjectListFilterComponent } from './projects/project-list/project-list-filter.component';
+// import { ProjectListFilterComponent } from './projects/project-list/project-list-filter.component';
 import { ProjectViewCardComponent} from './projects/project-view-card/project-view-card.component';
 import { ProjectItemComponent } from './projects/project-list/project-item/project-item.component';
 import { PaperListComponent } from './papers/paper-list/paper-list.component';
@@ -46,7 +46,6 @@ import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/ad
 import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
 import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 import {ClientProjectViewComponent} from "./projects/project-view/Client-component/client-project-view/client-project-view.component";
-
 import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
 
 export const routes: Routes = [
@@ -86,7 +85,7 @@ export const routes: Routes = [
     }},
   { path: 'about', component: PaperListComponent },
   { path: 'archive',
-    component: ProjectListFilterComponent,
+    component: ProjectItemViewComponent,
     canActivate: [RoutingGuard],
     data: {
       expectedRoles: ['admin', 'client', 'teacher', 'student']
@@ -119,7 +118,7 @@ export const routes: Routes = [
     AdminComponent,
     LoginComponent,
     RegisterComponent,
-    ProjectListFilterComponent,
+    // ProjectListFilterComponent,
     ProjectItemComponent,
     PaperListComponent,
     PaperItemComponent,
