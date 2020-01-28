@@ -12,6 +12,7 @@ import { Student } from '../Models/student.model';
 import { Teacher } from '../Models/teacher.model';
 import { Client } from '../Models/client.model';
 import {dateStatistic} from "../Models/dateStatistic.model";
+import {ErrorMessages} from '../error-messages';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class RestApiService {
   private static instance: RestApiService;
   // Define API
   apiURL = 'http://localhost:8080/';
+  // tslint:disable-next-line:prefer-const
 
   constructor(private http: HttpClient, private userService: UserService ) { }
 
@@ -201,6 +203,14 @@ export class RestApiService {
     return throwError(errorMessage);
   }
 
+  handleInlogError() {
+    let errorMessage = '';
+    errorMessage = ErrorMessages.LoginNotValid;
+
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
   handleRegisterError(error) {
     let errorMessage = '';
     if(error.status == '406'){
@@ -263,7 +273,7 @@ export class RestApiService {
   loginUser(loginModel: LoginModel) {
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(this.handleInlogError),
     );
   }
 
