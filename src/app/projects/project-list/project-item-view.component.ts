@@ -9,7 +9,7 @@ import {RestApiService} from '../../shared/Services/api-service';
 })
 
 export class ProjectItemViewComponent implements OnInit {
-  paper: Paper[] = [];
+  paper: Array<Paper>;
 
   @Input() searchValue: string;
   pageOfItems: Array<any>;
@@ -20,10 +20,6 @@ export class ProjectItemViewComponent implements OnInit {
     this.restApi.getPapers().subscribe((item) => {
       this.paper = item;
     });
-  }
-
-  filterContent(value: string) {
-
   }
 
   onChangePage(pageOfItems: Array<any>) {

@@ -38,9 +38,9 @@ export class TopbarComponent implements OnInit {
   }
 
   responsiveLogIn() {
-    const x = document.getElementById('myTopnav');
-    const y = document.getElementById('myLogo');
-    const z = document.getElementById('myTopnavi');
+    let x = document.getElementById('myTopnav');
+    let y = document.getElementById('myLogo');
+    let z = document.getElementById('myTopnavi');
     if (x.className === 'topnav') {
       x.className += ' responsiveLogIn';
       y.className += ' responsive';
@@ -52,9 +52,9 @@ export class TopbarComponent implements OnInit {
     }
   }
   responsiveLogOut() {
-    const x = document.getElementById('myTopnav');
-    const y = document.getElementById('myLogo');
-    const z = document.getElementById('myTopnavi');
+    let x = document.getElementById('myTopnav');
+    let y = document.getElementById('myLogo');
+    let z = document.getElementById('myTopnavi');
     if (x.className === 'topnav') {
       x.className += ' responsiveLogOut';
       y.className += ' responsive';

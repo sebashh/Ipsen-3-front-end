@@ -1,64 +1,64 @@
-mat-accordion {
-  margin-top: 10px;
-  min-width: 250px;
-  max-height: 88vh;
-}
+/*mat-accordion {*/
+/*  margin-top: 10px;*/
+/*  min-width: 250px;*/
+/*  max-height: 88vh;*/
+/*}*/
 
-::ng-deep aside {
-  border: solid 2px;
-}
+/*::ng-deep aside {*/
+/*  border: solid 2px;*/
+/*}*/
 
-ng-sidebar-container {
-  min-height: 71vh;
-  /*max-width: 210px;*/
-  display: inline-block;
-}
+/*ng-sidebar-container {*/
+/*  min-height: 71vh;*/
+/*  !*max-width: 210px;*!*/
+/*  display: inline-block;*/
+/*}*/
 
-.mat-checkbox {
-  display: flex;
-  align-items: center;
-  color: black;
-}
+/*.mat-checkbox {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  color: black;*/
+/*}*/
 
-.searchCSS {
-  padding-left: 14px;
-  font-size: 18px;
-  font-weight: bold;
-}
+/*.searchCSS {*/
+/*  padding-left: 14px;*/
+/*  font-size: 18px;*/
+/*  font-weight: bold;*/
+/*}*/
 
-.form-control {
-  margin-left: 10px;
-  max-width: fit-content;
-  border-width: 2px;
-  border-color: darkgray;
-}
+/*.form-control {*/
+/*  margin-left: 10px;*/
+/*  max-width: fit-content;*/
+/*  border-width: 2px;*/
+/*  border-color: darkgray;*/
+/*}*/
 
-mat-expansion-panel {
-  margin-left: -10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
+/*mat-expansion-panel {*/
+/*  margin-left: -10px;*/
+/*  margin-top: 0px;*/
+/*  margin-bottom: 0px;*/
+/*}*/
 
-mat-expansion-panel:hover{
-  color: rgb(109,190,179);
-}
+/*mat-expansion-panel:hover{*/
+/*  color: rgb(109,190,179);*/
+/*}*/
 
-hr {
-  margin-top: 0;
-  margin-bottom: 0;
-}
+/*hr {*/
+/*  margin-top: 0;*/
+/*  margin-bottom: 0;*/
+/*}*/
 
-button {
-  display: block;
-  left: 0;
-  width: 100px;
-  height: 50px;
-  background-color: #4fd8b5;
-}
+/*button {*/
+/*  display: block;*/
+/*  left: 0;*/
+/*  width: 100px;*/
+/*  height: 50px;*/
+/*  background-color: #4fd8b5;*/
+/*}*/
 
-@media only screen and (min-width: 320px) and (max-width: 480px) {
+/*@media only screen and (min-width: 320px) and (max-width: 480px) {*/
 
-  div .ng-sidebar-content {
-    background-color: green;
-  }
-}
+/*  div .ng-sidebar-content {*/
+/*    background-color: green;*/
+/*  }*/
+/*}*/
