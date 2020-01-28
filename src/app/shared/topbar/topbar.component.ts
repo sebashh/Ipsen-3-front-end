@@ -29,6 +29,7 @@ export class TopbarComponent implements OnInit {
                          {relativeTo: this.route});
 }
 
+
   ngOnInit() {
     this.UserIsAdmin = this.userService.isAuthorized(['admin']);
   }
