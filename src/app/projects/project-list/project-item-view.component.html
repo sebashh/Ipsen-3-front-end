@@ -2,23 +2,16 @@
   <tbody>
   <tr>
   <th>Title</th>
-  <th>Description</th>
-  <th>Study</th>
-  <th>Category</th>
+  <th>Author</th>
+  <th>Upload Date</th>
+  <th>Project ID</th>
 </tr>
-<!--  <div *ngFor="let item of pageOfItems">-->
-  <tr *ngFor="let paperItem of paper | filter : 'title' : searchValue; let i = index">
+  <tr (click)="showPaper(paperItem.paperFile)" class="row-content" *ngFor="let paperItem of pageOfItems; let i = index">
     <td>{{paperItem.title}}</td>
     <td>{{paperItem.author}}</td>
-    <td>{{paperItem.pdf_location}}</td>
-    <td>{{paperItem.project_id}}</td>
+    <td>{{paperItem.uploadDate}}</td>
+    <td>{{paperItem.projectId}}</td>
   </tr>
-<!--  </div>-->
-<!--<tr>-->
-<!--    <td>Hier komt een </td>-->
-<!--    <td>Hier komt de omschrijving van het projectjjjjjjjjjjjjjjjjjj</td>-->
-<!--    <td>Hier komt de studie ten</td>-->
-<!--    <td>En hier komt de categogggggggggggggggggrie</td>-->
   </tbody>
 </table>
-  <jw-pagination [items]="paper" (changePage)="onChangePage($event)"></jw-pagination>
+<jw-pagination [items]="paper | filter : 'title' : searchValue" (changePage)="onChangePage($event)"></jw-pagination>

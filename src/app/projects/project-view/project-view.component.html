@@ -1,12 +1,12 @@
 <div class="content">
   <div class="top">
-    <div class="title"><p>TITLE OF PROJECT</p></div>
-    <div class="follow"><button>follow</button></div>
+    <div class="title"><p>{{project?.title}}</p></div>
+    <div class="follow"><button *ngIf="isEducational()" (click)="following ? unFollowProject() : followProject()">{{following? 'un-Follow' : 'follow'}}</button></div>
     <div class="client">
     </div>
   </div>
   <div class="description">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nisl lorem, sagittis eget velit id, rhoncus consectetur nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed faucibus ante eu posuere vulputate. Proin ultricies a sem sed ornare. Vivamus mauris leo, ullamcorper et nunc non, venenatis dictum tortor. Aenean at mauris arcu. Ut at risus congue, dapibus nunc vitae, bibendum nulla.
+    <p>{{project?.description}}
     </p>
   </div>
   <div class="papers">
@@ -24,11 +24,9 @@
         <td class="paper_uploaded">{{paper.uploadedBy}}</td>
         <td class="paper_date">{{formatDate(paper.uploadDate)}}</td>
       </tr>
-
     </table>
-    <button (click)="toggleUpload()" class="upload">upload paper</button>
-
+    <button (click)="doAccesButtonAction()" *ngIf="isTeacher()" class="upload">{{accesButtonText}}</button>
   </div>
-
+  <app-client-project-view *ngIf="isCurrentOwner()" [currentOwner]="isCurrentOwner()" [project]="project" [papers]="papers"></app-client-project-view>
 </div>
 <app-upload [ngClass]="{'uploading':uploading}"></app-upload>

@@ -1,5 +1,5 @@
 import {Component, NgModule, OnInit} from '@angular/core';
-import {Project} from '../../shared/project.model';
+import {Project} from '../../shared/Models/project.model';
 
 @Component({
   selector: 'app-client',
@@ -16,18 +16,6 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  createProject() {
-    this.project = new Project(
-      null,
-      'project title',
-      'description of the project description of the project description of the project description of the project',
-      'study name',
-      'category',
-      new Date,
-      123)
-    this.projects.push(this.project);
   }
 
 }

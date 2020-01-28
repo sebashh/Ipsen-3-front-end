@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Project} from '../../shared/project.model';
-import {RestApiService} from "../../src/server/server/server";
+import {Component, Input, OnInit} from '@angular/core';
+import {Project} from '../../shared/Models/project.model';
+import {RestApiService} from "../../shared/Services/api-service";
 
 @Component({
   selector: 'app-scrollbar',
@@ -9,16 +9,15 @@ import {RestApiService} from "../../src/server/server/server";
 })
 export class ProjectScrollbarComponent implements OnInit {
 
+  @Input()
   projects: Array<Project> = [];
+
+
   constructor(public restApi: RestApiService) {
   }
 
   ngOnInit() {
-    this.restApi.getTopPopularProjects().subscribe((data)=>{
-      this.projects = data;
-      console.log("data: ", data)
-      console.log("statistics: ", data)
-    })
+
   }
 
 }

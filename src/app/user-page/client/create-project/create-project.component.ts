@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import {Project} from "../../../shared/project.model";
-import {RestApiService } from "../../../src/server/server/server"
+import {Project} from "../../../shared/Models/project.model";
+import {RestApiService} from "../../../shared/Services/api-service";
+import {StudyService} from "../../../shared/Services/study.service";
+import {CategoryService} from "../../../shared/Services/category.service";
 
 @Component({
 
@@ -18,23 +20,24 @@ export class CreateProjectComponent implements OnInit {
   title_input: string;
   description_input: string;
 
-  optionsStudy = ["Study1", "Study2"];
-  configStudy = {
-    search: true,
-    limitTo: this.optionsStudy.length,
-    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-    noResultsFound: 'No results found!',
-    searchPlaceholder: 'Search',
+  getConfig(array: any[]){
+    return {
+      displayKey:"name",
+        search: true,
+      limitTo: array.length,
+      moreText: 'more',
+      noResultsFound: 'No results found!',
+      searchPlaceholder: 'Search',
+      searchOnKey: 'name'
+    }
   }
 
-  optionsCategory = ["Category1", "Category2"];
-  configCategory = {
-    search: true,
-    limitTo: this.optionsCategory.length,
-    moreText: 'more', // text to be displayed whenmore than one items are selected like Option 1 + 5 more
-    noResultsFound: 'No results found!',
-    searchPlaceholder: 'Search',
-  }
+  optionsStudy = [];
+  configStudy: any;
+
+  optionsCategory = [];
+  configCategory: any;
+
 
   projectForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -45,17 +48,21 @@ export class CreateProjectComponent implements OnInit {
   dataModelCat: any;
   dataModelStudy: any;
 
-  constructor( public restApi: RestApiService) {
+  constructor( public restApi: RestApiService, private studyService: StudyService, private categoryService: CategoryService) {
 
     this.checking = false;
   }
 
   ngOnInit() {
+    this.optionsStudy = this.studyService.studies;
+    this.optionsCategory = this.categoryService.categories;
+    this.configCategory = this.getConfig(this.optionsCategory);
+    this.configStudy = this.getConfig(this.optionsStudy);
   }
 
   onSubmit() {
-    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy, this.dataModelCat, null, 3);
-    console.log(this.restApi.postResource("ipsen3projects/upload/test", this.project, 'text'));
+    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, null);
+    console.log(this.restApi.postResource("ipsen3projects/project/create", this.project, 'text'));
   }
 
 }

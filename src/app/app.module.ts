@@ -17,7 +17,7 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login.service';
 import {RegisterService} from './user/register/register.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule} from '@angular/material';
+import {MatListModule, MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -29,23 +29,83 @@ import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
-import { RouterModule, Routes } from '@angular/router';
+import {Route, Router, RouterModule, Routes} from '@angular/router';
 import {ProjectsModule} from './projects/projects.module';
-import { ClientMyProjectsComponent } from './user-page/client/client-my-projects/client-my-projects.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ProjectList } from './user-page/client/project-list/project-list';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectScrollbarComponent} from './user-page/project-scrollbar/project-scrollbar.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {ProjectViewComponent} from './projects/project-view/project-view.component';
 import {ProjectItemViewComponent} from './projects/project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
+import {ProjectService} from './shared/Services/project.service';
+import {InterceptorService} from './shared/Services/interceptor.service';
+import {RoutingGuard} from "./shared/Gaurds/routing.guard";
+import { AdminStatisticsComponent } from './user-page/admin/admin-statistics/admin-statistics.component';
+import { AdminListPapersComponent } from './user-page/admin/admin-list-papers/admin-list-papers.component';
+import { AdminListProjectsComponent } from './user-page/admin/admin-list-projects/admin-list-projects.component';
+import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
+import {ClientProjectViewComponent} from "./projects/project-view/Client-component/client-project-view/client-project-view.component";
+
+import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: GuestComponent},
-  { path: 'projects', component: ClientMyProjectsComponent},
+  { path: 'home/client', component: HomePageComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['client']
+    }},
+  { path: 'home/teacher', component: TeacherComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['teacher']
+    }},
+  { path: 'home/student', component: StudentComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['student']
+    }},
+  { path: 'home/admin', component: AdminComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin']
+    }},
+  { path: 'projects',
+    component: ProjectList,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'client', 'teacher', 'student']
+    }},
+  { path: 'project/create',
+    component: ClientComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['client']
+    }},
   { path: 'about', component: PaperListComponent },
-  { path: 'archive', component: ProjectListFilterComponent },
-  { path: 'register', component: PaperItemComponent },
+  { path: 'archive',
+    component: ProjectListFilterComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'client', 'teacher', 'student']
+    }},
+  { path: 'register', component: RegisterComponent },
+  { path: 'register/clientRegister', component: RegisterClientComponent},
+  { path: 'register/studentRegister', component: RegisterStudentComponent},
+  { path: 'register/teacherRegister', component: RegisterTeacherComponent},
+  { path: 'projectPage', component:
+    ProjectViewComponent,
+    canActivate: [RoutingGuard],
+    data: {
+      expectedRoles: ['admin', 'client', 'teacher', 'student']
+    }},
+  { path: 'projectPage', component: ProjectViewComponent},
+  { path: 'admin/statistics', component: AdminStatisticsComponent },
+  { path: 'admin/papers', component: AdminListPapersComponent },
+  { path: 'admin/projects', component: AdminListProjectsComponent},
+  { path: 'admin/accounts', component: AdminListAccountsComponent},
 ];
 
 @NgModule({
@@ -72,9 +132,11 @@ export const routes: Routes = [
     RegisterTeacherComponent,
     ProjectScrollbarComponent,
     ClientComponent,
-    ClientMyProjectsComponent,
+    ProjectList,
     ProjectViewCardComponent,
-    ProjectViewComponent
+    ProjectViewComponent,
+    ClientProjectViewComponent,
+    HomePageComponent
   ],
   imports: [
     HttpClientModule,
@@ -95,11 +157,13 @@ export const routes: Routes = [
     ProjectsModule,
     MatGridListModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatAutocompleteModule,
+    MatInputModule,
+    MatListModule
   ],
 
-
-  providers: [LoginService, RegisterService],
+  providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

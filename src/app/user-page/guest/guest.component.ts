@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Statistics} from "../../shared/statistics.model";
-import {RestApiService} from "../../src/server/server/server";
+import {Statistics} from "../../shared/Models/statistics.model";
+import {RestApiService} from "../../shared/Services/api-service";
+import {Project} from "../../shared/Models/project.model";
 
 @Component({
   selector: 'app-guest',
@@ -9,7 +10,9 @@ import {RestApiService} from "../../src/server/server/server";
 })
 export class GuestComponent implements OnInit {
 
-  statistics: Statistics
+  statistics: Statistics;
+
+  projects: Array<Project> = [];
 
   constructor(public restApi: RestApiService) { }
     projectAmount : number;
@@ -19,8 +22,16 @@ export class GuestComponent implements OnInit {
     clientAmount : number;
 
     ngOnInit() {
-      this.getStatistics()
+      this.getStatistics();
+      this.getPopularProjects();
+    }
 
+    getPopularProjects(){
+      this.restApi.getTopPopularProjects().subscribe((data)=>{
+        this.projects = data;
+        console.log("data: ", data)
+        console.log("statistics: ", data)
+      })
     }
 
     getStatistics() : void {

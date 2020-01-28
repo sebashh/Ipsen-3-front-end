@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav>
-  <div class="logo" id="myLogo" routerLink="home">
+  <div class="logo" id="myLogo" routerLink="/home">
     <a>
       <img src="../../../assets/plnt.png">
     </a>
@@ -9,11 +9,11 @@
     <a class="icon close" (click)="responsiveLogOut()">
       <i class="fa fa-times"></i>
     </a>
-    <a (click)="logOut()" (click)="responsiveLogOut()">Log out</a>
-    <a routerLink="userProfile">
+    <a (click)="logOut()">Log out</a>
+    <a routerLink="/userProfile">
       <mat-icon>face</mat-icon>
     </a>
-    <a routerLink="notifications">
+    <a (click)="toggleNotifications()">
       <mat-icon>notification_important</mat-icon>
     </a>
     <a class="icon" (click)="responsiveLogOut()">
@@ -26,8 +26,8 @@
         <i class="fa fa-times">
         </i>
       </a>
-      <a routerLink="register">Register</a>
-      <a (click)="logIn()" (click)="responsiveLogIn()">Login</a>
+      <a routerLink="/register">Register</a>
+      <a (click)="logIn()">Login</a>
       <a><input [(ngModel)]="password" placeholder="Wachtwoord"></a>
       <a><input [(ngModel)]="email" placeholder="E-mail"></a>
       <a class="icon" (click)="responsiveLogIn()">
@@ -35,10 +35,20 @@
       </a>
     </div>
   </ng-template>
-  <div class="topnav" id="myTopnavi">
-    <a class="home" routerLink="home">Home</a>
-    <a routerLink="about">About</a>
-    <a routerLink="projects">Projects</a>
-    <a routerLink="archive">Archive</a>
+  <div class="topnav" id="myTopnavi" *ngIf="UserIsAdmin; else UserIsAdmin">
+    <a class="home" routerLink="{{getUserPath()}}">Home</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/projects">Projects</a>
+    <a routerLink="/archive">Archive</a>
   </div>
+  <ng-template #UserIsAdmin>
+    <div class="topnav">
+      <a class="home" routerLink="{{getUserPath()}}">Home</a>
+      <a routerLink="/admin/statistics">Statistics</a>
+      <a routerLink="/admin/papers">Papers</a>
+      <a routerLink="/admin/projects">Projects</a>
+      <a routerLink="/admin/accounts">Accounts</a>
+    </div>
+  </ng-template>
 </nav>
+

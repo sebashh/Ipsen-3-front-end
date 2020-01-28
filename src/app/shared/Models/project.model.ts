@@ -2,9 +2,9 @@ export class Project {
   constructor(
     public projectId?: number,
     public title?: string,
-    public summary?: string,
-    public study?: string,
-    public category?: string,
+    public description?: string,
+    public study?: number,
+    public category?: number,
     public createdOn?: Date,
     public clientId?: number,
   ) {}
@@ -13,7 +13,7 @@ export class Project {
     return {
       projectId : this.projectId,
       title : this.title,
-      summary : this.summary,
+      description : this.description,
       study : this.study,
       category : this.category,
       createdOn : this.createdOn,

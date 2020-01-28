@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {RestApiService} from '../../../src/server/server/server';
-import {Client} from '../../../shared/client.model';
+import {Client} from '../../../shared/Models/client.model';
+import {RestApiService} from "../../../shared/Services/api-service";
 
 @Component({
   selector: 'app-register-client',
@@ -46,7 +46,7 @@ export class RegisterClientComponent implements OnInit {
   }
 
   submitClient() {
-    this.client = new Client(null, this.companyName.get('currentCompanyName').value, this.companyDescription.get('currentCompanyDescription').value, this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-    this.restApiService.postResource('ipsen3users/client', this.client, 'text');
+    this.client = new Client(this.companyName.get('currentCompanyName').value, this.companyDescription.get('currentCompanyDescription').value, this.email.get('currentEmail').value, this.password.get('currentPassword').value);
+    this.restApiService.registerUser('ipsen3users/client', this.client);
   }
 }

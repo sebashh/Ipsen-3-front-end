@@ -1,21 +1,14 @@
-<div class="content">
-  <div class="top">
-    <div [ngClass]="'titleRow row'">
-      <label class="title">Title - {{project.title}}</label>
-      <div class="category">
-        <label>Category - {{project.category}}</label>
-      </div>
+<div class="content" (click)="setCurretProject()" routerLink="/projectPage">
+  <div class="title">{{project.title}}</div>
+  <div class="description">{{project.description}}</div>
+  <div class="statistics">
+    <div class="papers">
+      <i class="material-icons">insert_drive_file</i>
+      {{paperAmount}}
     </div>
-    <div [ngClass]="'studyRow row'">
-      <label class="study">Study - {{project.study}}</label>
-    </div>
-    <div [ngClass]="'descriptionRow row'">
-      <label class="description">Summary - {{project.summary}}</label>
-    </div>
-  </div>
-  <div [ngClass]="'bottom'" >
-    <div [ngClass]="'dateRow row'" >
-      <label class="upload-date">Uploaded on {{project.createdOn}}</label>
+    <div class="follow">
+      <i class="material-icons">bookmarks</i>
+      {{followAmount}}
     </div>
   </div>
 </div>

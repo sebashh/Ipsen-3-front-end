@@ -37,7 +37,7 @@ nav {
 
 .topnav a:hover {
   color: rgb(109, 190, 179);
-  ;
+  
 }
 
 .topnav a.home {
@@ -58,6 +58,10 @@ nav {
 .topnav .icon:hover {
   color: black;
   background-color: white;
+}
+
+input {
+  color: #000;
 }
 
 @media screen and (max-width: 600px) {

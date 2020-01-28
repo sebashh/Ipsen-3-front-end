@@ -1,1 +1,54 @@
-<p>home-page works!</p>
+<div class="content">
+  <h1>PLNT APP HOME - Client</h1><hr>
+  <div id="introtextDocent"><h3> Welkom {{clientDisplayName}}</h3><p>
+    Sinds u laatste bezoek
+    <em *ngIf="totalProjectsClient > 1; else lessThenAmount"> zijn uw projecten {{projectsViewsAmount}} maal bekeken. </em>
+    <ng-template #lessThenAmount>
+      <em>
+        is uw project {{projectsViewsAmount}} maal bekeken.
+      </em>
+    </ng-template><br>
+
+    Hiernaast
+
+    <em *ngIf="papersUploadAmount > 1; else lessThen"> zijn er {{papersUploadAmount}} bestanden geupload naar
+      <em *ngIf="totalProjectsClient > 1; else lessThenProjects"> uw projecten. </em>
+      <ng-template #lessThenProjects>
+        <em>
+            uw project
+        </em>
+      </ng-template>
+    </em>
+    <ng-template #lessThen>
+      <em>
+        is er {{papersUploadAmount}} bestand geupload naar
+        <em *ngIf="totalProjectsClient > 1; else lessThenProjects"> uw projecten. </em>
+        <ng-template #lessThenProjects>
+          <em>
+            uw project
+          </em>
+        </ng-template>
+      </em>
+    </ng-template>
+    </p></div>
+  <br>
+  <section class="card">
+    <h2>Uw meest bekeken projecten</h2>
+    <br>
+    <div id ="scrollContainerDiv1">
+      <app-scrollbar [projects]=this.topViewedProjects></app-scrollbar>
+    </div>
+  </section>
+  <section class="card">
+    <h2>Uw projecten die als laatste zijn geupdaten</h2>
+    <br>
+    <div id ="scrollContainerDiv2">
+      <app-scrollbar [projects]=this.recentlyUpdatedProjects></app-scrollbar>
+    </div>
+  </section>
+  <div>
+    <button routerLink="/project/create">Maak een project aan</button>
+    <button routerLink="/projects">Alle projecten</button>
+  </div>
+</div>
+
