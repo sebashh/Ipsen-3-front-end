@@ -66,4 +66,5 @@ export class RegisterStudentComponent implements OnInit {
       }
     }
   }
+
 }
