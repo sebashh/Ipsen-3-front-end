@@ -86,7 +86,7 @@ export class RestApiService {
 
   getProject(project_id: number): Observable<Project> {
 
-    return this.http.get<Project>(this.apiURL + 'ipsen3projects/project='+ project_id)
+    return this.http.get<Project>(this.apiURL + 'projects/project='+ project_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -95,7 +95,7 @@ export class RestApiService {
 
 
   getAllMyProjects(client_id: number): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects='+ client_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/projects='+ client_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -103,7 +103,7 @@ export class RestApiService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects=all')
+    return this.http.get<Project[]>(this.apiURL + 'projects/projects=all')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -112,7 +112,7 @@ export class RestApiService {
 
   deleteProject(id: number): Observable<{}> {
     console.log(id);
-    return this.http.delete(this.apiURL + 'ipsen3projects/delete=' + id )
+    return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
       );
@@ -155,7 +155,7 @@ export class RestApiService {
   }
 
   updateProject(project: Project): Observable<Project>{
-    return this.http.put<Project>(this.apiURL + 'ipsen3projects/projectUpdate', project)
+    return this.http.put<Project>(this.apiURL + 'projects/projectUpdate', project)
     .pipe(
       catchError(this.handleError)
     )
@@ -163,7 +163,7 @@ export class RestApiService {
   
   deleteUser(id: number): Observable<{}> {
     console.log(id);
-    return this.http.delete(this.apiURL + 'user=' + id + '/delete')
+    return this.http.delete(this.apiURL + 'users/delete=' + id)
       .pipe(
         catchError(this.handleError)
       );
@@ -270,42 +270,42 @@ export class RestApiService {
   }
 
   getFollowAmountOfProject(projectId: number): Observable<any>{
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow/amount').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/follow/amount').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   userFollowingProject(projectId: number) : Observable<any>{
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/isFollowing').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/isFollowing').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   followProject(projectId: number) {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/follow').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();
   }
 
   unFollowProject(projectId: number) {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/unfollow').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/unfollow').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();
   }
 
   getCategories() {
-    return this.http.get(this.apiURL + 'ipsen3categories/categories').pipe(
+    return this.http.get(this.apiURL + 'categories/categories').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getStudies() {
-    return this.http.get(this.apiURL + 'ipsen3studies/studies').pipe(
+    return this.http.get(this.apiURL + 'studies/studies').pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -319,7 +319,7 @@ export class RestApiService {
   }
 
   getRandomFollowedProjects(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/followed/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/followed/user=' + user_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -327,7 +327,7 @@ export class RestApiService {
   }
 
   getRecentlyCreatedProjectsWithInterest(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/interested/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/interested/user=' + user_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -350,7 +350,7 @@ export class RestApiService {
   }
 
   getRecentlyUpdatedProjects(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/user=' + user_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -358,7 +358,7 @@ export class RestApiService {
   }
 
   getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/top/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/top/user=' + user_id)
       .pipe(
         retry(1),
         catchError(this.handleError)

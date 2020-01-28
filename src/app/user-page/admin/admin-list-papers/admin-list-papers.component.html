@@ -18,8 +18,8 @@
       <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="paper.author"
           placeholder={{paper.author}}></div>
       <!-- <div class="table-data" *ngIf="edit && i == divIndex">{{paper.uploadedBy}}</div> -->
-      <div class="table-data" *ngIf="!edit || i != divIndex">{{paper.uploadDate}}</div>
-      <div class="table-data">{{paper.paperFile}}</div>
+      <div class="table-data">{{paper.uploadDate}}</div>
+      <div class="table-data" *ngIf="!edit || i != divIndex">{{paper.paperFile}}</div>
       <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="paper.paperFile"
           placeholder={{paper.paperFile}}></div>
       <div *ngIf="!edit || i != divIndex">
