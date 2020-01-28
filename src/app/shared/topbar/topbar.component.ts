@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {LoginModel} from '../Models/login.model';
 import {log} from 'util';
-import {RestApiService} from "../Services/api-service";
-import {UserService} from "../Services/user.service";
-import {User} from "../Models/user.model";
+import {RestApiService} from '../Services/api-service';
+import {UserService} from '../Services/user.service';
+import {User} from '../Models/user.model';
+import {ErrorMessages} from '../error-messages';
 
 @Component({
   selector: 'app-topbar',
@@ -18,7 +19,7 @@ export class TopbarComponent implements OnInit {
   loginModel: LoginModel;
   email: string;
   password: string;
-  notificationVisable: boolean = false;
+  notificationVisable = false;
 
   constructor(private router: Router, private route: ActivatedRoute, public restApi: RestApiService, private userService: UserService) {
 
@@ -29,7 +30,7 @@ export class TopbarComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.UserIsAdmin = this.userService.isAuthorized(['admin'])
+    this.UserIsAdmin = this.userService.isAuthorized(['admin']);
   }
 
   message() {
@@ -37,9 +38,9 @@ export class TopbarComponent implements OnInit {
   }
 
   responsiveLogIn() {
-    let x = document.getElementById('myTopnav');
-    let y = document.getElementById('myLogo');
-    let z = document.getElementById('myTopnavi');
+    const x = document.getElementById('myTopnav');
+    const y = document.getElementById('myLogo');
+    const z = document.getElementById('myTopnavi');
     if (x.className === 'topnav') {
       x.className += ' responsiveLogIn';
       y.className += ' responsive';
@@ -51,9 +52,9 @@ export class TopbarComponent implements OnInit {
     }
   }
   responsiveLogOut() {
-    let x = document.getElementById('myTopnav');
-    let y = document.getElementById('myLogo');
-    let z = document.getElementById('myTopnavi');
+    const x = document.getElementById('myTopnav');
+    const y = document.getElementById('myLogo');
+    const z = document.getElementById('myTopnavi');
     if (x.className === 'topnav') {
       x.className += ' responsiveLogOut';
       y.className += ' responsive';
@@ -66,10 +67,14 @@ export class TopbarComponent implements OnInit {
   }
 
   logIn() {
-    this.loginModel = new LoginModel(this.email, this.password);
-    this.restApi.loginUser(this.loginModel).subscribe(item =>
-    this.userService.setCurrentUser(<User>item));
-    this.isUserLoggedIn = true;
+    if (this.email == null || this.password == null) {
+      alert(ErrorMessages.InputEmpty);
+    } else {
+      this.loginModel = new LoginModel(this.email, this.password);
+      this.restApi.loginUser(this.loginModel).subscribe(item =>
+        this.userService.setCurrentUser(item as User));
+      this.isUserLoggedIn = true;
+    }
   }
 
   logOut() {
@@ -83,7 +88,7 @@ export class TopbarComponent implements OnInit {
 
   getUserPath(): string {
     let path = '/home';
-    if(this.userService.user) path = path + '/' + this.userService.user.role;
+    if (this.userService.user) { path = path + '/' + this.userService.user.role; }
     return path;
   }
 }
