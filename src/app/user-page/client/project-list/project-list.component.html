@@ -8,3 +8,14 @@
     </mat-grid-list>
   <jw-pagination [items]="filteredProjects" pageSize="20" (changePage)="onChangePage($event)"></jw-pagination>
 </div>
+
+<div>
+  <div class="study">
+    <label>Choose study</label>
+    <ngx-select-dropdown  formControlName="study" class="dropdown" [multiple]="true" [(ngModel)]="dataModelStudy" [config]="configStudy" [options]="optionsStudy"></ngx-select-dropdown>
+  </div>
+  <div class="category">
+    <label>Choose category</label>
+    <ngx-select-dropdown   formControlName="category" class="dropdown" [multiple]="true" [(ngModel)]="dataModelCat" [config]="configCategory" [options]="optionsCategory"></ngx-select-dropdown>
+  </div>
+</div>

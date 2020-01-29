@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from 'src/app/shared/Models/project.model';
 import {RestApiService} from "../../../shared/Services/api-service";
 import {UserService} from "../../../shared/Services/user.service";
-
+import {StudyService} from '../../../shared/Services/study.service';
+import {CategoryService} from '../../../shared/Services/category.service';
 @Component({
   selector: 'app-client-my-projects',
   templateUrl: './project-list.component.html',
@@ -10,14 +11,69 @@ import {UserService} from "../../../shared/Services/user.service";
 })
 
 export class ProjectList implements OnInit {
-
   inputField: string;
   allMyProjects : Project[] = [];
   filteredProjects : Project[] = [];
+  optionsStudy = [];
+  configStudy: any;
+  optionsCategory = [];
+  configCategory: any;
+  dataModelCat: any;
+  dataModelStudy: any;
   private pageOfItems: Array<any>;
-  constructor(public restApi: RestApiService, private userService: UserService) { }
+  constructor(public restApi: RestApiService, private userService: UserService, private studyService: StudyService, private categoryService: CategoryService) { }
+
   ngOnInit() {
     this.getAllProjects(this.userService.user.id);
+    this.optionsStudy = this.studyService.studies;
+    this.optionsCategory = this.categoryService.categories;
+    this.configCategory = this.getConfig(this.optionsCategory);
+    this.configStudy = this.getConfig(this.optionsStudy);
+  }
+  public searchValue: string
+
+  getConfig(array: any[]){
+    return {
+      displayKey:"name",
+      search: true,
+      limitTo: array.length,
+      moreText: 'more',
+      noResultsFound: 'No results found!',
+      searchPlaceholder: 'Search',
+      searchOnKey: 'name'
+    }
+  }
+
+
+  getProjectsNewerThan(newerThan: Date){
+    this.restApi.getProjectsNewerThan(newerThan).subscribe((data) =>{
+      console.log('Projects: ', data);
+    });
+  }
+
+  getProjectsByCategory(categoryId: number){
+    this.restApi.getProjectsByCategoryId(categoryId).subscribe((data) => {
+      console.log('ProjectsByCat: ', data);
+    });
+  }
+
+  getProjectsByStudy(studyId: number){
+    this.restApi.getProjectsByStudyId(studyId).subscribe((data) => {
+        console.log('ProjectsByStud: ', data)
+      }
+    )
+  }
+
+  getProjectsByBoth(studyId: number, categoryId: number){
+    this.restApi.getProjectsbyBoth(studyId, categoryId).subscribe((data) => {
+        console.log('Projects with both paras', data)
+
+      }
+    )
+  }
+
+  onUpdateSearch(event: Event) {
+    this.searchValue = (event.target as HTMLInputElement).value;
   }
 
   getAllProjects(client_id: number){
