@@ -37,6 +37,7 @@
   </ng-template>
   <div class="topnav" id="myTopnavi" *ngIf="UserIsAdmin; else NotAdmin">
     <a class="home" routerLink="{{getUserPath()}}">Home</a>
+    <a routerLink="/admin/add">Add</a>
       <a routerLink="/admin/papers">Papers</a>
       <a routerLink="/admin/projects">Projects</a>
       <a routerLink="/admin/accounts">Accounts</a>

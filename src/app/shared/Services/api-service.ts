@@ -271,6 +271,7 @@ export class RestApiService {
   }
 
   loginUser(loginModel: LoginModel) {
+    console.log("loginUser: " + loginModel)
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
       retry(1),
       catchError(this.handleInlogError),

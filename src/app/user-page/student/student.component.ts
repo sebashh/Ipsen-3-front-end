@@ -19,7 +19,11 @@ export class StudentComponent implements OnInit {
 
   constructor(private apiService: RestApiService, private userService: UserService) { }
 
+  ngAfterViewOnInit(){
+    console.log("User: :",this.userService.user);
+  }
   ngOnInit() {
+    console.log("User: :",this.userService.user);
     this.setStudentName();
     this.getRecentStatisticsUser();
     this.getProjectsWithInterests();

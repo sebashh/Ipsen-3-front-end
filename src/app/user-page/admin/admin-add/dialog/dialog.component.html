@@ -1,0 +1,6 @@
+<p>{{message}}</p>
+<div><input placeholder={{placeholder}} [(ngModel)]="result"></div>
+<div class="text-right">
+<button mat-raised-button (click)="dialogRef.close()">Cancel</button>
+<button mat-raised-button (click)="onOk.emit(result); dialogRef.close()">Ok</button>
+</div>

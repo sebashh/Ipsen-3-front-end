@@ -17,7 +17,7 @@ import { PaperItemComponent } from './papers/paper-list/paper-item/paper-item.co
 import {LoginService} from './user/login/login.service';
 import {RegisterService} from './user/register/register.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatListModule, MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule} from '@angular/material';
+import {MatListModule, MatButtonModule, MatCheckboxModule, MatExpansionModule, MatIconModule, MatSelectModule, MatGridListModule, MatAutocompleteModule, MatInputModule, MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import { RegisterStudentComponent } from './user/register/register-student/register-student.component';
@@ -47,6 +47,7 @@ import { AdminListProjectsComponent } from './user-page/admin/admin-list-project
 import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 import {ClientProjectViewComponent} from "./projects/project-view/Client-component/client-project-view/client-project-view.component";
 import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
+import { AdminAddComponent } from './user-page/admin/admin-add/admin-add.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -83,7 +84,7 @@ export const routes: Routes = [
     data: {
       expectedRoles: ['client']
     }},
-  { path: 'about', component: PaperListComponent },
+  { path: 'about', component: AdminAddComponent },
   { path: 'archive',
     component: ProjectItemViewComponent,
     canActivate: [RoutingGuard],
@@ -101,10 +102,31 @@ export const routes: Routes = [
       expectedRoles: ['admin', 'client', 'teacher', 'student']
     }},
   { path: 'projectPage', component: ProjectViewComponent},
-  { path: 'admin/statistics', component: AdminStatisticsComponent },
-  { path: 'admin/papers', component: AdminListPapersComponent },
-  { path: 'admin/projects', component: AdminListProjectsComponent},
-  { path: 'admin/accounts', component: AdminListAccountsComponent},
+  { path: 'admin/statistics', component: AdminStatisticsComponent,
+  canActivate: [RoutingGuard],
+  data: {
+    expectedRoles: ['admin']
+  } },
+  { path: 'admin/papers', component: AdminListPapersComponent,
+  canActivate: [RoutingGuard],
+  data: {
+    expectedRoles: ['admin']
+  } },
+  { path: 'admin/projects', component: AdminListProjectsComponent,
+  canActivate: [RoutingGuard],
+  data: {
+    expectedRoles: ['admin']
+  }},
+  { path: 'admin/accounts', component: AdminListAccountsComponent,
+  canActivate: [RoutingGuard],
+  data: {
+    expectedRoles: ['admin']
+  }},
+  { path: 'admin/add', component: AdminAddComponent,
+  canActivate: [RoutingGuard],
+  data: {
+    expectedRoles: ['admin']
+  }},
 ];
 
 @NgModule({
@@ -135,7 +157,7 @@ export const routes: Routes = [
     ProjectViewCardComponent,
     ProjectViewComponent,
     ClientProjectViewComponent,
-    HomePageComponent
+    HomePageComponent,
   ],
   imports: [
     HttpClientModule,
@@ -159,7 +181,8 @@ export const routes: Routes = [
     RouterModule.forRoot(routes),
     MatAutocompleteModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+  
   ],
 
   providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
