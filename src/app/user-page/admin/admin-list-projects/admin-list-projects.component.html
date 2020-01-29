@@ -32,7 +32,7 @@
         <div class="table-data">{{project.createdOn}}</div>
         <div *ngIf="!edit || i != divIndex">
           <button class="table-data" (click)="editRow(i);">Edit</button>
-          <button class="table-data" (click)="delete(project.id, project.title);">Delete</button>
+          <button class="table-data" (click)="delete(project.projectId, project.title);">Delete</button>
         </div>
         <div *ngIf="edit && i == divIndex">
           <button class="table-data" (click)="updateProject(project)">Save</button>
