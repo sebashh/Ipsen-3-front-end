@@ -435,7 +435,7 @@ export class RestApiService {
 
   increaseProjectViews(id : number) {
     console.log("increase views of project " + id);
-    return this.http.get(this.apiURL + 'ipsen3projects/epic=' + id).pipe(
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/view').pipe(
       retry(1),
       catchError(this.handleInlogError)
     ).subscribe();
