@@ -29,7 +29,6 @@
     "material-design-icons": "^3.0.1",
     "material-icons": "^0.3.1",
     "ng-sidebar": "^9.2.0",
-
     "ngx-select-dropdown": "^1.2.1",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",

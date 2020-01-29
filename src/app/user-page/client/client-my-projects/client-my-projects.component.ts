@@ -21,6 +21,6 @@ export class ClientMyProjectsComponent implements OnInit {
       for(var i = 0; i < data.length; i++){
         this.allMyProjects = data;
       }
-    })
+    });
   }
 }

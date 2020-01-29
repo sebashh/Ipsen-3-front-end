@@ -84,6 +84,18 @@ export class RestApiService {
 
   }
 
+  getProjectsbyBoth(studyId: number, categoryId: number): Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/filter/study='+ studyId + '+category=' + categoryId)
+  }
+
+  getProjectsNewerThan(newerThan: Date): Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projectsNewerThan=' + newerThan)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
 
   // Error handling
   handleError(error) {
@@ -123,5 +135,23 @@ export class RestApiService {
       retry(1),
       catchError(this.handleError)
     );
+  }
+
+
+  getProjectsByStudyId(studyId: number): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/filter/study=' + studyId)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+
+  }
+
+  getProjectsByCategoryId(categoryId: number): Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/filter/category=' + categoryId)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
   }
 }
