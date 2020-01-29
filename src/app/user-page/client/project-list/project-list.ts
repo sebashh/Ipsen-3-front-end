@@ -44,13 +44,6 @@ export class ProjectList implements OnInit {
     }
   }
 
-
-  getProjectsNewerThan(newerThan: Date){
-    this.restApi.getProjectsNewerThan(newerThan).subscribe((data) =>{
-      console.log('Projects: ', data);
-    });
-  }
-
   getProjectsByCategory(categoryId: number){
     this.restApi.getProjectsByCategoryId(categoryId).subscribe((data) => {
       console.log('ProjectsByCat: ', data);
