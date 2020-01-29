@@ -62,7 +62,7 @@ export class RegisterStudentComponent implements OnInit {
         alert('You can only submit one study');
       } else {
         this.student = new Student(this.selectedStudies[0].id, this.getCategoryIdList(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-        this.restApiService.registerUser('ipsen3users/student', this.student);
+        this.restApiService.registerUser('users/student', this.student);
       }
     }
   }
