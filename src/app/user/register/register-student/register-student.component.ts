@@ -6,10 +6,7 @@ import {RestApiService} from "../../../shared/Services/api-service";
 import {Category} from "../../../shared/Models/category.model";
 import {StudyService} from "../../../shared/Services/study.service";
 import {Study} from "../../../shared/Models/study.model";
-import { Router } from '@angular/router';
-import { LoginModel } from 'src/app/shared/Models/login.model';
-import { UserService } from 'src/app/shared/Services/user.service';
-import { User } from 'src/app/shared/Models/user.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-student',
@@ -30,7 +27,6 @@ export class RegisterStudentComponent implements OnInit {
               public restApiService: RestApiService,
               public categoryService: CategoryService,
               public studyService: StudyService,
-              public userService: UserService,
               private router: Router
   ) {
 
@@ -69,16 +65,15 @@ export class RegisterStudentComponent implements OnInit {
         alert('You can only submit one study');
       } else {
         this.student = new Student(this.selectedStudies[0].id, this.getCategoryIdList(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-        this.restApiService.registerUser('users/student', this.student);
-        this.loginModel = new LoginModel(this.email.value, this.password.value);
-        console.log("loginModel: ", this.loginModel.email)
-        setTimeout(() => {
-          this.restApiService.loginUser(this.loginModel).subscribe(item =>
-            this.userService.setCurrentUser(item as User)
-          );
-        }, 1000);
-        
-        this.router.navigateByUrl('/home/student');
+
+        this.restApiService.registerUser('users/student', this.student).subscribe((data) => {
+          if(data) {
+            window.alert('register successful!');
+            this.router.navigateByUrl('/home');
+          }
+        });
+
+
       }
     }
   }

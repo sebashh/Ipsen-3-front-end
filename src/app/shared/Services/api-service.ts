@@ -106,7 +106,7 @@ export class RestApiService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'projects/projects=all')
+    return this.http.get<Project[]>(this.apiURL + 'projects/projects/all')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -114,7 +114,7 @@ export class RestApiService {
   }
 
   deleteProject(id: number): Observable<{}> {
-    console.log(id);
+    console.log('deleting', id);
     return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -246,13 +246,11 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    this.http.post(this.apiURL + path, param)
+    return this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
         catchError(this.handleRegisterError)
-      ).subscribe((data) => {
-      return data;
-    });
+      );
   }
 
   registerAdmin(admin: Admin):
@@ -336,14 +334,14 @@ export class RestApiService {
   }
 
   getCategories() {
-    return this.http.get(this.apiURL + 'categories/categories').pipe(
+    return this.http.get(this.apiURL + 'categories/all').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getStudies() {
-    return this.http.get(this.apiURL + 'studies/studies').pipe(
+    return this.http.get(this.apiURL + 'studies/all').pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -388,7 +386,7 @@ export class RestApiService {
   }
 
   getRecentlyUpdatedProjects(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -396,7 +394,7 @@ export class RestApiService {
   }
 
   getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/top/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/top/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
