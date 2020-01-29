@@ -1,0 +1,12 @@
+<div (input)="checkFields()">
+    <h1 >Register Admin</h1>
+    <div>
+        <label>Name Admin <input [(ngModel)]="name"></label>
+    </div>
+    <div>
+        <label>Password Admin <input [(ngModel)]="password"></label>
+    </div>
+    <div class="text-center">
+        <button id="submit" (click)="registerAdmin()" disabled >Submit</button>
+    </div>
+</div>

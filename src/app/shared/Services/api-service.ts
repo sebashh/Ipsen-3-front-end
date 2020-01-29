@@ -13,6 +13,7 @@ import { Teacher } from '../Models/teacher.model';
 import { Client } from '../Models/client.model';
 import {dateStatistic} from "../Models/dateStatistic.model";
 import {ErrorMessages} from '../error-messages';
+import { Admin } from '../Models/admin.model';
 
 @Injectable({
   providedIn: 'root'
@@ -211,6 +212,22 @@ export class RestApiService {
     return throwError(errorMessage);
   }
 
+  handleRegisterAdminError(error) {
+    let errorMessage = '';
+    if(error.status == '406'){
+      errorMessage = 'Name already exists\nPlease enter a new name';
+    }
+    else if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
   handleRegisterError(error) {
     let errorMessage = '';
     if(error.status == '406'){
@@ -234,6 +251,18 @@ export class RestApiService {
         retry(1),
         catchError(this.handleRegisterError)
       ).subscribe((data) => {
+      return data;
+    });
+  }
+
+  registerAdmin(admin: Admin):
+    any {
+    return this.http.post(this.apiURL + "users/admin", admin)
+      .pipe(
+        retry(1),
+        catchError(this.handleRegisterAdminError)
+      ).subscribe((data) => {
+        alert('Admin successfully created!');  
       return data;
     });
   }

@@ -184,7 +184,7 @@ export const routes: Routes = [
     MatListModule,
   
   ],
-
+  entryComponents: [RegisterStudentComponent],
   providers: [LoginService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}, RegisterService, ProjectService],
   bootstrap: [AppComponent]
 })
