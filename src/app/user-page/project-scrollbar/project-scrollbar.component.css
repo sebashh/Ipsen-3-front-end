@@ -1,28 +1,39 @@
-.testimonial-group > .row {
-  overflow-x: hidden;
-  white-space: nowrap;
-  height: 220px;
+* {
+  text-align: center;
 }
-.testimonial-group > .row > .col-xs-4 {
+
+.container {
+  height: 30vh;
+}
+
+.container > .row {
+  overflow: hidden;
+  white-space: nowrap;
+  height: 100%;
+}
+.container > .row > .col-xs-4 {
   display: inline-block;
   float: none;
-  height: 240px;
-}
-
-.row{
-
-}
-
-.container{
-}
-
-.col-xs-4 {
-  margin-top: 20px;
   font-size: 20px;
+  height: 100%;
+  tex-align: center;
+  padding-top: 2.5%;
+  padding-left: 3.25%;
 }
+
 
 h3 {
   font-size: 12px;
+}
+p {
+  text-align: center;
+}
+
+#noProjects {
+  font-weight: bold;
+  display: inline-block;
+  font-size: 200%;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 

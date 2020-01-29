@@ -35,7 +35,8 @@ export class FormComponent implements OnInit {
 
   public forcedState = false;
 
-  constructor(public restApi: RestApiService) {
+
+  constructor(private apiService: RestApiService) {
     this.labelText = "No file";
     this.paperTitle = "Paper details";
   }
@@ -80,7 +81,7 @@ export class FormComponent implements OnInit {
 
    uploadPaper() :void {
      this.paper = new Paper(1, this.title, this.author, 4,null, this.paperFileString);
-     console.log(this.restApi.postResource("paper/upload", this.paper, 'application/json'));
+     this.apiService.postResource("paper/upload", this.paper, 'application/json').status;
    }
 
 

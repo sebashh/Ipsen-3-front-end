@@ -9,7 +9,7 @@ import {RestApiService} from "../../../shared/Services/api-service";
 })
 export class HomePageComponent implements OnInit {
 
-  clientName ="test@client.com";
+  clientName ="";
   clientDisplayName : string;
   projectsViewsAmount : number;
   papersUploadAmount : number;
@@ -50,9 +50,11 @@ export class HomePageComponent implements OnInit {
   }
 
   setClientName(){
-    let subStrings = this.clientName.split("@");
-    this.clientDisplayName = subStrings[0];
-    console.log(subStrings[0])
+    this.apiService.getUserEmailById().subscribe((data) => {
+      this.clientName = data;
+      let subStrings = this.clientName.split("@");
+      this.clientDisplayName = subStrings[0];
+    });
   }
 
 

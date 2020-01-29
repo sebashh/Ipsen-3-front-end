@@ -15,7 +15,6 @@
 
 #paperScrollContainer{
   border: solid 2px black;
-  border-radius: 2%;
   width: 90%;
   height: 80%;
   overflow-y: auto;
@@ -24,7 +23,6 @@
   margin-left: 5%;
   margin-bottom: 2%;
   padding-top: 5%;
-  background-color: AliceBlue;
 }
 
 ul {
