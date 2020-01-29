@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProjectItemViewComponent } from './project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {SharedModule} from '../shared/shared.module';
+import {FormsModule} from '@angular/forms';
+import { ClientProjectViewComponent } from './project-view/Client-component/client-project-view/client-project-view.component';
 
 
 
@@ -14,7 +16,8 @@ import {SharedModule} from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class ProjectsModule { }
