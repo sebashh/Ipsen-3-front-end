@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import {RestApiService} from "../../shared/Services/api-service";
 import {Project} from "../../shared/Models/project.model";
 import {dateStatistic} from "../../shared/Models/dateStatistic.model";
+import {forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-admin',
@@ -33,6 +34,8 @@ export class AdminComponent implements OnInit, AfterViewInit {
   loginTeacher = [];
   loginClient = [];
 
+  adminName ="";
+  adminDisplayName : string;
 
 
 
@@ -40,6 +43,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.setAdminName();
     this.getProjectLineStatistics();
     this.getUserStatistics();
     this.getViewStatistics();
@@ -49,16 +53,24 @@ export class AdminComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(){
   }
 
+
+  setAdminName(){
+    this.restApi.getUserEmailById().subscribe((data) => {
+      this.adminName = data;
+      let subStrings = this.adminName.split("@");
+      this.adminDisplayName = subStrings[0];
+    });
+  }
+
   getProjectLineStatistics(){
-    this.restApi.getAdminSpecificStatistics("project").subscribe((data)=>{
-      this.setStatisticValues(data, this.projects);
-      this.setLabelNames(data);
+    let projectStatisticApi = this.restApi.getAdminSpecificStatistics("project");
+    let paperStatisticApi = this.restApi.getAdminSpecificStatistics("paper");
+    forkJoin([projectStatisticApi,paperStatisticApi]).subscribe( results =>{
+      this.setStatisticValues(results[0], this.projects);
+      this.setLabelNames(results[0]);
+      this.setStatisticValues(results[1], this.papers);
       this.createLineGraphBaseStatistics();
-    })
-    this.restApi.getAdminSpecificStatistics("paper").subscribe((data)=>{
-      this.setStatisticValues(data, this.papers);
-      this.createLineGraphBaseStatistics();
-    })
+      });
   }
 
   getUserStatistics(){
@@ -80,18 +92,13 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   getLoginStatistics(){
-    this.restApi.getAdminSpecificStatistics("login/student").subscribe((data)=>{
-      this.setStatisticValues(data, this.loginStudent);
-      this.createStackedBarGraphLogin();
-      this.stackedBarChart.destroy();
-    })
-    this.restApi.getAdminSpecificStatistics("login/teacher").subscribe((data)=>{
-      this.setStatisticValues(data, this.loginTeacher);
-      this.createStackedBarGraphLogin();
-      this.stackedBarChart.destroy();
-    })
-    this.restApi.getAdminSpecificStatistics("login/client").subscribe((data)=>{
-      this.setStatisticValues(data, this.loginClient);
+    let studentStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    let teacherStatisticsApi = this.restApi.getAdminSpecificStatistics("login/teacher");
+    let clientStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    forkJoin([studentStatisticsApi, teacherStatisticsApi, clientStatisticsApi]).subscribe(results =>{
+      this.setStatisticValues(results[0], this.loginStudent);
+      this.setStatisticValues(results[1], this.loginTeacher);
+      this.setStatisticValues(results[2], this.loginClient);
       this.createStackedBarGraphLogin();
     })
   }
@@ -254,7 +261,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
       },
         scales: {
           xAxes: [{ stacked: true }],
-          yAxes: [{ stacked: true }]
+          yAxes: [{ stacked: true , ticks: {stepSize: 1}}]
         }}
     })
   }

@@ -1,7 +1,6 @@
-.content{
-  margin-top: 15vh;
-  margin-bottom: 150px;
-}
+  .content{
+    margin-bottom: 150px;
+  }
 
   * {
     text-align: center;
@@ -18,9 +17,8 @@
       position: absolute;
       left: 0;
       right: 0;
-      margin: auto;
-      margin-top: 1.5%;
-    }
+      margin: 1.5% auto auto;
+  }
 
 
   .wrapper {
@@ -30,20 +28,30 @@
   }
 
 
-  .statistics {
-    position: relative;
-    top: 225px;
-    width: 5%;
-    text-align: center;
-    display: inline-block;
-    margin: 10px;
+  .row {
     font-weight: bold;
-    margin-top: 100px;
+    margin-top: 18%;
+    width: 30%;
+    display: inline-flex;
+    self-align: center;
   }
+
+  .statistic {
+    align-items: center;
+    display: inline-block;
+    width: 20%;
+  }
+
+  .row img {
+    display: flex;
+    margin: 0 auto;
+  }
+
 
   #scrollContainerDiv {
     display: inline-block;
     text-align: center;
   }
+
 
 

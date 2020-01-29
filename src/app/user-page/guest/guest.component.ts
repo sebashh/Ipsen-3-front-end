@@ -29,16 +29,12 @@ export class GuestComponent implements OnInit {
     getPopularProjects(){
       this.restApi.getTopPopularProjects().subscribe((data)=>{
         this.projects = data;
-        console.log("data: ", data)
-        console.log("statistics: ", data)
       })
     }
 
     getStatistics() : void {
       this.restApi.getStatistics().subscribe((data)=>{
         this.statistics= data;
-        console.log("data: ", data)
-        console.log("statistics: ", data)
         this.setStatistics()
       })
 
