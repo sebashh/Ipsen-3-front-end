@@ -22,7 +22,6 @@ export class TopbarComponent implements OnInit {
   notificationVisable = false;
 
   constructor(private router: Router, private route: ActivatedRoute, public restApi: RestApiService, private userService: UserService) {
-
   }
   navigate(path) {
     this.router.navigate([{outlets: {primary: path, sidemenu: path}}],
@@ -30,9 +29,9 @@ export class TopbarComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.UserIsAdmin = this.userService.isAuthorized(['admin']);
+    this.UserIsAdmin = this.userService.isAuthorized(['admin'])
   }
-
+  
   message() {
     console.log('Hello');
   }
@@ -74,8 +73,6 @@ export class TopbarComponent implements OnInit {
       this.restApi.loginUser(this.loginModel).subscribe(item =>
         this.userService.setCurrentUser(item as User)
       );
-
-      this.isUserLoggedIn = true;
     }
   }
 
@@ -90,7 +87,10 @@ export class TopbarComponent implements OnInit {
 
   getUserPath(): string {
     let path = '/home';
-    if (this.userService.user) { path = path + '/' + this.userService.user.role; }
+    if(this.userService.user) path = path + '/' + this.userService.user.role;
+    this.UserIsAdmin = this.userService.isAuthorized(['admin'])
+    this.isUserLoggedIn = this.userService.isAuthorized(['student', 'teacher', 'client', 'admin']);
+    console.log("isUserLoggedIn? ", this.isUserLoggedIn);
     return path;
   }
 }
