@@ -10,7 +10,6 @@ export class CategoryService {
 
   public init(){
     this.apiService.getCategories().subscribe(item =>{
-      console.log(item as Category[]);
       this.categories = item as Category[];
     })
   }
