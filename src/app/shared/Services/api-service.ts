@@ -61,7 +61,6 @@ export class RestApiService {
   }
 
   deletePaper(id: number): Observable<{}> {
-    console.log(id);
     return this.http.delete(this.apiURL + 'paper/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -113,7 +112,6 @@ export class RestApiService {
   }
 
   deleteProject(id: number): Observable<{}> {
-    console.log('deleting', id);
     return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -164,7 +162,6 @@ export class RestApiService {
   }
 
   deleteUser(id: number): Observable<{}> {
-    console.log(id);
     return this.http.delete(this.apiURL + 'users/delete=' + id)
       .pipe(
         catchError(this.handleError)

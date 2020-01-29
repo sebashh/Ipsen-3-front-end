@@ -73,7 +73,6 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
   getViewStatistics(){
     this.restApi.getAdminSpecificStatistics("views").subscribe((data)=>{
-      console.log(data);
       this.setStatisticValues(data, this.viewData);
       this.createBarGraphViews();
     })
