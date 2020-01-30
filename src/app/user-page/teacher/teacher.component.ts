@@ -10,7 +10,7 @@ import {UserService} from "../../shared/Services/user.service";
 })
 export class TeacherComponent implements OnInit {
 
-  teacherName ="Test@Teacher.com";
+  teacherName ="";
   teacherDisplayName : string;
   projectsAmountInterests : number;
   projectsAmountUploadedTo : number;
@@ -51,9 +51,11 @@ export class TeacherComponent implements OnInit {
   }
 
   setTeacherName(){
-    let subStrings = this.teacherName.split("@");
-    this.teacherDisplayName = subStrings[0];
-    console.log(subStrings[0])
+    this.apiService.getUserEmailById().subscribe((data) => {
+      this.teacherName = data;
+      let subStrings = this.teacherName.split("@");
+      this.teacherDisplayName = subStrings[0];
+    });
   }
 
 }

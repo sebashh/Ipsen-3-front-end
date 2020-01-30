@@ -2,7 +2,7 @@
   <h1>PLNT APP HOME - Teacher</h1><hr>
   <div id="introtext"><h3> Welkom {{teacherDisplayName}}</h3><p>
     Sinds u laatste bezoek
-    <em *ngIf="projectsAmountInterests > 1; else lessThen"> zijn er {{projectsAmountInterests}} projecten </em>
+    <em *ngIf="projectsAmountInterests > 1 || projectsAmountInterests ==0; else lessThen"> zijn er {{projectsAmountInterests}} projecten </em>
     <ng-template #lessThen>
       <em>
         is er {{projectsAmountInterests}} project
@@ -10,8 +10,8 @@
     </ng-template>
     aangemaakt met uw interesses. <br>
     Hiernaast
-    <em *ngIf="projectsAmountUploadedTo > 1; else lessThen"> zijn de projecten waar u naar geupload heeft </em>
-    <ng-template #lessThen>
+    <em *ngIf="projectsAmountUploadedTo > 1 || projectsAmountUploadedTo == 0; else lessThen2"> zijn de projecten waar u naar geupload heeft </em>
+    <ng-template #lessThen2>
       <em>
         is het project waar u naar geupload heeft
       </em>

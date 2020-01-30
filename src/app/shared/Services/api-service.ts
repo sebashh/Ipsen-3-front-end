@@ -476,4 +476,22 @@ export class RestApiService {
     ).subscribe();
   }
 
+  getUserEmailById():Observable <string>{
+   return this.http.get(this.apiURL + 'ipsen3users/email',{responseType: 'text'})
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  increaseProjectViews(id : number) {
+    console.log("increase views of project " + id);
+    return this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/view').pipe(
+      retry(1),
+      catchError(this.handleInlogError)
+    ).subscribe();
+  }
+
+
+
 }

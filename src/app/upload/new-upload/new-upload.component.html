@@ -1,0 +1,25 @@
+<div class="container" id="mainContainer">
+  <h3>Paper upload</h3>
+  <hr>
+  <div class="container" id="dragAndDropContainer" appDnd (fileDropped)="onFileDropped($event)">
+    <div>
+      <p>Title</p>
+      <input type="text" class="textField" #inputTitle placeholder = "Title" ngModel maxlength="12" required pattern="\S+" required>
+    </div>
+    <div>
+      <p>Author</p>
+      <input type="text" class="textField" #inputAuthor placeholder = "Author" ngModel maxlength="12" required pattern="\S+" required>
+    </div>
+    <div>
+      <p id="selectedFile" [ngStyle]="{'color': fileSelected? 'green' : '#c9514b'}">File selected: {{currentFileName}}</p>
+    </div>
+    <div class="dragAndDropPlace">
+      <input type="file" #fileDropRef id="fileDropRef" (change)="fileSelect($event)">
+      <h3>{{dragAndDropText}}</h3>
+      <label for="fileDropRef">Browse for files</label>
+    </div>
+    </div>
+    <div>
+      <button type="button" (click)="submit()">Submit</button>
+    </div>
+</div>

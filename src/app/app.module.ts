@@ -47,6 +47,8 @@ import { AdminListProjectsComponent } from './user-page/admin/admin-list-project
 import { AdminListAccountsComponent } from './user-page/admin/admin-list-accounts/admin-list-accounts.component';
 import {ClientProjectViewComponent} from "./projects/project-view/Client-component/client-project-view/client-project-view.component";
 import {HomePageComponent} from "./user-page/client/home-page/home-page.component";
+import { NewUploadComponent } from './upload/new-upload/new-upload.component';
+import { DndDirective } from './dnd.directive';
 import { AdminAddComponent } from './user-page/admin/admin-add/admin-add.component';
 
 export const routes: Routes = [
@@ -158,6 +160,8 @@ export const routes: Routes = [
     ProjectViewComponent,
     ClientProjectViewComponent,
     HomePageComponent,
+    NewUploadComponent,
+    DndDirective
   ],
   imports: [
     HttpClientModule,
