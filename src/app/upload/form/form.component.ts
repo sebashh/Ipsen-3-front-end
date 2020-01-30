@@ -81,7 +81,7 @@ export class FormComponent implements OnInit {
 
    uploadPaper() :void {
      this.paper = new Paper(1, this.title, this.author, 4,null, this.paperFileString);
-     this.apiService.postResource("paper/upload", this.paper, 'application/json').status;
+     this.restApi.postResource("paper/upload", this.paper, 'application/json');
    }
 
 

@@ -27,14 +27,14 @@ export class AdminListAccountsComponent {
   divIndex;
   AllStudies = [];
 
-  
+
   ngOnInit() {
     this.studyService.event.subscribe(item =>{
       this.AllStudies = item;
     });
     this.getAllStudents();
     this.AllStudies = this.studyService.studies;
-    
+
   }
 
   getStudyName(study: number){

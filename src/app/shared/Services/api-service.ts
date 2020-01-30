@@ -15,6 +15,7 @@ import {dateStatistic} from "../Models/dateStatistic.model";
 import {ErrorMessages} from '../error-messages';
 import { Admin } from '../Models/admin.model';
 import { User } from '../Models/user.model';
+import {log} from "util";
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +64,6 @@ export class RestApiService {
   }
 
   deletePaper(id: number): Observable<{}> {
-    console.log(id);
     return this.http.delete(this.apiURL + 'paper/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -115,7 +115,6 @@ export class RestApiService {
   }
 
   deleteProject(id: number): Observable<{}> {
-    console.log('deleting', id);
     return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -166,7 +165,6 @@ export class RestApiService {
   }
 
   deleteUser(id: number): Observable<{}> {
-    console.log(id);
     return this.http.delete(this.apiURL + 'users/delete=' + id)
       .pipe(
         catchError(this.handleError)
@@ -247,7 +245,7 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    return this.http.post(this.apiURL + path, param)
+    return this.http.post(this.apiURL + 'users/register/' + path, param)
       .pipe(
         retry(1),
         catchError(this.handleRegisterError)
@@ -462,18 +460,18 @@ export class RestApiService {
     );
   }
 
-  acceptAccessRequest(id: number, userId: number) {
-    this.http.get(this.apiURL + 'projects/project=' + id + '/access/teacher-id=' + userId + '/response=true').pipe(
+  acceptAccessRequest(id: number, userId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'projects/project=' + id + '/access/teacher-id=' + userId + '/response=true').pipe(
       retry(1),
       catchError(this.handleError)
-    ).subscribe();
+    );
   }
 
-  denyAccessRequest(id: number, userId: number) {
-    this.http.get(this.apiURL + 'projects/project=' + id + '/access/teacher-id=' + userId + '/response=false').pipe(
+  denyAccessRequest(id: number, userId: number): Observable<any> {
+    return this.http.get(this.apiURL + 'projects/project=' + id + '/access/teacher-id=' + userId + '/response=false').pipe(
       retry(1),
       catchError(this.handleError)
-    ).subscribe();
+    );
   }
 
   getUserEmailById():Observable <string>{
@@ -494,4 +492,18 @@ export class RestApiService {
 
 
 
+  getClient(clientId: number): Observable<Client> {
+    return this.http.get<Client>(this.apiURL + 'users/client/get=' + clientId).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+
+  }
+
+  revokeAccess(projectId: number, id: number): Observable<any>  {
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/teacher-id=' + id + '/response=false').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
 }

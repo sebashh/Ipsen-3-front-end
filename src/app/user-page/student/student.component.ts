@@ -33,7 +33,6 @@ export class StudentComponent implements OnInit {
 
   getRecentStatisticsUser(){
     this.apiService.getRecentStatisticsStudent().subscribe((data) => {
-      console.log(data);
       this.projectsAmount = data[0];
       this.papersAmount = data[1];
     });

@@ -10,6 +10,19 @@
   justify-content: space-between;
 }
 
+.client{
+  text-align: center;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+}
+
+.client_contact{
+
+}
+
 .title{
   width: 60%;
   position: relative;
