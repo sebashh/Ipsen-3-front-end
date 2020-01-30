@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Project} from "../../../shared/Models/project.model";
 import {RestApiService} from "../../../shared/Services/api-service";
 import {StudyService} from "../../../shared/Services/study.service";
 import {CategoryService} from "../../../shared/Services/category.service";
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { HttpParams } from '@angular/common/http';
+import { Client } from 'src/app/shared/Models/client.model';
 
 @Component({
 
@@ -19,6 +22,7 @@ export class CreateProjectComponent implements OnInit {
   project: Project;
   title_input: string;
   description_input: string;
+  client: Client;
 
   getConfig(array: any[]){
     return {
@@ -48,7 +52,7 @@ export class CreateProjectComponent implements OnInit {
   dataModelCat: any;
   dataModelStudy: any;
 
-  constructor( public restApi: RestApiService, private studyService: StudyService, private categoryService: CategoryService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public restApi: RestApiService, private studyService: StudyService, private categoryService: CategoryService) {
 
     this.checking = false;
   }
@@ -58,10 +62,13 @@ export class CreateProjectComponent implements OnInit {
     this.optionsCategory = this.categoryService.categories;
     this.configCategory = this.getConfig(this.optionsCategory);
     this.configStudy = this.getConfig(this.optionsStudy);
+    console.log(this.data);
   }
 
   onSubmit() {
-    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, null);
+    
+    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, this.data.id);
+
     console.log(this.restApi.postResource("projects/project/create", this.project, 'text'));
   }
 

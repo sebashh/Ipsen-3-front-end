@@ -1,5 +1,8 @@
 <p>{{message}}</p>
-<div><input placeholder={{placeholder}} [(ngModel)]="result"></div>
+<div *ngIf="!element"><input placeholder={{placeholder}} [(ngModel)]="result"></div>
+<div *ngIf="element"><select [(ngModel)]="result">
+          <option *ngFor="let item of options" [ngValue]="item.id">{{item.company_name}}</option>
+        </select></div>
 <div class="text-right">
 <button mat-raised-button (click)="dialogRef.close()">Cancel</button>
 <button mat-raised-button (click)="onOk.emit(result); dialogRef.close()">Ok</button>

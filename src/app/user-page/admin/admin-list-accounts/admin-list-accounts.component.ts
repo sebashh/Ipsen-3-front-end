@@ -29,32 +29,34 @@ export class AdminListAccountsComponent {
 
   
   ngOnInit() {
+    this.studyService.event.subscribe(item =>{
+      this.AllStudies = item;
+    });
     this.getAllStudents();
     this.AllStudies = this.studyService.studies;
     
   }
 
+  getStudyName(study: number){
+    return this.AllStudies[study].name;
+
+  }
+
   getAllStudents() {
     this.restApi.getAllStudents().subscribe((data) => {
-      for (var i = 0; i < data.length; i++) {
         this.AllStudents = data;
-      }
     })
   }
 
   getAllTeachers() {
     this.restApi.getAllTeachers().subscribe((data) => {
-      for (var i = 0; i < data.length; i++) {
         this.AllTeachers = data;
-      }
     })
   }
 
   getAllClients() {
     this.restApi.getAllClients().subscribe((data) => {
-      for (var i = 0; i < data.length; i++) {
         this.AllClients = data;
-      }
     })
   }
 
@@ -99,14 +101,13 @@ export class AdminListAccountsComponent {
   }
 
   editRow(id: number) {
-    console.log(id);
+    this.refreshPage();
     this.edit = true;
     this.divIndex = id;
 
   }
 
   save(user: any) {
-    console.log(user);
     this.refreshPage();
 
   }
@@ -149,6 +150,8 @@ export class AdminListAccountsComponent {
     this.getAllClients();
     this.getAllStudents();
     this.getAllTeachers();
+    this.studyService.refresh();
+    this.AllStudies = this.studyService.studies;  
     this.router.navigate(["/admin/accounts"]);
   }
   openDialogEdit(id: number) {

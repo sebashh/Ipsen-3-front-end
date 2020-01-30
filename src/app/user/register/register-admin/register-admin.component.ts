@@ -29,7 +29,7 @@ export class RegisterAdminComponent implements OnInit {
   registerAdmin(){
     this.admin = new Admin(this.name, this.password);
     console.log(this.admin);
-    console.log(this.apiService.registerAdmin(this.admin));
+    this.apiService.registerAdmin(this.admin);
   }
 
 }

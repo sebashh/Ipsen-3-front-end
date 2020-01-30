@@ -7,6 +7,7 @@ import {Category} from "../../../shared/Models/category.model";
 import {StudyService} from "../../../shared/Services/study.service";
 import {Study} from "../../../shared/Models/study.model";
 import {Router} from "@angular/router";
+import { LoginModel } from 'src/app/shared/Models/login.model';
 
 @Component({
   selector: 'app-register-student',
