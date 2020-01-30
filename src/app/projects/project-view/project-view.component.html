@@ -3,6 +3,9 @@
     <div class="title"><p>{{project?.title}}</p></div>
     <div class="follow"><button *ngIf="isEducational()" (click)="following ? unFollowProject() : followProject()">{{following? 'un-Follow' : 'follow'}}</button></div>
     <div class="client">
+      <span class="client_name">{{owner?.name_company}}</span>
+      <img [src]="imageUrl"/>
+      <span class="client_contact">email: {{owner?.email_user}}</span>
     </div>
   </div>
   <div class="description">

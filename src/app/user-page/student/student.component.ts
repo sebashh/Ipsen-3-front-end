@@ -29,7 +29,6 @@ export class StudentComponent implements OnInit {
 
   getRecentStatisticsUser(){
     this.apiService.getRecentStatisticsStudent().subscribe((data) => {
-      console.log(data);
       this.projectsAmount = data[0];
       this.papersAmount = data[1];
     });
@@ -51,7 +50,6 @@ export class StudentComponent implements OnInit {
   setStudentName(){
     let subStrings = this.studentName.split("@");
     this.studentDisplayName = subStrings[0];
-    console.log(subStrings[0])
   }
 
 }

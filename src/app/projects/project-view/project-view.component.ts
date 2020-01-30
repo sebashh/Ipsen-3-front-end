@@ -7,6 +7,7 @@ import {RestApiService} from "../../shared/Services/api-service";
 import {Router} from "@angular/router";
 import {UserService} from "../../shared/Services/user.service";
 import {User} from "../../shared/Models/user.model";
+import {Client} from "../../shared/Models/client.model";
 @Component({
   selector: 'app-project-view',
   templateUrl: './project-view.component.html',
@@ -21,6 +22,8 @@ export class ProjectViewComponent implements OnInit {
   hasContent = false;
   private following: boolean;
   accesButtonText: string = "Request Access";
+  owner: Client = new Client();
+  imageUrl : string;
 
   constructor(private apiService: RestApiService, private projectService: ProjectService, private userService: UserService) {
     this.project = this.projectService.getCurrentProject();
@@ -28,7 +31,6 @@ export class ProjectViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reload();
   }
 
   isCurrentOwner(): boolean{
@@ -65,7 +67,19 @@ export class ProjectViewComponent implements OnInit {
     this.reload();
   }
 
+  setOwner(owner:any){
+    this.owner = owner;
+  }
+
+  getProjectOwner(){
+    this.apiService.getClient(this.project.clientId).subscribe(item =>{
+      this.setOwner(item);
+      this.getLogoImage();
+    })
+  }
+
   reload(){
+    this.getProjectOwner();
     if(this.isEducational())this.apiService.userFollowingProject(this.project.projectId).subscribe(item => {
       this.following = item});
     this.getPapers();
@@ -141,5 +155,9 @@ export class ProjectViewComponent implements OnInit {
 
   private isEducational() {
     return this.userService.isAuthorized(['teacher', 'student']);
+  }
+
+  getLogoImage() {
+    this.imageUrl = 'http://localhost:8080/users/client/logo/' + 'test.jpg';
   }
 }
