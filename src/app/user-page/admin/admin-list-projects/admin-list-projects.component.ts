@@ -20,8 +20,7 @@ export class AdminListProjectsComponent implements OnInit {
   divIndex;
   AllStudies = [];
   AllCategories = [];
-  answer;
-
+  
   ngOnInit() {
     this.getAllProjects();
     this.AllStudies = this.studyService.studies;
