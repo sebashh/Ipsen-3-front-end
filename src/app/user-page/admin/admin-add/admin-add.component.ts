@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogComponent } from './dialog/dialog.component';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { RegisterStudentComponent } from 'src/app/user/register/register-student/register-student.component';
 import { RegisterTeacherComponent } from 'src/app/user/register/register-teacher/register-teacher.component';
 import { RegisterClientComponent } from 'src/app/user/register/register-client/register-client.component';
-import { ClientComponent } from '../../client/client.component';
-import { PaperItemComponent } from 'src/app/papers/paper-list/paper-item/paper-item.component';
-import { FormComponent } from 'src/app/upload/form/form.component';
 import { RegisterAdminComponent } from 'src/app/user/register/register-admin/register-admin.component';
 import { CreateProjectComponent } from '../../client/create-project/create-project.component';
 import { RestApiService } from 'src/app/shared/Services/api-service';

@@ -63,7 +63,7 @@ export class RegisterTeacherComponent implements OnInit {
       } else {
         this.teacher = new Teacher(this.selectedStudies[0].id, this.getCategoryIdList(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
 
-        this.restApiService.registerUser('teacher', this.teacher).subscribe((data) => {
+        this.restApiService.registerUser('users/register/teacher', this.teacher).subscribe((data) => {
           if(data) {
             window.alert('register successful!');
             this.router.navigateByUrl('/home');

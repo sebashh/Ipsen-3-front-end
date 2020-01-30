@@ -24,8 +24,6 @@ import { RegisterStudentComponent } from './user/register/register-student/regis
 import { RegisterClientComponent } from './user/register/register-client/register-client.component';
 import { RegisterTeacherComponent } from './user/register/register-teacher/register-teacher.component';
 import { UploadComponent } from './upload/upload.component';
-import { FormComponent } from './upload/form/form.component';
-import { UploadlistComponent } from './upload/uploadlist/uploadlist.component';
 import { SidebarModule } from 'ng-sidebar';
 import {ClientComponent} from './user-page/client/client.component';
 import {UserPageModule} from './user-page/user-page.module';
@@ -150,8 +148,6 @@ export const routes: Routes = [
     RegisterClientComponent,
     RegisterTeacherComponent,
     UploadComponent,
-    FormComponent,
-    UploadlistComponent,
     RegisterTeacherComponent,
     ProjectScrollbarComponent,
     ClientComponent,

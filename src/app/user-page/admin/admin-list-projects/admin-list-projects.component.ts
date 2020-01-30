@@ -23,8 +23,6 @@ export class AdminListProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllProjects();
-    // this.AllStudies = this.studyService.studies;
-    // this.AllCategories = this.categoryService.categories;
     this.getAllStudies();
     this.getAllCategories(); 
   }
@@ -53,7 +51,7 @@ export class AdminListProjectsComponent implements OnInit {
 
   getCategoryName(category: number){
     for(var i = 0; i < this.AllCategories.length; i++){
-      if(this.AllStudies[i].id==category){
+      if(this.AllCategories[i].id==category){
         return this.AllCategories[i].name
       }
     }
@@ -83,7 +81,6 @@ export class AdminListProjectsComponent implements OnInit {
 
   updateProject(project: Project) {
     this.restApi.updateProject(project).subscribe();
-    // this.refreshPage();
     this.cancel();
   }
 

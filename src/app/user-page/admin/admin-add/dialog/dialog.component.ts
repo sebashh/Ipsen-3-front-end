@@ -1,6 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { Client } from 'src/app/shared/Models/client.model';
 
 @Component({
   selector: 'app-dialog',
@@ -17,6 +16,5 @@ export class DialogComponent {
   public options: any[];
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) { 
-    console.log(this.options)
   }
 }

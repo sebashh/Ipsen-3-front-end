@@ -102,7 +102,5 @@ export class NewUploadComponent implements OnInit {
         this.apiService.postResource("paper/upload", this.paper, 'application/json');
       }
     }
-
-
   }
 }

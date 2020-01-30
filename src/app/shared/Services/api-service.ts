@@ -15,7 +15,6 @@ import {dateStatistic} from "../Models/dateStatistic.model";
 import {ErrorMessages} from '../error-messages';
 import { Admin } from '../Models/admin.model';
 import { User } from '../Models/user.model';
-import {log} from "util";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +63,7 @@ export class RestApiService {
   }
 
   deletePaper(id: number): Observable<{}> {
+
     return this.http.delete(this.apiURL + 'paper/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -115,6 +115,7 @@ export class RestApiService {
   }
 
   deleteProject(id: number): Observable<{}> {
+
     return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -122,7 +123,7 @@ export class RestApiService {
   }
 
   getAllStudents(): Observable<Student[]>{
-    return this.http.get<Student[]>(this.apiURL + 'users/getAllStudents')
+    return this.http.get<Student[]>(this.apiURL + 'users/student/getAllStudents')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -130,21 +131,21 @@ export class RestApiService {
   }
 
   updateStudent(student: Student): Observable<Student>{
-    return this.http.put<Student>(this.apiURL + 'users/studentUpdate', student)
+    return this.http.put<Student>(this.apiURL + 'users/student/studentUpdate', student)
     .pipe(
       catchError(this.handleError)
     )
   }
 
   updateTeacher(teacher: Teacher): Observable<Teacher>{
-    return this.http.put<Teacher>(this.apiURL + 'users/teacherUpdate', teacher)
+    return this.http.put<Teacher>(this.apiURL + 'users/teacher/teacherUpdate', teacher)
     .pipe(
       catchError(this.handleError)
     )
   }
 
   updateClient(client: Client): Observable<Client>{
-    return this.http.put<Client>(this.apiURL + 'users/clientUpdate', client)
+    return this.http.put<Client>(this.apiURL + 'users/client/clientUpdate', client)
     .pipe(
       catchError(this.handleError)
     )
@@ -173,7 +174,7 @@ export class RestApiService {
 
 
   getAllTeachers(): Observable<Teacher[]>{
-    return this.http.get<Teacher[]>(this.apiURL + 'users/getAllTeachers')
+    return this.http.get<Teacher[]>(this.apiURL + 'users/teacher/getAllTeachers')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -181,7 +182,7 @@ export class RestApiService {
   }
 
   getAllClients(): Observable<Client[]>{
-    return this.http.get<Client[]>(this.apiURL + 'users/getAllClients')
+    return this.http.get<Client[]>(this.apiURL + 'users/client/getAllClients')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -245,7 +246,7 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    return this.http.post(this.apiURL + 'users/register/' + path, param)
+    return this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
         catchError(this.handleRegisterError)
@@ -319,7 +320,6 @@ export class RestApiService {
   }
 
   loginUser(loginModel: LoginModel) {
-    console.log("loginUser: " + loginModel)
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
       retry(1),
       catchError(this.handleInlogError),
@@ -483,14 +483,18 @@ export class RestApiService {
   }
 
   increaseProjectViews(id : number) {
-    console.log("increase views of project " + id);
     return this.http.get(this.apiURL + 'projects/project=' + id + '/view').pipe(
       retry(1),
       catchError(this.handleInlogError)
     ).subscribe();
   }
 
-
+  revokeAccess(projectId: number, id: number): Observable<any> {
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/teacher-id=' + id + '/response=false').pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
   getClient(clientId: number): Observable<Client> {
     return this.http.get<Client>(this.apiURL + 'users/client/get=' + clientId).pipe(
@@ -500,10 +504,5 @@ export class RestApiService {
 
   }
 
-  revokeAccess(projectId: number, id: number): Observable<any>  {
-    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/teacher-id=' + id + '/response=false').pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
+
 }

@@ -63,7 +63,6 @@ export class CreateProjectComponent implements OnInit {
     this.optionsCategory = this.categoryService.categories;
     this.configCategory = this.getConfig(this.optionsCategory);
     this.configStudy = this.getConfig(this.optionsStudy);
-    console.log(this.data.id);
   }
 
   onSubmit() {
@@ -72,7 +71,7 @@ export class CreateProjectComponent implements OnInit {
     } else{
       this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, null);
     }
-    console.log(this.restApi.postResource("projects/project/create", this.project, 'text'));
+    this.restApi.postResource("projects/project/create", this.project, 'text');
   }
 
 }

@@ -10,7 +10,6 @@ import { AdminListPapersComponent } from './admin/admin-list-papers/admin-list-p
 import { AdminListProjectsComponent } from './admin/admin-list-projects/admin-list-projects.component';
 import { AdminAddComponent } from './admin/admin-add/admin-add.component';
 import { DialogComponent } from './admin/admin-add/dialog/dialog.component';
-import { FormComponent } from '../upload/form/form.component';
 import { RegisterAdminComponent } from '../user/register/register-admin/register-admin.component';
 import { NewUploadComponent } from '../upload/new-upload/new-upload.component';
 
@@ -34,6 +33,6 @@ import { NewUploadComponent } from '../upload/new-upload/new-upload.component';
     MatGridListModule,
     MatDialogModule
   ],
-  entryComponents: [DialogComponent, FormComponent, RegisterAdminComponent, CreateProjectComponent, NewUploadComponent]
+  entryComponents: [DialogComponent, RegisterAdminComponent, CreateProjectComponent, NewUploadComponent]
 })
 export class UserPageModule { }
