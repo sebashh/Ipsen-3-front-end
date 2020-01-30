@@ -378,7 +378,7 @@ export class RestApiService {
   }
 
   getRandomFollowedProjects(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'projects/followed/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/followed/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -386,7 +386,7 @@ export class RestApiService {
   }
 
   getRecentlyCreatedProjectsWithInterest(user_id : number) : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'projects/interested/user=' + user_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/interested/user')
       .pipe(
         retry(1),
         catchError(this.handleError)

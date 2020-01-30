@@ -20,18 +20,27 @@ export class AdminListProjectsComponent implements OnInit {
   divIndex;
   AllStudies = [];
   AllCategories = [];
-  
+
   ngOnInit() {
     this.getAllProjects();
-    this.AllStudies = this.studyService.studies;
-    this.AllCategories = this.categoryService.categories;
+    // this.AllStudies = this.studyService.studies;
+    // this.AllCategories = this.categoryService.categories;
+    this.getAllStudies();
+    this.getAllCategories(); 
+  }
+
+  getAllStudies(){
     this.studyService.event.subscribe(item =>{
       this.AllStudies = item;
     });
     this.AllStudies = this.studyService.studies;
+  }
+  
+  getAllCategories(){
     this.categoryService.event.subscribe(item =>{
       this.AllCategories = item;
     });
+    this.AllCategories = this.categoryService.categories;
   }
 
   getStudyName(study: number){

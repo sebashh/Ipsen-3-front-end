@@ -72,7 +72,10 @@ export class AdminAddComponent implements OnInit {
           break;
         case 'Paper':
           this.dialogRef = this.dialog.open(NewUploadComponent, {
-            width: '25%'
+            width: '25%',
+            data: {
+              id: result
+            }
           });
           break;
     }

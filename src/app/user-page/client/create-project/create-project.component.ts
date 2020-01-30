@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {Project} from "../../../shared/Models/project.model";
@@ -51,8 +51,9 @@ export class CreateProjectComponent implements OnInit {
   });
   dataModelCat: any;
   dataModelStudy: any;
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public restApi: RestApiService, private studyService: StudyService, private categoryService: CategoryService) {
+ 
+  constructor(public restApi: RestApiService, private studyService: StudyService, private categoryService: CategoryService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.checking = false;
   }
@@ -62,13 +63,15 @@ export class CreateProjectComponent implements OnInit {
     this.optionsCategory = this.categoryService.categories;
     this.configCategory = this.getConfig(this.optionsCategory);
     this.configStudy = this.getConfig(this.optionsStudy);
-    console.log(this.data);
+    console.log(this.data.id);
   }
 
   onSubmit() {
-    
-    this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, this.data.id);
-
+    if(this.data){
+      this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, this.data.id);
+    } else{
+      this.project = new Project(null, this.title_input, this.description_input, this.dataModelStudy.id, this.dataModelCat.id, null, null);
+    }
     console.log(this.restApi.postResource("projects/project/create", this.project, 'text'));
   }
 

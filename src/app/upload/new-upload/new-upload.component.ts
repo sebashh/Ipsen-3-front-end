@@ -1,8 +1,9 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {RestApiService} from "../../shared/Services/api-service";
-import {Paper} from "../../shared/Models/paper.model";
-import {Project} from "../../shared/Models/project.model";
-import {ProjectService} from "../../shared/Services/project.service";
+import { Component, ElementRef, Input, OnInit, ViewChild, Inject, Optional } from '@angular/core';
+import { RestApiService } from "../../shared/Services/api-service";
+import { Paper } from "../../shared/Models/paper.model";
+import { Project } from "../../shared/Models/project.model";
+import { ProjectService } from "../../shared/Services/project.service";
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-new-upload',
@@ -13,28 +14,30 @@ export class NewUploadComponent implements OnInit {
 
 
   @Input()
-  project : Project;
+  project: Project;
 
-  currentFile:File;
-  currentFileName:string;
+  currentFile: File;
+  currentFileName: string;
   title: string;
   author: string;
   fileSelected: boolean;
-  paperFileString : any;
+  paperFileString: any;
   dragAndDropText = "Drag files here or click";
 
-  paper : Paper;
+  paper: Paper;
 
-  @ViewChild('inputTitle',{static:false})
-  titleElem : ElementRef;
+  @ViewChild('inputTitle', { static: false })
+  titleElem: ElementRef;
 
-  @ViewChild('inputAuthor',{static:false})
-  authorElem : ElementRef;
+  @ViewChild('inputAuthor', { static: false })
+  authorElem: ElementRef;
 
-  constructor(private projectService: ProjectService, private apiService: RestApiService) { }
+  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: any, private projectService: ProjectService, private apiService: RestApiService) { }
 
   ngOnInit() {
-    this.project = this.projectService.getCurrentProject();
+    if (!this.data) {
+      this.project = this.projectService.getCurrentProject();
+    }
     this.fileSelected = false;
     this.currentFileName = "none";
     this.author = null;
@@ -42,8 +45,7 @@ export class NewUploadComponent implements OnInit {
     this.paperFileString = null;
   }
 
-  submit(){
-    console.log(this.currentFile)
+  submit() {
     this.title = this.titleElem.nativeElement.value;
     this.author = this.authorElem.nativeElement.value;
     this.sendFile();
@@ -55,8 +57,8 @@ export class NewUploadComponent implements OnInit {
     this.dragAndDropText = "Drag files here or click";
   }
 
-  fileSelect(fileInput:any){
-    if (!this.fileSelected){
+  fileSelect(fileInput: any) {
+    if (!this.fileSelected) {
       this.currentFile = fileInput.target.files[0];
       this.currentFileName = this.currentFile.name;
       this.fileSelected = true;
@@ -67,8 +69,8 @@ export class NewUploadComponent implements OnInit {
     }
   }
 
-  onFileDropped($event){
-    if (!this.fileSelected){
+  onFileDropped($event) {
+    if (!this.fileSelected) {
       this.currentFile = $event[0];
       this.currentFileName = this.currentFile.name;
       this.fileSelected = true;
@@ -79,10 +81,10 @@ export class NewUploadComponent implements OnInit {
     }
   }
 
-  convertFile() : void{
+  convertFile(): void {
     var myReader = new FileReader();
     myReader.readAsDataURL(this.currentFile);
-    myReader.onloadend = (e) =>{
+    myReader.onloadend = (e) => {
       this.paperFileString = myReader.result;
     };
     myReader.onerror = function (error) {
@@ -90,13 +92,17 @@ export class NewUploadComponent implements OnInit {
   }
 
   sendFile() {
-    if (this.title != null && this.author != null && this.paperFileString != null ) {
-      this.paper = new Paper(this.project.projectId, this.title, this.author, null, null, this.paperFileString);
-      this.apiService.postResource("paper/upload", this.paper, 'application/json');
+
+    if (this.title != null && this.author != null && this.paperFileString != null) {
+      if (this.data) {
+        this.paper = new Paper(null, this.title, this.author, this.data.id, null, this.paperFileString);
+        this.apiService.postResource("paper/upload", this.paper, 'application/json');
+      } else {
+        this.paper = new Paper(this.project.projectId, this.title, this.author, null, null, this.paperFileString);
+        this.apiService.postResource("paper/upload", this.paper, 'application/json');
+      }
     }
-    else {
-    }
+
+
   }
-
-
 }
