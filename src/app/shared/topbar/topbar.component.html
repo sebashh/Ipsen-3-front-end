@@ -21,7 +21,7 @@
     </a>
   </div>
   <ng-template #NotLoggedIn>
-    <div class="topnav" id="myTopnav">
+    <div class="topnav" id="myTopnav" (keydown)="onEnter($event)">
       <a class="icon close" (click)="responsiveLogIn()">
         <i class="fa fa-times">
         </i>

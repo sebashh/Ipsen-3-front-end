@@ -37,6 +37,12 @@ export class TopbarComponent implements OnInit {
   message() {
   }
 
+  onEnter(event){
+    if(event.keyCode==13){
+      this.logIn();
+    }
+  }
+
   responsiveLogIn() {
     let x = document.getElementById('myTopnav');
     let y = document.getElementById('myLogo');
