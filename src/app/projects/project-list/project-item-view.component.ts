@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Paper} from '../../shared/Models/paper.model';
 import {RestApiService} from '../../shared/Services/api-service';
 
@@ -9,7 +9,7 @@ import {RestApiService} from '../../shared/Services/api-service';
 })
 
 export class ProjectItemViewComponent implements OnInit {
-  paper: Paper[] = [];
+  paper: Array<Paper>;
 
   @Input() searchValue: string;
   pageOfItems: Array<any>;
@@ -22,16 +22,12 @@ export class ProjectItemViewComponent implements OnInit {
     });
   }
 
-  filterContent(value: string) {
-
-  }
-
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfItems = pageOfItems;
   }
 
-  showPaper(paperFile: String) {
+  showPaper(paperFile: string) {
     this.restApi.downloadPDF(paperFile).subscribe(res => {
       const pdf = new Blob([res], { type: 'application/pdf' });
       const fileURL = URL.createObjectURL(pdf);

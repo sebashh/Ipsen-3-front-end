@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProjectItemViewComponent } from './project-list/project-item-view.component';
 import {JwPaginationComponent} from 'jw-angular-pagination';
 import {SharedModule} from '../shared/shared.module';
-import { ClientProjectViewComponent } from './project-view/Client-component/client-project-view/client-project-view.component';
+import {FormsModule} from '@angular/forms';
+import {SelectDropDownModule} from 'ngx-select-dropdown';
 
 
 
@@ -15,7 +16,9 @@ import { ClientProjectViewComponent } from './project-view/Client-component/clie
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    SelectDropDownModule
   ]
 })
 export class ProjectsModule { }

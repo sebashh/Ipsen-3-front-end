@@ -13,7 +13,7 @@ import { CategoryService } from 'src/app/shared/Services/category.service';
 export class AdminListProjectsComponent implements OnInit {
   showComponent: boolean;
 
-  constructor(public restApi: RestApiService,public router: Router, 
+  constructor(public restApi: RestApiService,public router: Router,
     public studyService: StudyService, public categoryService: CategoryService) { }
   AllProjects = [];
   edit = false;
@@ -29,22 +29,17 @@ export class AdminListProjectsComponent implements OnInit {
 
   getAllProjects(){
     this.restApi.getAllProjects().subscribe((data)=>{
-      for(var i = 0; i < data.length; i++){
-        this.AllProjects = data;
-      }
+      this.AllProjects = data;
     })
-    
+
   }
 
   delete(id: number, title: String){
     var result = confirm("Are you sure you want to delete "+title+"?");
-    console.log(result);
-
-    console.log(id);
     if(result){
       this.restApi.deleteProject(id).subscribe();;
       this.getAllProjects();
-      
+
     }
   }
 

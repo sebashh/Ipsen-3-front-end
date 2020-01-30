@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Project} from "../../shared/Models/project.model";
 import {RestApiService} from "../../shared/Services/api-service";
+import { UserService } from 'src/app/shared/Services/user.service';
 
 @Component({
   selector: 'app-student',
@@ -16,7 +17,7 @@ export class StudentComponent implements OnInit {
   followedProjects: Array<Project> = [];
   projectsWithInterests: Array<Project> = [];
 
-  constructor(private apiService: RestApiService) { }
+  constructor(private apiService: RestApiService, private userService: UserService) { }
 
   ngOnInit() {
     this.setStudentName();
@@ -36,13 +37,13 @@ export class StudentComponent implements OnInit {
 
 
   getProjectsWithInterests() {
-    this.apiService.getRecentlyCreatedProjectsWithInterest().subscribe((data) => {
+    this.apiService.getRecentlyCreatedProjectsWithInterest(this.userService.user.id).subscribe((data) => {
       this.projectsWithInterests = data;
     })
   }
 
   getFollowedProjects(){
-    this.apiService.getRandomFollowedProjects().subscribe((data) => {
+    this.apiService.getRandomFollowedProjects(this.userService.user.id).subscribe((data) => {
       this.followedProjects = data;
     })
   }

@@ -28,7 +28,7 @@ export class ProjectViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.isTeacher()) this.getAccessInformationTeacher();
+    this.reload();
   }
 
   isCurrentOwner(): boolean{
@@ -62,9 +62,14 @@ export class ProjectViewComponent implements OnInit {
 
   setCurrentProject(project: Project) {
     this.project = project;
-    if(this.isEducational())this.apiService.userFollowingProject(project.projectId).subscribe(item => {
+    this.reload();
+  }
+
+  reload(){
+    if(this.isEducational())this.apiService.userFollowingProject(this.project.projectId).subscribe(item => {
       this.following = item});
     this.getPapers();
+    if(this.isTeacher()) this.getAccessInformationTeacher();
   }
 
   getPapers() {

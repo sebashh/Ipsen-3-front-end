@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {LoginModel} from '../Models/login.model';
 import {log} from 'util';
-import {RestApiService} from "../Services/api-service";
-import {UserService} from "../Services/user.service";
-import {User} from "../Models/user.model";
+import {RestApiService} from '../Services/api-service';
+import {UserService} from '../Services/user.service';
+import {User} from '../Models/user.model';
+import {ErrorMessages} from '../error-messages';
 
 @Component({
   selector: 'app-topbar',
@@ -18,10 +19,9 @@ export class TopbarComponent implements OnInit {
   loginModel: LoginModel;
   email: string;
   password: string;
-  notificationVisable: boolean = false;
+  notificationVisable = false;
 
   constructor(private router: Router, private route: ActivatedRoute, public restApi: RestApiService, private userService: UserService) {
-
   }
   navigate(path) {
     this.router.navigate([{outlets: {primary: path, sidemenu: path}}],
@@ -33,7 +33,6 @@ export class TopbarComponent implements OnInit {
   }
 
   message() {
-    console.log('Hello');
   }
 
   responsiveLogIn() {
@@ -66,10 +65,14 @@ export class TopbarComponent implements OnInit {
   }
 
   logIn() {
-    this.loginModel = new LoginModel(this.email, this.password);
-    this.restApi.loginUser(this.loginModel).subscribe(item =>
-    this.userService.setCurrentUser(<User>item));
-    this.isUserLoggedIn = true;
+    if (this.email == null || this.password == null) {
+      alert(ErrorMessages.InputEmpty);
+    } else {
+      this.loginModel = new LoginModel(this.email, this.password);
+      this.restApi.loginUser(this.loginModel).subscribe(item =>
+        this.userService.setCurrentUser(item as User)
+      );
+    }
   }
 
   logOut() {
@@ -84,6 +87,8 @@ export class TopbarComponent implements OnInit {
   getUserPath(): string {
     let path = '/home';
     if(this.userService.user) path = path + '/' + this.userService.user.role;
+    this.UserIsAdmin = this.userService.isAuthorized(['admin'])
+    this.isUserLoggedIn = this.userService.isAuthorized(['student', 'teacher', 'client', 'admin']);
     return path;
   }
 }

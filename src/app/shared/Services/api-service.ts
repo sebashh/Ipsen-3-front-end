@@ -12,6 +12,7 @@ import { Student } from '../Models/student.model';
 import { Teacher } from '../Models/teacher.model';
 import { Client } from '../Models/client.model';
 import {dateStatistic} from "../Models/dateStatistic.model";
+import {ErrorMessages} from '../error-messages';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class RestApiService {
   private static instance: RestApiService;
   // Define API
   apiURL = 'http://localhost:8080/';
+  // tslint:disable-next-line:prefer-const
 
   constructor(private http: HttpClient, private userService: UserService ) { }
 
@@ -86,7 +88,7 @@ export class RestApiService {
 
   getProject(project_id: number): Observable<Project> {
 
-    return this.http.get<Project>(this.apiURL + 'ipsen3projects/project='+ project_id)
+    return this.http.get<Project>(this.apiURL + 'projects/project='+ project_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -95,7 +97,7 @@ export class RestApiService {
 
 
   getAllMyProjects(client_id: number): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects='+ client_id)
+    return this.http.get<Project[]>(this.apiURL + 'projects/projects='+ client_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -103,7 +105,7 @@ export class RestApiService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projects/all')
+    return this.http.get<Project[]>(this.apiURL + 'projects/projects/all')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -111,8 +113,8 @@ export class RestApiService {
   }
 
   deleteProject(id: number): Observable<{}> {
-    console.log(id);
-    return this.http.delete(this.apiURL + 'ipsen3projects/delete=' + id )
+    console.log('deleting', id);
+    return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
       );
@@ -155,7 +157,7 @@ export class RestApiService {
   }
 
   updateProject(project: Project): Observable<Project>{
-    return this.http.put<Project>(this.apiURL + 'ipsen3projects/projectUpdate', project)
+    return this.http.put<Project>(this.apiURL + 'projects/projectUpdate', project)
     .pipe(
       catchError(this.handleError)
     )
@@ -163,7 +165,7 @@ export class RestApiService {
 
   deleteUser(id: number): Observable<{}> {
     console.log(id);
-    return this.http.delete(this.apiURL + 'user=' + id + '/delete')
+    return this.http.delete(this.apiURL + 'users/delete=' + id)
       .pipe(
         catchError(this.handleError)
       );
@@ -201,6 +203,14 @@ export class RestApiService {
     return throwError(errorMessage);
   }
 
+  handleInlogError() {
+    let errorMessage = '';
+    errorMessage = ErrorMessages.LoginNotValid;
+
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
   handleRegisterError(error) {
     let errorMessage = '';
     if(error.status == '406'){
@@ -219,13 +229,11 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    this.http.post(this.apiURL + path, param)
+    return this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
         catchError(this.handleRegisterError)
-      ).subscribe((data) => {
-      return data;
-    });
+      );
   }
 
   postResource(path: string, param: any, returnType: any):
@@ -263,47 +271,47 @@ export class RestApiService {
   loginUser(loginModel: LoginModel) {
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(this.handleInlogError),
     );
   }
 
   getFollowAmountOfProject(projectId: number): Observable<any>{
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow/amount').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/follow/amount').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   userFollowingProject(projectId: number) : Observable<any>{
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/isFollowing').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/isFollowing').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   followProject(projectId: number) {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/follow').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/follow').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();
   }
 
   unFollowProject(projectId: number) {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/unfollow').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/unfollow').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();
   }
 
   getCategories() {
-    return this.http.get(this.apiURL + 'ipsen3categories/categories').pipe(
+    return this.http.get(this.apiURL + 'categories/all').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getStudies() {
-    return this.http.get(this.apiURL + 'ipsen3studies/studies').pipe(
+    return this.http.get(this.apiURL + 'studies/all').pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -316,16 +324,16 @@ export class RestApiService {
     );
   }
 
-  getRandomFollowedProjects() : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/followed/user')
+  getRandomFollowedProjects(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/followed/user=' + user_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getRecentlyCreatedProjectsWithInterest() : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/interested/user')
+  getRecentlyCreatedProjectsWithInterest(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/interested/user=' + user_id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -347,16 +355,16 @@ export class RestApiService {
     );
   }
 
-  getRecentlyUpdatedProjects() : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/user')
+  getRecentlyUpdatedProjects(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  getTopViewedProjectsClient() : Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/clientProjects/top/user')
+  getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/clientProjects/top/user')
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -374,42 +382,42 @@ export class RestApiService {
 
 
   getAccessInformation(projectId: number): Observable<any> {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/information', {responseType: 'text'}).pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/information', {responseType: 'text'}).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   requestProjectAccess(projectId: number) {
-    this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/request').pipe(
+    this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/request').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();
   }
 
   getAllAccessMembers(projectId: number): Observable<any> {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/all').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/all').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getAllAccessRequests(projectId: number):Observable<any> {
-    return this.http.get(this.apiURL + 'ipsen3projects/project=' + projectId + '/access/requests/all').pipe(
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/requests/all').pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   acceptAccessRequest(id: number, userId: number) {
-    this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/access/teacher-id=' + userId + '/response=true').pipe(
+    this.http.get(this.apiURL + 'projects/project=' + id + '/access/teacher-id=' + userId + '/response=true').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();
   }
 
   denyAccessRequest(id: number, userId: number) {
-    this.http.get(this.apiURL + 'ipsen3projects/project=' + id + '/access/teacher-id=' + userId + '/response=false').pipe(
+    this.http.get(this.apiURL + 'projects/project=' + id + '/access/teacher-id=' + userId + '/response=false').pipe(
       retry(1),
       catchError(this.handleError)
     ).subscribe();

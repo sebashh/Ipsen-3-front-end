@@ -1,6 +1,7 @@
 table {
   table-layout: fixed;
-  width: 100%;
+  max-width: 90vw;
+  margin-top: -50px;
 }
 
 th,td {
@@ -22,11 +23,21 @@ th:nth-child(4) {
 }
 
 jw-pagination {
-  margin-left: auto;
-  margin-right: auto;
+  padding-left: 40vw;
+  /*padding-right: 60vw;*/
 }
 
 .row-content:hover {
   background-color: #4fd8b5;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  table {
+    margin-top: -80px;
+  }
+
+  jw-pagination {
+    padding-left: 13vw;
+  }
 }

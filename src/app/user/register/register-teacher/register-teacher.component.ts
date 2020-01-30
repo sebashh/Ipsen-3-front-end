@@ -7,6 +7,7 @@ import {Category} from "../../../shared/Models/category.model";
 import {Study} from "../../../shared/Models/study.model";
 import {CategoryService} from "../../../shared/Services/category.service";
 import {StudyService} from "../../../shared/Services/study.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-teacher',
@@ -24,7 +25,8 @@ export class RegisterTeacherComponent implements OnInit {
   constructor(formBuilder: FormBuilder,
               public restApiService: RestApiService,
               public categoryService: CategoryService,
-              public studyService: StudyService) {
+              public studyService: StudyService,
+              private router: Router) {
 
     this.email = formBuilder.group({
       currentEmail: new FormControl('', [
@@ -60,7 +62,13 @@ export class RegisterTeacherComponent implements OnInit {
         alert('You can only submit one study');
       } else {
         this.teacher = new Teacher(this.selectedStudies[0].id, this.getCategoryIdList(), this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-        this.restApiService.registerUser('ipsen3users/teacher', this.teacher);
+
+        this.restApiService.registerUser('users/teacher', this.teacher).subscribe((data) => {
+          if(data) {
+            window.alert('register successful!');
+            this.router.navigateByUrl('/home');
+          }
+        });
       }
     }
   }
