@@ -4,9 +4,6 @@ import {RestApiService} from "../../../shared/Services/api-service";
 import {UserService} from "../../../shared/Services/user.service";
 import {StudyService} from '../../../shared/Services/study.service';
 import {CategoryService} from '../../../shared/Services/category.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Category} from '../../../shared/Models/category.model';
-import {Study} from '../../../shared/Models/study.model';
 @Component({
   selector: 'app-client-my-projects',
   templateUrl: './project-list.component.html',
@@ -21,18 +18,15 @@ export class ProjectList implements OnInit {
   configStudy: any;
   optionsCategory = [];
   configCategory: any;
-  dataModelCat: Category;
-  dataModelStudy: Study;
-  checking: boolean;
+  dataModelCat: any;
+  dataModelStudy: any;
   private pageOfItems: Array<any>;
   constructor(public restApi: RestApiService, private userService: UserService, private studyService: StudyService, private categoryService: CategoryService) { }
 
   ngOnInit() {
-    this.getAllProjects();
+    this.getAllProjects(this.userService.user.id);
     this.optionsStudy = this.studyService.studies;
     this.optionsCategory = this.categoryService.categories;
-    console.log(this.studyService.studies);
-    console.log(this.categoryService.categories);
     this.configCategory = this.getConfig(this.optionsCategory);
     this.configStudy = this.getConfig(this.optionsStudy);
   }
@@ -52,28 +46,20 @@ export class ProjectList implements OnInit {
 
   getProjectsByCategory(categoryId: number){
     this.restApi.getProjectsByCategoryId(categoryId).subscribe((data) => {
-      this.allMyProjects = data;
-      this.filterContent();
-      console.log(data);
-
+      console.log('ProjectsByCat: ', data);
     });
   }
 
   getProjectsByStudy(studyId: number){
     this.restApi.getProjectsByStudyId(studyId).subscribe((data) => {
-      this.allMyProjects = data;
-      this.filterContent();
-        console.log(data);
-
+        console.log('ProjectsByStud: ', data)
       }
     )
   }
 
   getProjectsByBoth(studyId: number, categoryId: number){
     this.restApi.getProjectsbyBoth(studyId, categoryId).subscribe((data) => {
-      this.allMyProjects = data;
-      this.filterContent();
-        console.log(data);
+        console.log('Projects with both paras', data)
 
       }
     )
@@ -114,13 +100,17 @@ export class ProjectList implements OnInit {
     this.searchValue = (event.target as HTMLInputElement).value;
   }
 
+  getAllProjects(client_id: number){
+    this.restApi.getAllProjects().subscribe((data)=> {
+      this.allMyProjects = data;
+      this.filterContent();
+    });
+  }
 
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfItems = pageOfItems;
   }
-
-
 
   filterContent() {
     let tempList = [];
