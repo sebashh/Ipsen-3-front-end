@@ -32,12 +32,6 @@ export class ProjectViewCardComponent implements OnInit, AfterViewInit {
     this.apiService.getFollowAmountOfProject(this.project.projectId).subscribe(item => {
       this.followAmount = item;
     });
-
-    // this.title = this.project.title;
-    // this.summary = this.project.summary;
-    // this.study = this.project.study;
-    // this.category = this.project.category;
-
   }
 
   ngAfterViewInit() {

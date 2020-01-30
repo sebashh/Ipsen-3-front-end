@@ -13,7 +13,7 @@ import { CategoryService } from 'src/app/shared/Services/category.service';
 export class AdminListProjectsComponent implements OnInit {
   showComponent: boolean;
 
-  constructor(public restApi: RestApiService,public router: Router, 
+  constructor(public restApi: RestApiService,public router: Router,
     public studyService: StudyService, public categoryService: CategoryService) { }
   AllProjects = [];
   edit = false;
@@ -23,33 +23,57 @@ export class AdminListProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllProjects();
+    this.getAllStudies();
+    this.getAllCategories(); 
+  }
+
+  getAllStudies(){
+    this.studyService.event.subscribe(item =>{
+      this.AllStudies = item;
+    });
     this.AllStudies = this.studyService.studies;
+  }
+  
+  getAllCategories(){
+    this.categoryService.event.subscribe(item =>{
+      this.AllCategories = item;
+    });
     this.AllCategories = this.categoryService.categories;
+  }
+
+  getStudyName(study: number){
+    for(var i = 0; i < this.AllStudies.length; i++){
+      if(this.AllStudies[i].id==study){
+        return this.AllStudies[i].name
+      }
+    }
+  }
+
+  getCategoryName(category: number){
+    for(var i = 0; i < this.AllCategories.length; i++){
+      if(this.AllCategories[i].id==category){
+        return this.AllCategories[i].name
+      }
+    }
   }
 
   getAllProjects(){
     this.restApi.getAllProjects().subscribe((data)=>{
-      for(var i = 0; i < data.length; i++){
-        this.AllProjects = data;
-      }
+      this.AllProjects = data;
     })
-    
+
   }
 
   delete(id: number, title: String){
     var result = confirm("Are you sure you want to delete "+title+"?");
-    console.log(result);
-
-    console.log(id);
     if(result){
       this.restApi.deleteProject(id).subscribe();;
       this.getAllProjects();
-      
+
     }
   }
 
   editRow(id: number) {
-    console.log(id);
     this.edit = true;
     this.divIndex = id;
 
@@ -57,7 +81,6 @@ export class AdminListProjectsComponent implements OnInit {
 
   updateProject(project: Project) {
     this.restApi.updateProject(project).subscribe();
-    // this.refreshPage();
     this.cancel();
   }
 

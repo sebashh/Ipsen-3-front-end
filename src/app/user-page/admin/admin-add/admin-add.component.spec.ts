@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectListFilterComponent } from './project-list-filter.component';
+import { AdminAddComponent } from './admin-add.component';
 
-describe('ProjectListFilterComponent', () => {
-  let component: ProjectListFilterComponent;
-  let fixture: ComponentFixture<ProjectListFilterComponent>;
+describe('AdminAddComponent', () => {
+  let component: AdminAddComponent;
+  let fixture: ComponentFixture<AdminAddComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectListFilterComponent ]
+      declarations: [ AdminAddComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectListFilterComponent);
+    fixture = TestBed.createComponent(AdminAddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

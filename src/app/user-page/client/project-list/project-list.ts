@@ -82,7 +82,7 @@ export class ProjectList implements OnInit {
     this.restApi.getAllProjects().subscribe((data)=> {
       this.allMyProjects = data;
       this.filterContent();
-    });
+    }); 
   }
 
   onSelectUpdate(){

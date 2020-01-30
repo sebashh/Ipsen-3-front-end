@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Client} from '../../../shared/Models/client.model';
 import {RestApiService} from "../../../shared/Services/api-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-client',
@@ -15,7 +16,7 @@ export class RegisterClientComponent implements OnInit {
   private password: FormGroup;
   private client: Client;
 
-  constructor(formBuilder: FormBuilder, public restApiService: RestApiService) {
+  constructor(formBuilder: FormBuilder, public restApiService: RestApiService, private router: Router) {
     this.companyName = formBuilder.group({
       currentCompanyName: new FormControl('',
         Validators.compose([Validators.required]))
@@ -47,6 +48,11 @@ export class RegisterClientComponent implements OnInit {
 
   submitClient() {
     this.client = new Client(this.companyName.get('currentCompanyName').value, this.companyDescription.get('currentCompanyDescription').value, this.email.get('currentEmail').value, this.password.get('currentPassword').value);
-    this.restApiService.registerUser('users/client', this.client);
+    this.restApiService.registerUser('users/register/client', this.client).subscribe((data) => {
+      if(data) {
+        window.alert('register successful!');
+        this.router.navigateByUrl('/home');
+      }
+    });
   }
 }
