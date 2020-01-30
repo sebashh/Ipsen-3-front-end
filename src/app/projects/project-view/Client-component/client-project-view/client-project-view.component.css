@@ -1,0 +1,31 @@
+.content{
+  margin-top: 100px;
+}
+
+span{
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+table{
+  width: 100%;
+  position: relative;
+  margin: 0 0 50px;
+}
+
+tr{
+  background-color: #dddddd;
+  height: 40px;
+}
+
+table:nth-child(even) {
+  background-color: white;
+}
+
+table:nth-child(even) td{
+  border: 1px solid #dddddd;
+}
+
+th{
+  text-align: center;
+}

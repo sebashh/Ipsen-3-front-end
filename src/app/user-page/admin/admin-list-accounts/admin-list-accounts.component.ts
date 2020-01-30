@@ -27,11 +27,11 @@ export class AdminListAccountsComponent {
   divIndex;
   AllStudies = [];
 
-  
+
   ngOnInit() {
     this.getAllStudents();
     this.AllStudies = this.studyService.studies;
-    
+
   }
 
   getAllStudents() {
@@ -99,14 +99,12 @@ export class AdminListAccountsComponent {
   }
 
   editRow(id: number) {
-    console.log(id);
     this.edit = true;
     this.divIndex = id;
 
   }
 
   save(user: any) {
-    console.log(user);
     this.refreshPage();
 
   }

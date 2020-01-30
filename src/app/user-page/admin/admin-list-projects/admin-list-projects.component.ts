@@ -44,7 +44,6 @@ export class AdminListProjectsComponent implements OnInit {
   }
 
   editRow(id: number) {
-    console.log(id);
     this.edit = true;
     this.divIndex = id;
 
