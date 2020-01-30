@@ -54,7 +54,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   getAllStatistics(){
     let studentStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
     let teacherStatisticsApi = this.restApi.getAdminSpecificStatistics("login/teacher");
-    let clientStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    let clientStatisticsApi = this.restApi.getAdminSpecificStatistics("login/client");
     let projectStatisticApi = this.restApi.getAdminSpecificStatistics("project");
     let paperStatisticApi = this.restApi.getAdminSpecificStatistics("paper");
     forkJoin([studentStatisticsApi, teacherStatisticsApi, clientStatisticsApi,projectStatisticApi,paperStatisticApi]).subscribe(results =>{
