@@ -14,6 +14,7 @@ import { Client } from '../Models/client.model';
 import {dateStatistic} from "../Models/dateStatistic.model";
 import {ErrorMessages} from '../error-messages';
 import { Admin } from '../Models/admin.model';
+import { User } from '../Models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -265,6 +266,16 @@ export class RestApiService {
     });
   }
 
+  registerStudy(study: String){
+    return this.http.post(this.apiURL+'studies/add', study)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe((data) =>{
+      alert('Study successfully added!');
+      return data
+    })
+  }
   postResource(path: string, param: any, returnType: any):
     any {
     this.http.post(this.apiURL + path, param)

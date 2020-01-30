@@ -9,6 +9,7 @@ import { PaperItemComponent } from 'src/app/papers/paper-list/paper-item/paper-i
 import { FormComponent } from 'src/app/upload/form/form.component';
 import { RegisterAdminComponent } from 'src/app/user/register/register-admin/register-admin.component';
 import { CreateProjectComponent } from '../../client/create-project/create-project.component';
+import { RestApiService } from 'src/app/shared/Services/api-service';
 
 @Component({
   selector: 'app-admin-add',
@@ -17,19 +18,48 @@ import { CreateProjectComponent } from '../../client/create-project/create-proje
 })
 export class AdminAddComponent implements OnInit {
   dialogRef;
-  constructor(public dialog: MatDialog) { }
+  result: any;
+  Clients = [];
+  constructor(public dialog: MatDialog, public apiService: RestApiService) { }
 
   ngOnInit() {
+    this.apiService.getAllClients().subscribe((data)=>{
+      this.Clients = data;
+    })
 
   }
 
-  openDialog(message: String, placeholder: String) {
+  openDialog(message: String, placeholder: String, element?: boolean, options?: any) {
     let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.componentInstance.message = message;
     dialogRef.componentInstance.placeholder = placeholder;
+    dialogRef.componentInstance.element = element
+    dialogRef.componentInstance.options = options
     dialogRef.componentInstance.onOk.subscribe(result => {
-      console.log(result);
+      this.result = result;
+      this.pickFunction(placeholder, this.result);
     })
+  }
+
+  pickFunction(item: String, result: any){
+    switch(item){
+      case 'Study':
+        // this.apiService.getUserById(result);
+        this.apiService.registerStudy(result)
+        
+        break;
+      case 'Category':
+        console.log(result);
+        break;
+      case 'Project':
+        this.dialogRef = this.dialog.open(CreateProjectComponent, {
+          width: '90%',
+          data: {
+          id: result 
+          }
+        });
+          break;
+    }
   }
 
   openComponentDialog(addThis: String): void {
@@ -56,9 +86,7 @@ export class AdminAddComponent implements OnInit {
         });
         break;
       case 'project':
-        this.dialogRef = this.dialog.open(CreateProjectComponent, {
-          width: '90%'
-        });
+        this.openDialog("For which client do you want to create a project?", "Project", true, this.Clients)
         break;
       case 'paper':
         this.dialogRef = this.dialog.open(FormComponent, {
