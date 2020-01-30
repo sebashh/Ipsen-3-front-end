@@ -14,9 +14,9 @@ export class DialogComponent {
   onOk = new EventEmitter();
   public result: any;
   public element: Boolean = false;
-  public options: Client[];
+  public options: any[];
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) { 
-    
+    console.log(this.options)
   }
 }

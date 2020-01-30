@@ -20,13 +20,25 @@ export class AdminAddComponent implements OnInit {
   dialogRef;
   result: any;
   Clients = [];
+  Teachers = [];
   constructor(public dialog: MatDialog, public apiService: RestApiService) { }
 
   ngOnInit() {
+    this.getAllClients()
+    this.getAllTeachers()
+  }
+  
+  getAllTeachers(){
+    this.apiService.getAllTeachers().subscribe((data)=>{
+      console.log(data)
+      this.Teachers = data;
+    })
+  }
+
+  getAllClients(){
     this.apiService.getAllClients().subscribe((data)=>{
       this.Clients = data;
     })
-
   }
 
   openDialog(message: String, placeholder: String, element?: boolean, options?: any) {
@@ -44,12 +56,10 @@ export class AdminAddComponent implements OnInit {
   pickFunction(item: String, result: any){
     switch(item){
       case 'Study':
-        // this.apiService.getUserById(result);
         this.apiService.registerStudy(result)
-        
         break;
       case 'Category':
-        console.log(result);
+        this.apiService.registerCategory(result)
         break;
       case 'Project':
         this.dialogRef = this.dialog.open(CreateProjectComponent, {
@@ -58,6 +68,11 @@ export class AdminAddComponent implements OnInit {
           id: result 
           }
         });
+          break;
+        case 'Paper':
+          this.dialogRef = this.dialog.open(FormComponent, {
+            width: '25%'
+          });
           break;
     }
   }
@@ -89,9 +104,7 @@ export class AdminAddComponent implements OnInit {
         this.openDialog("For which client do you want to create a project?", "Project", true, this.Clients)
         break;
       case 'paper':
-        this.dialogRef = this.dialog.open(FormComponent, {
-          width: '25%'
-        });
+        this.openDialog("For which Teacher are you adding a paper for?", "Paper",true, this.Teachers)
         break;
       case 'admin':
         this.dialogRef = this.dialog.open(RegisterAdminComponent, {

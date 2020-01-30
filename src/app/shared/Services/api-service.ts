@@ -276,6 +276,18 @@ export class RestApiService {
       return data
     })
   }
+
+  registerCategory(category: String){
+    return this.http.post(this.apiURL+'categories/add', category)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe((data) =>{
+      alert('Category successfully added!');
+      return data
+    })
+  }
+
   postResource(path: string, param: any, returnType: any):
     any {
     this.http.post(this.apiURL + path, param)
