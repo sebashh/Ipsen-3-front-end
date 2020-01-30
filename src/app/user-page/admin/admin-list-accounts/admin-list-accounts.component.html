@@ -14,7 +14,7 @@
       </div>
       <div *ngFor="let student of AllStudents; let i = index" class="table-row">
         <div class="table-data" *ngIf="!edit || i != divIndex">{{student.email}}</div>
-        <div class="table-data" *ngIf="!edit || i != divIndex">{{getStudyName(student.study-1)}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{getStudyName(student.study)}}</div>
         <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="student.email"
             placeholder={{student.email}}></div>
         <div class="table-data" *ngIf="edit && i == divIndex">
@@ -42,7 +42,7 @@
       </div>
       <div *ngFor="let teacher of AllTeachers; let i = index" class="table-row">
         <div class="table-data" *ngIf="!edit || i != divIndex">{{teacher.email}}</div>
-        <div class="table-data" *ngIf="!edit || i != divIndex">{{getStudyName(teacher.study-1)}}</div>
+        <div class="table-data" *ngIf="!edit || i != divIndex">{{getStudyName(teacher.study)}}</div>
         <div class="table-data" *ngIf="edit && i == divIndex"><input [(ngModel)]="teacher.email"
             placeholder={{teacher.email}}></div>
         <div class="table-data" *ngIf="edit && i == divIndex"><select [(ngModel)]="teacher.study">

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import {Category} from "../Models/category.model";
 import {RestApiService} from "./api-service";
 
@@ -6,15 +6,25 @@ import {RestApiService} from "./api-service";
   providedIn: 'root'
 })
 export class CategoryService {
+  refresh(){
+    this.getAllCategories();
+  }
   categories: Category[];
 
+  @Output() event= new EventEmitter<Category[]>();
+
   public init(){
-    this.apiService.getCategories().subscribe(item =>{
-      this.categories = item as Category[];
-    })
+    this.getAllCategories();
   }
 
   constructor(private apiService: RestApiService) {
+  }
+
+  getAllCategories(){
+    this.apiService.getCategories().subscribe(item =>{
+      this.categories = item as Category[];
+      this.event.emit(this.categories);
+    })
   }
 
   getCategoryId(name: string): any{

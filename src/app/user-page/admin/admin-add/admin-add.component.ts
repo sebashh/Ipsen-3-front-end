@@ -10,6 +10,7 @@ import { FormComponent } from 'src/app/upload/form/form.component';
 import { RegisterAdminComponent } from 'src/app/user/register/register-admin/register-admin.component';
 import { CreateProjectComponent } from '../../client/create-project/create-project.component';
 import { RestApiService } from 'src/app/shared/Services/api-service';
+import { NewUploadComponent } from 'src/app/upload/new-upload/new-upload.component';
 
 @Component({
   selector: 'app-admin-add',
@@ -70,7 +71,7 @@ export class AdminAddComponent implements OnInit {
         });
           break;
         case 'Paper':
-          this.dialogRef = this.dialog.open(FormComponent, {
+          this.dialogRef = this.dialog.open(NewUploadComponent, {
             width: '25%'
           });
           break;

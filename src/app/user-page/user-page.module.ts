@@ -12,6 +12,7 @@ import { AdminAddComponent } from './admin/admin-add/admin-add.component';
 import { DialogComponent } from './admin/admin-add/dialog/dialog.component';
 import { FormComponent } from '../upload/form/form.component';
 import { RegisterAdminComponent } from '../user/register/register-admin/register-admin.component';
+import { NewUploadComponent } from '../upload/new-upload/new-upload.component';
 
 @NgModule({
   declarations: [CreateProjectComponent,
@@ -33,6 +34,6 @@ import { RegisterAdminComponent } from '../user/register/register-admin/register
     MatGridListModule,
     MatDialogModule
   ],
-  entryComponents: [DialogComponent, FormComponent, RegisterAdminComponent, CreateProjectComponent]
+  entryComponents: [DialogComponent, FormComponent, RegisterAdminComponent, CreateProjectComponent, NewUploadComponent]
 })
 export class UserPageModule { }

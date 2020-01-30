@@ -38,8 +38,11 @@ export class AdminListAccountsComponent {
   }
 
   getStudyName(study: number){
-    return this.AllStudies[study].name;
-
+    for(var i = 0; i < this.AllStudies.length; i++){
+      if(this.AllStudies[i].id==study){
+        return this.AllStudies[i].name
+      }
+    }
   }
 
   getAllStudents() {

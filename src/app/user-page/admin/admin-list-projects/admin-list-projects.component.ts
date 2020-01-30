@@ -20,11 +20,35 @@ export class AdminListProjectsComponent implements OnInit {
   divIndex;
   AllStudies = [];
   AllCategories = [];
+  answer;
 
   ngOnInit() {
     this.getAllProjects();
     this.AllStudies = this.studyService.studies;
     this.AllCategories = this.categoryService.categories;
+    this.studyService.event.subscribe(item =>{
+      this.AllStudies = item;
+    });
+    this.AllStudies = this.studyService.studies;
+    this.categoryService.event.subscribe(item =>{
+      this.AllCategories = item;
+    });
+  }
+
+  getStudyName(study: number){
+    for(var i = 0; i < this.AllStudies.length; i++){
+      if(this.AllStudies[i].id==study){
+        return this.AllStudies[i].name
+      }
+    }
+  }
+
+  getCategoryName(category: number){
+    for(var i = 0; i < this.AllCategories.length; i++){
+      if(this.AllStudies[i].id==category){
+        return this.AllCategories[i].name
+      }
+    }
   }
 
   getAllProjects(){
@@ -44,7 +68,6 @@ export class AdminListProjectsComponent implements OnInit {
   }
 
   editRow(id: number) {
-    console.log(id);
     this.edit = true;
     this.divIndex = id;
 
