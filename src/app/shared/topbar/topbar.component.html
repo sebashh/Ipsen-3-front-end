@@ -21,15 +21,15 @@
     </a>
   </div>
   <ng-template #NotLoggedIn>
-    <div class="topnav" id="myTopnav">
+    <div class="topnav" id="myTopnav" (keydown)="onEnter($event)">
       <a class="icon close" (click)="responsiveLogIn()">
         <i class="fa fa-times">
         </i>
       </a>
       <a routerLink="/register">Register</a>
-      <a (click)="logIn()">Login</a>
-      <a id="password"><input type="password" [(ngModel)]="password" placeholder="Wachtwoord"></a>
-      <a id="login"><input [(ngModel)]="email" placeholder="E-mail"></a>
+      <a (click)="logIn()" tabindex="3">Login</a>
+      <a><input type="password" [(ngModel)]="password" placeholder="Wachtwoord" tabindex="2"></a>
+      <a><input [(ngModel)]="email" placeholder="E-mail" tabindex="1"></a>
       <a class="icon" (click)="responsiveLogIn()">
         <i class="fa fa-bars"></i>
       </a>
@@ -37,6 +37,7 @@
   </ng-template>
   <div class="topnav" id="myTopnavi" *ngIf="UserIsAdmin; else NotAdmin">
     <a class="home" routerLink="{{getUserPath()}}">Home</a>
+    <a routerLink="/admin/add">Add</a>
       <a routerLink="/admin/papers">Papers</a>
       <a routerLink="/admin/projects">Projects</a>
       <a routerLink="/admin/accounts">Accounts</a>
@@ -44,7 +45,6 @@
   <ng-template #NotAdmin>
     <div class="topnav">
     <a class="home" routerLink="{{getUserPath()}}">Home</a>
-    <a routerLink="/about">About</a>
     <a routerLink="/projects">Projects</a>
     <a routerLink="/archive">Archive</a>
     </div>

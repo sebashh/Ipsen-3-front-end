@@ -4,6 +4,7 @@ import {Teacher} from "../../../../shared/Models/teacher.model";
 import {RestApiService} from "../../../../shared/Services/api-service";
 import {Project} from "../../../../shared/Models/project.model";
 import {Paper} from "../../../../shared/Models/paper.model";
+import {timeInterval} from "rxjs/operators";
 
 @Component({
   selector: 'app-client-project-view',
@@ -41,11 +42,22 @@ export class ClientProjectViewComponent implements OnInit {
     return count;
   }
 
+  revokeAccess(id:number){
+    this.apiService.revokeAccess(this.project.projectId, id).subscribe(item =>{
+      this.loadData();
+    });
+  }
+
   acceptRequest(id: number) {
-    this.apiService.acceptAccessRequest(this.project.projectId, id);
+    this.apiService.acceptAccessRequest(this.project.projectId, id).subscribe(item =>{
+      this.loadData();
+    });
   }
 
   denyRequest(id: number) {
-    this.apiService.denyAccessRequest(this.project.projectId,id);
+    this.apiService.denyAccessRequest(this.project.projectId,id).subscribe(item =>{
+        this.loadData();
+      }
+    );
   }
 }

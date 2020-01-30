@@ -30,7 +30,6 @@ export class HomePageComponent implements OnInit {
 
   getRecentStatisticsClient(){
     this.apiService.getRecentStatisticsClient().subscribe((data) => {
-      console.log(data);
       this.projectsViewsAmount = data[0];
       this.papersUploadAmount = data[1];
       this.totalProjectsClient = data[2];

@@ -29,11 +29,18 @@ export class TopbarComponent implements OnInit {
 }
 
   ngOnInit() {
+    
+    this.isUserLoggedIn = this.userService.isAuthorized(['student', 'teacher', 'client', 'admin']);
     this.UserIsAdmin = this.userService.isAuthorized(['admin'])
   }
 
   message() {
-    console.log('Hello');
+  }
+
+  onEnter(event){
+    if(event.keyCode==13){
+      this.logIn();
+    }
   }
 
   responsiveLogIn() {

@@ -19,6 +19,9 @@ export class StudentComponent implements OnInit {
 
   constructor(private apiService: RestApiService, private userService: UserService) { }
 
+  ngAfterViewOnInit(){
+
+  }
   ngOnInit() {
     this.setStudentName();
     this.getRecentStatisticsUser();
@@ -29,7 +32,6 @@ export class StudentComponent implements OnInit {
 
   getRecentStatisticsUser(){
     this.apiService.getRecentStatisticsStudent().subscribe((data) => {
-      console.log(data);
       this.projectsAmount = data[0];
       this.papersAmount = data[1];
     });
