@@ -12,10 +12,30 @@ a{
 input{
   width: 200px;
   height: 30px;
+  display: inline-block;
 }
 
 .project {
     /* border-radius: 50px;
     border: solid; */
     text-align: left;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.study{
+  margin-right: 50px;
+  display: inline-block;
+  width: 10%;
+}
+
+.category{
+  margin-left: 50px;
+  display: inline-block;
+  width: 10%;
+}
+
+.filterBar{
+  margin-bottom: 30px ;
 }

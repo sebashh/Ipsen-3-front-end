@@ -189,6 +189,18 @@ export class RestApiService {
     )
   }
 
+  getProjectsbyBoth(studyId: number, categoryId: number): Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/filter/study='+ studyId + '+category=' + categoryId)
+  }
+
+  getProjectsNewerThan(newerThan: Date): Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/projectsNewerThan=' + newerThan)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
 
   // Error handling
   handleError(error) {
@@ -319,6 +331,10 @@ export class RestApiService {
     );
   }
 
+
+  getProjectsByStudyId(studyId: number): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiURL + 'projects/filter/study=' + studyId)
+  }
   loginUser(loginModel: LoginModel) {
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
       retry(1),
@@ -412,6 +428,11 @@ export class RestApiService {
         retry(1),
         catchError(this.handleError)
       );
+
+  }
+
+  getProjectsByCategoryId(categoryId: number): Observable<Project[]>{
+    return this.http.get<Project[]>(this.apiURL + 'projects/filter/category=' + categoryId)
   }
 
   getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
