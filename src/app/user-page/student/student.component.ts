@@ -10,7 +10,7 @@ import { UserService } from 'src/app/shared/Services/user.service';
 })
 export class StudentComponent implements OnInit {
 
-  studentName ="jaime@student.hsleiden.nl";
+  studentName ="";
   studentDisplayName : string;
   projectsAmount : number;
   papersAmount: number;
@@ -19,6 +19,9 @@ export class StudentComponent implements OnInit {
 
   constructor(private apiService: RestApiService, private userService: UserService) { }
 
+  ngAfterViewOnInit(){
+
+  }
   ngOnInit() {
     this.setStudentName();
     this.getRecentStatisticsUser();
@@ -48,8 +51,11 @@ export class StudentComponent implements OnInit {
   }
 
   setStudentName(){
-    let subStrings = this.studentName.split("@");
-    this.studentDisplayName = subStrings[0];
+    this.apiService.getUserEmailById().subscribe((data) => {
+      this.studentName = data;
+      let subStrings = this.studentName.split("@");
+      this.studentDisplayName = subStrings[0];
+    });
   }
 
 }

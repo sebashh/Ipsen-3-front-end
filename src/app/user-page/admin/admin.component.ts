@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import {RestApiService} from "../../shared/Services/api-service";
 import {Project} from "../../shared/Models/project.model";
 import {dateStatistic} from "../../shared/Models/dateStatistic.model";
+import {forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-admin',
@@ -33,6 +34,8 @@ export class AdminComponent implements OnInit, AfterViewInit {
   loginTeacher = [];
   loginClient = [];
 
+  adminName ="";
+  adminDisplayName : string;
 
 
 
@@ -40,25 +43,41 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.getProjectLineStatistics();
-    this.getUserStatistics();
-    this.getViewStatistics();
-    this.getLoginStatistics();
+    this.setAdminName();
+    this.getAllStatistics();
   }
 
   ngAfterViewInit(){
   }
 
-  getProjectLineStatistics(){
-    this.restApi.getAdminSpecificStatistics("project").subscribe((data)=>{
-      this.setStatisticValues(data, this.projects);
-      this.setLabelNames(data);
+
+  getAllStatistics(){
+    let studentStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    let teacherStatisticsApi = this.restApi.getAdminSpecificStatistics("login/teacher");
+    let clientStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    let projectStatisticApi = this.restApi.getAdminSpecificStatistics("project");
+    let paperStatisticApi = this.restApi.getAdminSpecificStatistics("paper");
+    forkJoin([studentStatisticsApi, teacherStatisticsApi, clientStatisticsApi,projectStatisticApi,paperStatisticApi]).subscribe(results =>{
+      this.setStatisticValues(results[0], this.loginStudent);
+      this.setStatisticValues(results[1], this.loginTeacher);
+      this.setStatisticValues(results[2], this.loginClient);
+      this.setStatisticValues(results[3], this.projects);
+      this.setLabelNames(results[3]);
+      this.setStatisticValues(results[4], this.papers);
+      this.getViewStatistics();
+      this.getUserStatistics();
+      this.createDonutGraphUsers();
       this.createLineGraphBaseStatistics();
+      this.createStackedBarGraphLogin();
     })
-    this.restApi.getAdminSpecificStatistics("paper").subscribe((data)=>{
-      this.setStatisticValues(data, this.papers);
-      this.createLineGraphBaseStatistics();
-    })
+  }
+
+  setAdminName(){
+    this.restApi.getUserEmailById().subscribe((data) => {
+      this.adminName = data;
+      let subStrings = this.adminName.split("@");
+      this.adminDisplayName = subStrings[0];
+    });
   }
 
   getUserStatistics(){
@@ -75,23 +94,6 @@ export class AdminComponent implements OnInit, AfterViewInit {
     this.restApi.getAdminSpecificStatistics("views").subscribe((data)=>{
       this.setStatisticValues(data, this.viewData);
       this.createBarGraphViews();
-    })
-  }
-
-  getLoginStatistics(){
-    this.restApi.getAdminSpecificStatistics("login/student").subscribe((data)=>{
-      this.setStatisticValues(data, this.loginStudent);
-      this.createStackedBarGraphLogin();
-      this.stackedBarChart.destroy();
-    })
-    this.restApi.getAdminSpecificStatistics("login/teacher").subscribe((data)=>{
-      this.setStatisticValues(data, this.loginTeacher);
-      this.createStackedBarGraphLogin();
-      this.stackedBarChart.destroy();
-    })
-    this.restApi.getAdminSpecificStatistics("login/client").subscribe((data)=>{
-      this.setStatisticValues(data, this.loginClient);
-      this.createStackedBarGraphLogin();
     })
   }
 
@@ -253,9 +255,36 @@ export class AdminComponent implements OnInit, AfterViewInit {
       },
         scales: {
           xAxes: [{ stacked: true }],
-          yAxes: [{ stacked: true }]
+          yAxes: [{ stacked: true , ticks: {stepSize: 1}}]
         }}
     })
   }
 
 }
+
+/*
+  getProjectLineStatistics(){
+    let projectStatisticApi = this.restApi.getAdminSpecificStatistics("project");
+    let paperStatisticApi = this.restApi.getAdminSpecificStatistics("paper");
+    forkJoin([projectStatisticApi,paperStatisticApi]).subscribe( results =>{
+      this.setStatisticValues(results[0], this.projects);
+      this.setLabelNames(results[0]);
+      this.setStatisticValues(results[1], this.papers);
+      this.createLineGraphBaseStatistics();
+      });
+  }
+
+  getLoginStatistics(){
+    let studentStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    let teacherStatisticsApi = this.restApi.getAdminSpecificStatistics("login/teacher");
+    let clientStatisticsApi = this.restApi.getAdminSpecificStatistics("login/student");
+    forkJoin([studentStatisticsApi, teacherStatisticsApi, clientStatisticsApi]).subscribe(results =>{
+      this.setStatisticValues(results[0], this.loginStudent);
+      this.setStatisticValues(results[1], this.loginTeacher);
+      this.setStatisticValues(results[2], this.loginClient);
+      this.createStackedBarGraphLogin();
+    })
+  }
+
+
+*/

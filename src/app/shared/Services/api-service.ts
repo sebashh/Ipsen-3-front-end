@@ -13,7 +13,8 @@ import { Teacher } from '../Models/teacher.model';
 import { Client } from '../Models/client.model';
 import {dateStatistic} from "../Models/dateStatistic.model";
 import {ErrorMessages} from '../error-messages';
-import {log} from "util";
+import { Admin } from '../Models/admin.model';
+import { User } from '../Models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,7 @@ export class RestApiService {
   }
 
   deletePaper(id: number): Observable<{}> {
+
     return this.http.delete(this.apiURL + 'paper/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -113,6 +115,7 @@ export class RestApiService {
   }
 
   deleteProject(id: number): Observable<{}> {
+
     return this.http.delete(this.apiURL + 'projects/delete=' + id )
       .pipe(
         catchError(this.handleError)
@@ -120,7 +123,7 @@ export class RestApiService {
   }
 
   getAllStudents(): Observable<Student[]>{
-    return this.http.get<Student[]>(this.apiURL + 'users/getAllStudents')
+    return this.http.get<Student[]>(this.apiURL + 'users/student/getAllStudents')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -128,21 +131,21 @@ export class RestApiService {
   }
 
   updateStudent(student: Student): Observable<Student>{
-    return this.http.put<Student>(this.apiURL + 'users/studentUpdate', student)
+    return this.http.put<Student>(this.apiURL + 'users/student/studentUpdate', student)
     .pipe(
       catchError(this.handleError)
     )
   }
 
   updateTeacher(teacher: Teacher): Observable<Teacher>{
-    return this.http.put<Teacher>(this.apiURL + 'users/teacherUpdate', teacher)
+    return this.http.put<Teacher>(this.apiURL + 'users/teacher/teacherUpdate', teacher)
     .pipe(
       catchError(this.handleError)
     )
   }
 
   updateClient(client: Client): Observable<Client>{
-    return this.http.put<Client>(this.apiURL + 'users/clientUpdate', client)
+    return this.http.put<Client>(this.apiURL + 'users/client/clientUpdate', client)
     .pipe(
       catchError(this.handleError)
     )
@@ -171,7 +174,7 @@ export class RestApiService {
 
 
   getAllTeachers(): Observable<Teacher[]>{
-    return this.http.get<Teacher[]>(this.apiURL + 'users/getAllTeachers')
+    return this.http.get<Teacher[]>(this.apiURL + 'users/teacher/getAllTeachers')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -179,7 +182,7 @@ export class RestApiService {
   }
 
   getAllClients(): Observable<Client[]>{
-    return this.http.get<Client[]>(this.apiURL + 'users/getAllClients')
+    return this.http.get<Client[]>(this.apiURL + 'users/client/getAllClients')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -209,6 +212,22 @@ export class RestApiService {
     return throwError(errorMessage);
   }
 
+  handleRegisterAdminError(error) {
+    let errorMessage = '';
+    if(error.status == '406'){
+      errorMessage = 'Name already exists\nPlease enter a new name';
+    }
+    else if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
   handleRegisterError(error) {
     let errorMessage = '';
     if(error.status == '406'){
@@ -227,11 +246,45 @@ export class RestApiService {
 
   registerUser(path: string, param: any):
     any {
-    return this.http.post(this.apiURL + 'users/register/' + path, param)
+    return this.http.post(this.apiURL + path, param)
       .pipe(
         retry(1),
         catchError(this.handleRegisterError)
       );
+  }
+
+  registerAdmin(admin: Admin):
+    any {
+    return this.http.post(this.apiURL + "users/admin", admin)
+      .pipe(
+        retry(1),
+        catchError(this.handleRegisterAdminError)
+      ).subscribe((data) => {
+        alert('Admin successfully created!');  
+      return data;
+    });
+  }
+
+  registerStudy(study: String){
+    return this.http.post(this.apiURL+'studies/add', study)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe((data) =>{
+      alert('Study successfully added!');
+      return data
+    })
+  }
+
+  registerCategory(category: String){
+    return this.http.post(this.apiURL+'categories/add', category)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    ).subscribe((data) =>{
+      alert('Category successfully added!');
+      return data
+    })
   }
 
   postResource(path: string, param: any, returnType: any):
@@ -421,6 +474,28 @@ export class RestApiService {
     );
   }
 
+  getUserEmailById():Observable <string>{
+   return this.http.get(this.apiURL + 'users/email',{responseType: 'text'})
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  increaseProjectViews(id : number) {
+    return this.http.get(this.apiURL + 'projects/project=' + id + '/view').pipe(
+      retry(1),
+      catchError(this.handleInlogError)
+    ).subscribe();
+  }
+
+  revokeAccess(projectId: number, id: number): Observable<any> {
+    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/teacher-id=' + id + '/response=false').pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   getClient(clientId: number): Observable<Client> {
     return this.http.get<Client>(this.apiURL + 'users/client/get=' + clientId).pipe(
       retry(1),
@@ -429,10 +504,5 @@ export class RestApiService {
 
   }
 
-  revokeAccess(projectId: number, id: number): Observable<any>  {
-    return this.http.get(this.apiURL + 'projects/project=' + projectId + '/access/teacher-id=' + id + '/response=false').pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
+
 }

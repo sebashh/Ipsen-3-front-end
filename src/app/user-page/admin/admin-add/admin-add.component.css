@@ -1,0 +1,14 @@
+.container {
+    align-content: center;
+}
+
+button {
+align-content: center;
+  margin: auto;
+  background-color: rgb(109, 190, 179);
+  border: none;
+  border-radius: 10px;
+  width: 50vh;
+  height: 5vh;
+  margin-bottom: 10px;
+}

@@ -31,6 +31,8 @@ export class ProjectViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.isTeacher()) this.getAccessInformationTeacher();
+    this.apiService.increaseProjectViews(this.project.projectId);
   }
 
   isCurrentOwner(): boolean{
