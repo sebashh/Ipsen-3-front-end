@@ -1,21 +1,21 @@
-<div>
+<div class="content">
   <h1>Projects</h1>
+
+  <div class="filterBar">
+  <div class="study">
+    <label>Choose study</label>
+    <ngx-select-dropdown (change)="onSelectUpdate()" (click)="onSelectUpdate()"  [multiple]="false" [(ngModel)]="dataModelStudy" [config]="configStudy" [options]="optionsStudy"></ngx-select-dropdown>
+  </div>
   <input placeholder="search..." [(ngModel)]="inputField" (input)="filterContent()"/>
+    <div class="category">
+      <label>Choose category</label>
+      <ngx-select-dropdown (change)="onSelectUpdate()"  [multiple]="false" [(ngModel)]="dataModelCat" [config]="configCategory" [options]="optionsCategory"></ngx-select-dropdown>
+    </div>
+</div>
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile class="project" *ngFor="let project of pageOfItems">
             <app-project-view-card [project] = "project"></app-project-view-card>
       </mat-grid-tile>
     </mat-grid-list>
   <jw-pagination [items]="filteredProjects" pageSize="20" (changePage)="onChangePage($event)"></jw-pagination>
-</div>
-
-<div>
-  <div class="study">
-    <label>Choose study</label>
-    <ngx-select-dropdown  formControlName="study" class="dropdown" [multiple]="true" [(ngModel)]="dataModelStudy" [config]="configStudy" [options]="optionsStudy"></ngx-select-dropdown>
-  </div>
-  <div class="category">
-    <label>Choose category</label>
-    <ngx-select-dropdown   formControlName="category" class="dropdown" [multiple]="true" [(ngModel)]="dataModelCat" [config]="configCategory" [options]="optionsCategory"></ngx-select-dropdown>
-  </div>
 </div>

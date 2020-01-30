@@ -31,7 +31,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit() {
     this.UserIsAdmin = this.userService.isAuthorized(['admin'])
   }
-  
+
   message() {
     console.log('Hello');
   }
@@ -90,7 +90,6 @@ export class TopbarComponent implements OnInit {
     if(this.userService.user) path = path + '/' + this.userService.user.role;
     this.UserIsAdmin = this.userService.isAuthorized(['admin'])
     this.isUserLoggedIn = this.userService.isAuthorized(['student', 'teacher', 'client', 'admin']);
-    console.log("isUserLoggedIn? ", this.isUserLoggedIn);
     return path;
   }
 }

@@ -105,7 +105,7 @@ export class RestApiService {
   }
 
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'projects/projects=all')
+    return this.http.get<Project[]>(this.apiURL + 'projects/projects/all')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -189,11 +189,11 @@ export class RestApiService {
   }
 
   getProjectsbyBoth(studyId: number, categoryId: number): Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/filter/study='+ studyId + '+category=' + categoryId)
+    return this.http.get<Project[]>(this.apiURL + 'projects/filter/study='+ studyId + '+category=' + categoryId)
   }
 
   getProjectsNewerThan(newerThan: Date): Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/projectsNewerThan=' + newerThan)
+    return this.http.get<Project[]>(this.apiURL + 'projects/projectsNewerThan=' + newerThan)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -284,7 +284,7 @@ export class RestApiService {
 
 
   getProjectsByStudyId(studyId: number): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/filter/study=' + studyId)
+    return this.http.get<Project[]>(this.apiURL + 'projects/filter/study=' + studyId)
   }
   loginUser(loginModel: LoginModel) {
     return this.http.post(this.apiURL + 'authentication/login',  loginModel).pipe(
@@ -383,7 +383,7 @@ export class RestApiService {
   }
 
   getProjectsByCategoryId(categoryId: number): Observable<Project[]>{
-    return this.http.get<Project[]>(this.apiURL + 'ipsen3projects/filter/category=' + categoryId)
+    return this.http.get<Project[]>(this.apiURL + 'projects/filter/category=' + categoryId)
   }
 
   getTopViewedProjectsClient(user_id : number) : Observable<Project[]>{
@@ -447,7 +447,7 @@ export class RestApiService {
   }
 
   getUserEmailById():Observable <string>{
-   return this.http.get(this.apiURL + 'ipsen3users/email',{responseType: 'text'})
+   return this.http.get(this.apiURL + 'users/email',{responseType: 'text'})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -456,7 +456,7 @@ export class RestApiService {
 
   increaseProjectViews(id : number) {
     console.log("increase views of project " + id);
-    return this.http.get(this.apiURL + 'ipsen3projects/epic=' + id).pipe(
+    return this.http.get(this.apiURL + 'projects/epic=' + id).pipe(
       retry(1),
       catchError(this.handleInlogError)
     ).subscribe();
