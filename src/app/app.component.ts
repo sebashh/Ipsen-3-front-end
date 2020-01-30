@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
 import {Project} from "./shared/Models/project.model";
 import {RestApiService} from "./shared/Services/api-service";
 import {CategoryService} from "./shared/Services/category.service";
 import {StudyService} from "./shared/Services/study.service";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Default,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
