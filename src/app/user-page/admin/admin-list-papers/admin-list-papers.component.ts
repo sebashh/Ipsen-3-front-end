@@ -29,9 +29,6 @@ export class AdminListPapersComponent implements OnInit {
 
   delete(id: number, title: String){
     var result = confirm("Are you sure you want to delete "+title+"?");
-    console.log(result);
-
-    console.log(id);
     if(result){
       this.restApi.deletePaper(id).subscribe();;
       this.getAllPapers();
@@ -40,7 +37,6 @@ export class AdminListPapersComponent implements OnInit {
   }
 
   editRow(id: number) {
-    console.log(id);
     this.edit = true;
     this.divIndex = id;
 

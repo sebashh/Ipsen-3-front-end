@@ -1,4 +1,4 @@
-
+<div class="content">
 <span>Requests to access project</span>
 <table>
   <tr *ngFor="let teacher of teacherRequests">
@@ -8,11 +8,12 @@
   </tr>
 </table>
 
-<table>
 <span>Teachers with access</span>
+<table>
   <tr *ngFor="let teacher of teacherAccess">
     <td class="email">{{teacher.email}}</td>
     <td class="paperAmount">Papers uploaded: {{getPaperAmount(teacher.id)}}</td>
-    <td class="remove"><button>Revoke access</button></td>
+    <td class="remove"><button (click)="revokeAccess(teacher.id)">Revoke access</button></td>
   </tr>
 </table>
+</div>

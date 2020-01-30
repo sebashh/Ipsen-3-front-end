@@ -30,7 +30,6 @@ export class TeacherComponent implements OnInit {
 
   getRecentStatisticsTeacher(){
     this.apiService.getRecentStatisticsTeacher().subscribe((data) => {
-      console.log(data);
       this.projectsAmountInterests = data[0];
       this.projectsAmountUploadedTo = data[1];
       this.projectViews = data[2];
